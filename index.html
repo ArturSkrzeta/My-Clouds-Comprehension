@@ -89,8 +89,8 @@
 										<ul>
 											<li>For server connection we need to get:
 												<br>
-												- SSH Client for Linux Server or<br>
-												- RDP Client for windows Server<br>
+												- <u>SSH Client</u> for Linux Server or<br>
+												- <u>RDP Client</u> for Windows Server<br>
 												which allows us to get connected with the server.
 											</li>
 											<li>To get SSH client for windows on local machine I use MobaXterm.</li>
@@ -107,6 +107,7 @@
 													Once created, key gets downloaded to local machine as the private key.<br>
 											</li>
 										</ul>
+
 
 										<!-- <h5>6. Continuous monitoring:</h5>
 										<ul>
@@ -146,12 +147,13 @@
 											- authentication key,<br>
 											- security group.
 										</li>
-										<li>OS for EC2 instance is the AMI. We can run multiple instances from a single AMI.</li>
-										<li>There are also a persistent block storage volumes for AWS EC2 instances. We call it Elastic Block Store (EBS):
+										<li>OS for EC2 instance is the <b>Amazon Machine Image (AMI)</b>. We can run multiple instances from a single AMI.</li>
+										<li>There are also a persistent block storage volumes for AWS EC2 instances. We call it <b>Elastic Block Store (EBS)</b>:
 											<br>
 											- Persistent means that the data will remain even when we stop the a EC2 instance.<br>
 											- We can still ustilize the instance's store which gives fast performance, however the data will be lost if you stop the EC2 instance.
 										</li>
+										<li>EC2 is equipped with <b>Elastic Load Balancer (ELB)</b> so that traffic can be distributed across multiple EC2 instances.</li>
 									</ul>
 
 									<h5>S3:</h5>
@@ -159,6 +161,24 @@
 										<li>S3 is the durable storage system and is based on object storage.</li>
 										<li>In S3 we have buckets that are like folders where we can store multiple objects (files).</li>
 										<li>Can be used for storing simple websites at the lower costs. With that solution there is no need for instantiating EC2 server.</li>
+									</ul>
+
+									<h5>AWS Relational Database Service (RDS)</h5>
+									<ul>
+										<li>AWS RDS supports various database engines like MySQL, PostgreSQL, Microsoft SQL Serverm Oracle.</li>
+										<li>However those engines can be also hosted in EC2.</li>
+									</ul>
+
+									<h5>AWS CloudFormation:</h5>
+									<ul>
+										<li>It allows to deploy the Infrastructure in form of code - we refer to this a <b>Infrastructure as a Code</b>.</li>
+										<li>It supports most of the AWS services.</li>
+									</ul>
+
+									<h5>Serverless Services:</h5>
+									<ul>
+										<li><b>AWS Lambda</b> lets us to run the code without provisioning or managing any servers.</li>
+										<li>We are being charged only for the computing time we consume.</li>
 									</ul>
 
 
