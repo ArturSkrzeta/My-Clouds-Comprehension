@@ -328,6 +328,20 @@
 										</li>
 									</ul>
 
+									<h5>CloudFront:</h5>
+									<ul>
+										<li>Service for Content Delivery Network (CDN) which acts like a proxy that receives requests and forward those requests to the backend systems.</li>
+										<li>CDN caches website or application files, HTML, CSS, JS, images or videos at data centers around the world.
+												Even when backend server goes down, CDN is able to server the content of a static web-site back to the end user..</li>
+										<li>When setting up the CloudFront service we define amount of data centers - <b>the edge locations</b>.
+												The more edge locations, the higher perfomrance and the lower latency of getting server's content as reposnse on user's request.</li>
+										<li>The edge locations allow users to download the app content much faster from the nearest edge location
+												rather than when request would need to go all the way to the origin server.
+										</li>
+										<li>User request may need to go to the origin server in case when the content at the closest edge location is not present at the moment.</li>
+										<li>Content is being cached at the edge location for a specific period of time - <b>Time To Live (TTL)</b>.</li>
+									</ul>
+
 									<h5>AWS Storage Gateway:</h5>
 									<ul>
 										<li>A service that lets the on-premise application to access and use the cloud storage.</li>
@@ -341,7 +355,6 @@
 												Data is stored primarly on AWS S3, what we have locally on-premise server is a cache of recently read or writthen data.
 										</li>
 									</ul>
-
 
 									<h5>Remaining AWS services:</h5>
 									<ul>
