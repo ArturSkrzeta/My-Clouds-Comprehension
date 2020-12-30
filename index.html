@@ -79,7 +79,9 @@
 												<br>
 												1. Clouds is actually a real Data Center with X servers already set up.<br>
 												2. Data Center provides Virtualization layer (in case of AWS  it's mainly XEN).<br>
-												3. On top of virtualization layer there are multiple Virtual servers.
+												3. On top of virtualization layer there are multiple Virtual servers.<br>
+												<br>
+												<img src="images/architecture.JPG" width="400">
 											</li>
 											<li>Data centers are organized into availability zones that are separated by geograpic region. They play a role of backups in case of one of the Data Centers failure.</li>
 											<li>Each AWS region contains at least 2 availability zones.</li>
@@ -108,6 +110,21 @@
 											</li>
 										</ul>
 
+										<h5>Infrastructure as a Code (IaaC):</h5>
+										<ul>
+											<li>There are two ways of building the infrastructure: manually or with script's automation.</li>
+											<li>Automation with Iaac helps to autmate infrastrucutre building on every stage of app's service:
+												<br>
+												1. As every time a new app's service comes up, its infrastructure needs to be first built up in the development environment.<br>
+												2. Then app's service comes to the staging area for testing where the same infrastructure needs to be built once again.<br>
+												3. Moving to the production environment where all the infrastructure has to be replicated.
+											</li>
+											<li>It's getting even more helpful when deploying multiple app's services.</li>
+											<br>
+											<img src="images/iaac.JPG" width="610"><span style="font-size:12px;">source: udemy</span>
+											<li>One IaaC template can be reused for building infrastructure for different stages of different app's services during deployment.</li>
+											<li>Tools for IaaC: Terraform or AWS CloudFormation.</li>
+										</ul>
 
 										<!-- <h5>6. Continuous monitoring:</h5>
 										<ul>
@@ -150,17 +167,30 @@
 										<li>OS for EC2 instance is the <b>Amazon Machine Image (AMI)</b>. We can run multiple instances from a single AMI.</li>
 										<li>There are also a persistent block storage volumes for AWS EC2 instances. We call it <b>Elastic Block Store (EBS)</b>:
 											<br>
-											- Persistent means that the data will remain even when we stop the a EC2 instance.<br>
+											- Persistent means that the data will remain even when we stop the EC2 instance.<br>
+											- The volumes are replicated, backed up and connected to EC2 instances with network.<br>
+											<br>
+											<img src="images/datacenter.JPG" width="700">
+											<br>
 											- We can still ustilize the instance's store which gives fast performance, however the data will be lost if you stop the EC2 instance.
 										</li>
 										<li>EC2 is equipped with <b>Elastic Load Balancer (ELB)</b> so that traffic can be distributed across multiple EC2 instances.</li>
+										<li>EC2 has <b>Auto-Scaling</b> built in which autoatically add or remove EC2 instances according to conditions we define e.g.:
+											<br>
+											- if average CPU utilization > 60 % then add two more instances,<br>
+											- if average CPU utilization < 30 % then remove two instances.
+										</li>
 									</ul>
 
 									<h5>S3:</h5>
 									<ul>
 										<li>S3 is the durable storage system and is based on object storage.</li>
-										<li>In S3 we have buckets that are like folders where we can store multiple objects (files).</li>
+										<li>In S3 we have buckets that are like folders where we can store multiple objects (files).
+												Bucket names are unique across enitre AWS namespace.
+												Buckets can have subfolders.
+										</li>
 										<li>Can be used for storing simple websites at the lower costs. With that solution there is no need for instantiating EC2 server.</li>
+										<li>When you upload some file to the cloud storage it back file up automatically.</li>
 									</ul>
 
 									<h5>AWS Relational Database Service (RDS)</h5>
@@ -169,18 +199,25 @@
 										<li>However those engines can be also hosted in EC2.</li>
 									</ul>
 
-									<h5>AWS CloudFormation:</h5>
-									<ul>
-										<li>It allows to deploy the Infrastructure in form of code - we refer to this a <b>Infrastructure as a Code</b>.</li>
-										<li>It supports most of the AWS services.</li>
-									</ul>
-
 									<h5>Serverless Services:</h5>
 									<ul>
-										<li><b>AWS Lambda</b> lets us to run the code without provisioning or managing any servers.</li>
+										<li>Services that can be used without any server instantiation, for example <b>AWS Lambda</b> lets us to run the code without provisioning or managing any servers.</li>
 										<li>We are being charged only for the computing time we consume.</li>
+										<li>Example serverless services:
+											<br>
+											- AWS Lmabda for computing,<br>
+											- AWS S3 for storage,<br>
+											- DynamoDB for Database, <br>
+											- SQS, SNS for an app integration.
+										</li>
 									</ul>
 
+									<h5>Remaining AWS services:</h5>
+									<ul>
+										<li>AWS Athena - a service that allows us to analyze various log files from S3 using standard SQL.</li>
+										<li>AWS Inspecotr - </li>
+										<li>AWS Storage Gateway storage service that lets the on-premise application to access and use the cloud storage.</li>
+									</ul>
 
 								</div>
 							</section>
