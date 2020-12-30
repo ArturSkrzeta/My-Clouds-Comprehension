@@ -209,11 +209,18 @@
 										</li>
 										<li>Once instance created, we can connect server with SSH:
 											<br>
+											- connecting to EC2 server:<br>
 											<code>ssh -i ec2-key.pem ec2-user@{Public IP}</code><br>
+											- getting admin rights:<br>
 											<code>sudo su -</code><br>
+											- intalling some stuff:<br>
 											<code>yum -y install nginx</code><br>
+											<code>yum -y install mysql</code><br>
+											- cd to location:<br>
 											<code>cd /usr/share/nginx/html/</code><br>
+											- modifying a file:<br>
 											<code>echo "Hello World" > index.html</code><br>
+											- running service:<br>
 											<code>service nginx start</code>
 										</li>
 										<li>OS for EC2 instance is the <b>Amazon Machine Image (AMI)</b>. We can run multiple instances from a single AMI.</li>
