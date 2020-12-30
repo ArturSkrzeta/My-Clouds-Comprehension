@@ -182,6 +182,31 @@
 										</li>
 									</ul>
 
+									<h5>AWS Relational Database Service (RDS)</h5>
+									<ul>
+										<li>AWS RDS supports various database engines like MySQL, PostgreSQL, Microsoft SQL Serverm Oracle.</li>
+										<li>However those engines can be also hosted in EC2.</li>
+									</ul>
+
+									<h5>Serverless Services:</h5>
+									<ul>
+										<li>In fact, it doesn't mean that there is no server being present.
+												There are server to host your application, however is completely managed by the provider.
+												You only care about the app's code.</li>
+										<li>Very popular way of having serverless service is a PaaS model where only need is to upload the the application.
+												PaaS provider takes care of the rest which is setting up the capacity, launching servers in high-availability and auto-scaling mode, installing technology-specifc packages and dependencies, security, patching, monitoring.
+										<li>There are AWS Services that can be used without any server instantiation.
+												There is no need for any capacity planning or how much resources we might need.
+												We are being charged only for the computing time we consume.
+												Example serverless services:
+											<br>
+											- AWS Lmabda for computing,<br>
+											- AWS S3 for storage,<br>
+											- DynamoDB for Database, <br>
+											- SQS, SNS for an app integration.
+										</li>
+									</ul>
+
 									<h5>S3:</h5>
 									<ul>
 										<li>S3 is the durable storage system and is based on object storage.</li>
@@ -193,24 +218,31 @@
 										<li>When you upload some file to the cloud storage it back file up automatically.</li>
 									</ul>
 
-									<h5>AWS Relational Database Service (RDS)</h5>
+									<h5>AWS Lambda:</h5>
 									<ul>
-										<li>AWS RDS supports various database engines like MySQL, PostgreSQL, Microsoft SQL Serverm Oracle.</li>
-										<li>However those engines can be also hosted in EC2.</li>
-									</ul>
-
-									<h5>Serverless Services:</h5>
-									<ul>
-										<li>Very popular way of having serverless service is a PaaS model where only need is to upload the the application.
-												PaaS provider takes care of the rest which is setting up the capacity, launching servers in high-availability and auto-scaling mode, installing technology-specifc packages and dependencies, security, patching, monitoring.
-										<li>There are AWS Services that can be used without any server instantiation.
-												We are being charged only for the computing time we consume.
-												Example serverless services:
+										<li>It's a fully managed compute service that runs our code when event appears (for instance uploading objects to S3 can trigger Lambda function)or on the time base.</li>
+										<li>AWS Lambda provides:
 											<br>
-											- AWS Lmabda for computing,<br>
-											- AWS S3 for storage,<br>
-											- DynamoDB for Database, <br>
-											- SQS, SNS for an app integration.
+											- servers,<br>
+											- capacity,<br>
+											- deployment,<br>
+											- scaling,<br>
+											- high-availability,<br>
+											- os updates,<br>
+											- security.
+										</li>
+										<li>What we provide:
+											<br>
+											- code,<br>
+											- money - as much as we use it.
+										</li>
+										<li>There are many AWS-related events that can trigger a lambda function:
+											<br><br>
+											<img src="images/lambda_triggers.png" width="550">
+										</li>
+										<li>We can specify Runtime while configuration:
+											<br><br>
+											<img src="images/runtime.JPG" width="550">
 										</li>
 									</ul>
 
