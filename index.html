@@ -223,7 +223,10 @@
 											<img src="images/datacenter.JPG" width="700">
 											<br>
 											- We can still ustilize the instance's store which gives fast performance, however the data will be lost if you EC2 instance stops or terminates or the underlying hosting disk fails.
-												The recompensation might be the fact it's quite cost-effecitve, however, we need to make sure to back up the data in S3 for example.
+												The recompensation might be the fact it's quite cost-effecitve, however, we need to make sure to back up the data in S3 for example.<br>
+											- What kind of storage we want to use, we need to specify on AMI configuration step:<br>
+												<br>
+												<img src="images/instance_storage.JPG" width="700">
 										</li>
 										<li>EC2 is equipped with <b>Elastic Load Balancer (ELB)</b> so that traffic can be distributed across multiple EC2 instances.</li>
 										<li>EC2 has <b>Auto-Scaling</b> built in which autoatically add or remove EC2 instances according to conditions we define e.g.:
