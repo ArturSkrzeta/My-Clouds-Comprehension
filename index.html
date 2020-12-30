@@ -145,10 +145,10 @@
 												</tr>
 												<tr>
 													<td>No metadata about blocks.</td>
-													<td>Object has metadata with contextual information.</td>
+													<td>Metadata with contextual information about single object.</td>
 												</tr>
 												<tr>
-													<td>Supports read/write operations</td>
+													<td>Supports read/write operations.</td>
 													<td>Data is mostly read (rather than written to).</td>
 												</tr>
 												<tr>
@@ -157,7 +157,7 @@
 												</tr>
 												<tr>
 													<td>Accessing blocks on server with underlying file system protocol (NFS, CIFS, ext3/ext4).</td>
-													<td>Accessing objects relies on HTTP protocol</td>
+													<td>Accessing objects relies on HTTP protocol.</td>
 												</tr>
 											</tbody>
 										</table>
@@ -213,6 +213,10 @@
 										<li>OS for EC2 instance is the <b>Amazon Machine Image (AMI)</b>. We can run multiple instances from a single AMI.</li>
 										<li>There are also a persistent block storage volumes for AWS EC2 instances. We call it <b>Elastic Block Store (EBS)</b>:
 											<br>
+											- It's available under Root device property of the EC2 instance:<br>
+											<br>
+											<img src="images/ebs.jpg" width="700">
+											<br>
 											- Persistent means that the data will remain even when we stop the EC2 instance.<br>
 											- The volumes are replicated, backed up and connected to EC2 instances with the network.<br>
 											<br>
@@ -227,10 +231,6 @@
 											- if average CPU utilization < 30 % then remove two instances.
 										</li>
 									</ul>
-
-
-
-
 
 									<h5>AWS Relational Database Service (RDS)</h5>
 									<ul>
