@@ -192,7 +192,8 @@
 										<li>It stands for Elastic Computing Cloud.</li>
 										<li>Actually, it's a name for a server that we can launch in AWS.</li>
 										<li>Elastic means that we can resize the server's capacity at any time.</li>
-										<li>Launching server is as easy as hittina a button and going through a configuration
+										<li>AWS ensures high-availablity so when on EC2 server goes downm the hosted application can be still served on another EC2 server.</li>
+										<li>Launching server is as easy as hitting a button and going through a configuration
 											<br>
 											<img src="images/ec2.JPG" width="780">
 										</li>
@@ -208,7 +209,12 @@
 										</li>
 										<li>Once instance created, we can connect server with SSH:
 											<br>
-											<code>ssh -i ec2-key.pem ec2-user@{Public IP}</code>
+											<code>ssh -i ec2-key.pem ec2-user@{Public IP}</code><br>
+											<code>sudo su -</code><br>
+											<code>yum -y install nginx</code><br>
+											<code>cd /usr/share/nginx/html/</code><br>
+											<code>echo "Hello World" > index.html</code><br>
+											<code>service nginx start</code>
 										</li>
 										<li>OS for EC2 instance is the <b>Amazon Machine Image (AMI)</b>. We can run multiple instances from a single AMI.</li>
 										<li>There are also a persistent block storage volumes for AWS EC2 instances. We call it <b>Elastic Block Store (EBS)</b>:
@@ -238,8 +244,16 @@
 
 									<h5>AWS Relational Database Service (RDS)</h5>
 									<ul>
-										<li>AWS RDS supports various database engines like MySQL, PostgreSQL, Microsoft SQL Serverm Oracle.</li>
-										<li>However those engines can be also hosted in EC2.</li>
+										<li>AWS RDS supports various database engines like MySQL, PostgreSQL, Microsoft SQL Serverm Oracle that can be hosted on EC2.</li>
+										<li>AWS offers also the noSQL databse in DynamoDB that stores key-value pairs.</li>
+										<li>Like in other services AWS provides:
+											<br>
+											- database provisioning via GUI stepr,<br>
+											- security,<br>
+											- backup,<br>
+											- high-availablity.
+										</li>
+										<li></li>
 									</ul>
 
 									<h5>Serverless Services:</h5>
