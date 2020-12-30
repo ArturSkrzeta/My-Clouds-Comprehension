@@ -168,7 +168,7 @@
 										<li>There are also a persistent block storage volumes for AWS EC2 instances. We call it <b>Elastic Block Store (EBS)</b>:
 											<br>
 											- Persistent means that the data will remain even when we stop the EC2 instance.<br>
-											- The volumes are replicated, backed up and connected to EC2 instances with network.<br>
+											- The volumes are replicated, backed up and connected to EC2 instances with the network.<br>
 											<br>
 											<img src="images/datacenter.JPG" width="700">
 											<br>
@@ -212,11 +212,26 @@
 										</li>
 									</ul>
 
+									<h5>AWS Storage Gateway:</h5>
+									<ul>
+										<li>A service that lets the on-premise application to access and use the cloud storage.</li>
+										<br>
+										<img src="images/storage_gateway.JPG" width="600"><span style="font-size:12px;">source: AWS</span>
+										<br>
+										<li>In <b>Gateway Stored Volumes</b> configuration, there is on-premise storage for an application server.
+												Whenever a file added to that special local storage, it's being uploaded asynchronously to the AWS S3 or AWS EBS in a compressed manner.
+										</li>
+										<li>In <b>Gateway Cached Volumes</b> configuration, there is no on-premises storage.
+												Data is stored primarly on AWS S3, what we have locally on-premise server is a cache of recently read or writthen data.
+										</li>
+										<li></li>
+									</ul>
+
+
 									<h5>Remaining AWS services:</h5>
 									<ul>
 										<li>AWS Athena - a service that allows us to analyze various log files from S3 using standard SQL.</li>
 										<li>AWS Inspecotr - </li>
-										<li>AWS Storage Gateway storage service that lets the on-premise application to access and use the cloud storage.</li>
 									</ul>
 
 								</div>
