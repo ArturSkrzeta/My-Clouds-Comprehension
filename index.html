@@ -126,6 +126,42 @@
 											<li>Tools for IaaC: Terraform or AWS CloudFormation.</li>
 										</ul>
 
+										<h5>AWS Storage types:</h5>
+										<table>
+											<thead>
+												<tr>
+													<th>Block Storage</th>
+													<th>Object Storage</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Data (files) is split into smaller chunks of a fixed size (blocks).</td>
+													<td>Each store fiels is an object.</td>
+												</tr>
+												<tr>
+													<td>Each block has its own address.</td>
+													<td>Each object has unique identifier.</td>
+												</tr>
+												<tr>
+													<td>No metadata about blocks.</td>
+													<td>Object has metadata with contextual information.</td>
+												</tr>
+												<tr>
+													<td>Supports read/write operations</td>
+													<td>Data is mostly read (rather than written to).</td>
+												</tr>
+												<tr>
+													<td>Easy data modification accessing specific block.</td>
+													<td>Modifying a file means uploading a new revision.</td>
+												</tr>
+												<tr>
+													<td>Accessing blocks on server with underlying file system protocol (NFS, CIFS, ext3/ext4).</td>
+													<td>Accessing objects relies on HTTP protocol</td>
+												</tr>
+											</tbody>
+										</table>
+
 										<!-- <h5>6. Continuous monitoring:</h5>
 										<ul>
 											<li>...</li>
@@ -156,7 +192,7 @@
 										<li>It stands for Elastic Computing Cloud.</li>
 										<li>Actually, it's a name for a server that we can launch in AWS.</li>
 										<li>Elastic means that we can resize the server's capacity at any time.</li>
-										<li>Launching sercer is as easy as hittina a button and going through a configuration
+										<li>Launching server is as easy as hittina a button and going through a configuration
 											<br>
 											<img src="images/ec2.JPG" width="780">
 										</li>
@@ -191,6 +227,10 @@
 											- if average CPU utilization < 30 % then remove two instances.
 										</li>
 									</ul>
+
+
+
+
 
 									<h5>AWS Relational Database Service (RDS)</h5>
 									<ul>
