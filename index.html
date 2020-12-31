@@ -163,6 +163,24 @@
 											</tbody>
 										</table>
 
+										<h5>Domain Name System:</h5>
+										<ul>
+											<li>Translates Domain Name to corresponding server's IP address:
+												<br>
+												<code>www.example.com</code> -> <code>1.2.3.4</code>
+											</li>
+											<li>Workflow:
+												<br>
+												1. User enters <code>www.example.com</code> in a browser.<br>
+												2. IPS DNS Resolver looks up corresponding IP address and returns <code>1.2.3.4</code>.<br>
+												3. Browser takes server IP address and makes HTTP request to AWS serer.<br>
+												4. AWS EC2 server accepts requests.
+											</li>
+											<br>
+											<img src="images/dns.JPG" style="border: 1px solid #939393"><span style="font-size:12px;">source: AWS</span>
+										</ul>
+
+
 										<!-- <h5>6. Continuous monitoring:</h5>
 										<ul>
 											<li>...</li>
