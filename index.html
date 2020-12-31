@@ -173,8 +173,8 @@
 												<br>
 												1. User enters <code>www.example.com</code> in a browser.<br>
 												2. IPS DNS Resolver looks up corresponding IP address and returns <code>1.2.3.4</code>.<br>
-												3. Browser takes server IP address and makes HTTP request to AWS serer.<br>
-												4. AWS EC2 server accepts requests.
+												3. Browser takes server IP address and makes HTTP request to AWS server.<br>
+												4. AWS EC2 server accepts request.
 											</li>
 											<br>
 											<img src="images/dns.JPG" style="border: 1px solid #939393"><span style="font-size:12px;">source: AWS</span>
@@ -426,7 +426,7 @@
 												</thead>
 												<tbody>
 													<tr>
-														<td>Contains the latest set of data.</td>
+														<td>Contains the up-to-date data.</td>
 														<td>Contains the historical data.</td>
 													</tr>
 													<tr>
@@ -435,11 +435,11 @@
 													</tr>
 													<tr>
 														<td>Read and write operations.</td>
-														<td>Mostly read opeartion.</td>
+														<td>Mostly read opeartions.</td>
 													</tr>
 													<tr>
 														<td>Accessing limited number of records.</td>
-														<td>Accessing even milion or rows possible.</td>
+														<td>Accessing even milion of rows if needed.</td>
 													</tr>
 												</tbody>
 											</table>
@@ -449,12 +449,19 @@
 											<img src="images/redshift.JPG" width="600"><span style="font-size:12px;">source: simplilearn</span>
 											<br>
 											- The main element of Amazon Redshift is a cluster of nodes - datawarehouse cluster.<br>
-											- There are compute nodes that process data and the leader node that gives instructions.<br>
-											- Leader node also manages client applicatiopns that require data from the Redshift.<br>
+											- There are <b>compute nodes</b> that process data and the <b>leader node</b> that gives instructions.<br>
+											- Leader node also manages <b>client applications</b> that require data from the Redshift.<br>
 											- Leader node uses <b>JDBS (Java Database Connectivity)</b> to monitor all of the connections to client appications.<br>
 											- Client applications uses <b>ODBC (Open Database Connectivity)</b> to interact with live data of the datawarehouse cluster.<br>
 											- Compute nodes are divided into slice with dedicated memory space. They run in parallel to process the data in a fast manner.<br>
 									 </li>
+									</ul>
+
+									<h5>Message Broker:</h5>
+									<ul>
+										<li></li>
+										<li>You can add consumer instances based on the auto-scalling feature.</li>
+
 									</ul>
 
 									<h5>Remaining AWS services:</h5>
