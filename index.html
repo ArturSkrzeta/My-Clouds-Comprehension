@@ -302,13 +302,19 @@
 										<li>Depending on Storage Class, the availablity and perfomrance, thus <u>pricing</u> will differ:
 											<br>
 											- Standard S3: for general purpose, has higher availablility and pricing much higher than for infrequent access.<br>
-											- Standard S3 with Infrequent Access: when we don't care about high availablity then we can go with that opition with lower pricing.<br>
+											- Standard S3 with Infrequent Access (Standard IA): when we don't care about high availablity then we can go with that opition with lower pricing.<br>
 											- Reduced Redundancy Storage (RRS): lower durability and lower availablity so we could keep only non-critical, reproducible data.<br>
-											- AWS Glacier: meant for archiving and storing long-term backups. It has a very high durability however low availability - it takes even a few hours to get data restored.
+											- Glacier: meant for archiving and storing long-term backups. It has a very high durability however low availability - it takes even a few hours to get data restored.<br>
+											- Glacier Deep Archive:
+											- Intelligent Tiering: it detects seldom used data and moves it to most cost-effective tier like Standard IA.
+												So we end up with frequent access tier and infrequent access tier that differ with pricing.
+												This type is preferable when we store long-lived data where access patterns are unknown or unpredictable - we cannot assess which part of data will bea accessed frequently and which not.
+												<br>
+											- One Zone-IA: .
 										</li>
-										<li>We can choose storage class while uploading files to S3 (apart from AWS G)
+										<li>We can choose storage class while uploading files to S3:
 											<br><br>
-											<img src="images/storage_classes.JPG" width="450">
+											<img src="images/storage_classes.png" width="780">
 										</li>
 									</ul>
 
