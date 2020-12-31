@@ -301,17 +301,17 @@
 									<ul>
 										<li>Depending on Storage Class, the availablity, durability and perfomrance, thus <u>pricing</u> will differ:
 											<br>
-											- Standard S3: for general purpose, has higher availablility and pricing much higher than for infrequent access.<br>
-											- Standard S3 with Infrequent Access (Standard IA): when we don't care about high availablity then we can go with that opition with lower pricing.<br>
-											- Reduced Redundancy Storage (RRS): lower durability and lower availablity so we could keep only non-critical, reproducible data.<br>
-											- Glacier: meant for archiving and storing long-term backups. It has a very high durability however low availability - it takes even a few hours to get data restored.<br>
-											- Glacier Deep Archive: lowest-costs possible storage class that AWS offers. Supports long-term retention for data that may be accessed once or twiece a year.
+											<b>- Standard S3</b>: for general purpose, has higher availablility and pricing much higher than for infrequent access.<br>
+											<b>- Standard S3 with Infrequent Access (Standard IA)</b>: when we don't care about high availablity then we can go with that opition with lower pricing.<br>
+											<b>- Reduced Redundancy Storage (RRS)</b>: lower durability and lower availablity so we could keep only non-critical, reproducible data.<br>
+											<b>- Glacier</b>: meant for archiving and storing long-term backups. It has a very high durability however low availability - it takes even a few hours to get data restored.<br>
+											<b>- Glacier Deep Archive</b>: lowest-costs possible storage class that AWS offers. Supports long-term retention for data that may be accessed once or twiece a year.
 												It has very lowe availablity - data can be restored within 12 hours.<br>
-											- Intelligent Tiering: it detects seldom used data and moves it to most cost-effective tier like Standard IA.
+											<b>- Intelligent Tiering</b>: it detects seldom used data and moves it to most cost-effective tier like Standard IA.
 												So we end up with frequent access tier and infrequent access tier that differ with pricing.
 												This type is preferable when we store long-lived data where access patterns are unknown or unpredictable - we cannot assess which part of data will bea accessed frequently and which not.
 												<br>
-											- One Zone-IA: while Standard S3 or Standard IA sores data in min. 3 availability zones, S3 On Zone_IA stores data in single availablity zone which reduces overall costs.
+											<b>- One Zone-IA</b>: while Standard S3 or Standard IA sores data in min. 3 availability zones, S3 On Zone_IA stores data in single availablity zone which reduces overall costs.
 											 	It's a good solution for a secondary backup copies of on-premises data or for the data that can be easily recreated. Only risk is the data will be lost in case of availablity zone destruction.
 										</li>
 										<li>We can choose storage class while uploading object to S3:
