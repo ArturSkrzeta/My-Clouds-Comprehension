@@ -166,6 +166,8 @@
 										<!-- <h5>6. Continuous monitoring:</h5>
 										<ul>
 											<li>...</li>
+											firewall configures some security rules. Accepting connection from trusted network and blocking connection from untrusted network.
+
 										</ul> -->
 
 									</header>
@@ -243,10 +245,15 @@
 												<img src="images/instance_storage.JPG" width="700">
 										</li>
 										<li>EC2 is equipped with <b>Elastic Load Balancer (ELB)</b> so that traffic can be distributed across multiple EC2 instances.</li>
-										<li>EC2 has <b>Auto-Scaling</b> built in which autoatically add or remove EC2 instances according to conditions we define e.g.:
+										<li>EC2 has <b>Auto-Scaling</b> built in which automatically adds or removes EC2 instances according to conditions we define e.g.:
 											<br>
-											- if average CPU utilization > 60 % then add two more instances,<br>
-											- if average CPU utilization < 30 % then remove two instances.
+											1. Dynamic Scaling:<br>&nbsp&nbsp&nbsp
+											- if average CPU utilization > 60 % then add two more instances,<br>&nbsp&nbsp&nbsp
+											- if average CPU utilization < 30 % then remove two instances.<br>
+											2. Scheduled Scaling:<br>&nbsp&nbsp
+											- servers are scaled based on a specific schedule.<br>
+											3. Predictive Scaling:<br>&nbsp&nbsp&nbsp
+											- based on machine learning algorithms to automatically adjusting servers capacity.
 										</li>
 									</ul>
 
@@ -287,6 +294,21 @@
 											- AWS S3 for storage,<br>
 											- DynamoDB for Database, <br>
 											- SQS, SNS for an app integration.
+										</li>
+									</ul>
+
+									<h5>Storage classes:</h5>
+									<ul>
+										<li>Depending on Storage Class, the availablity and perfomrance, thus <u>pricing</u> will differ:
+											<br>
+											- Standard S3: for general purpose, has higher availablility and pricing much higher than for infrequent access.<br>
+											- Standard S3 with Infrequent Access: when we don't care about high availablity then we can go with that opition with lower pricing.<br>
+											- Reduced Redundancy Storage (RRS): lower durability and lower availablity so we could keep only non-critical, reproducible data.<br>
+											- AWS Glacier: meant for archiving and storing long-term backups. It has a very high durability however low availability - it takes even a few hours to get data restored.
+										</li>
+										<li>We can choose storage class while uploading files to S3 (apart from AWS G)
+											<br><br>
+											<img src="images/storage_classes.JPG" width="450">
 										</li>
 									</ul>
 
