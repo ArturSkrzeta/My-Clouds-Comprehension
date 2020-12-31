@@ -444,7 +444,17 @@
 												</tbody>
 											</table>
 										</li>
-										<li>AWS offer data warehous service with Amazon Redshift.</li>
+										<li>AWS offer data warehouse service with Amazon Redshift whose architecture looks like below:
+											<br><br>
+											<img src="images/redshift.JPG" width="600"><span style="font-size:12px;">source: simplilearn</span>
+											<br>
+											- The main element of Amazon Redshift is a cluster of nodes - datawarehouse cluster.<br>
+											- There are compute nodes that process data and the leader node that gives instructions.<br>
+											- Leader node also manages client applicatiopns that require data from the Redshift.<br>
+											- Leader node uses <b>JDBS (Java Database Connectivity)</b> to monitor all of the connections to client appications.<br>
+											- Client applications uses <b>ODBC (Open Database Connectivity)</b> to interact with live data of the datawarehouse cluster.<br>
+											- Compute nodes are divided into slice with dedicated memory space. They run in parallel to process the data in a fast manner.<br>
+									 </li>
 									</ul>
 
 									<h5>Remaining AWS services:</h5>
@@ -455,7 +465,6 @@
 
 								</div>
 							</section>
-
 
 						<!-- Four -->
 							<section id="four">
