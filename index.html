@@ -184,11 +184,16 @@
 										<ul>
 											<li>It is a private sub-section of AWS which you are in control of in terms of who has access to what AWS resources.</li>
 											<li>More technically, AWS lets us provision a logically isolated cloud's section in which we can define a ccustom virtual network configurations like IP addresses, subnets, route tables and network gateways.</li>
-											<li>VPC architecture:
-												<br>
-												<img src="images/vpc.JPG" width="300"><span style="font-size:12px;">source: Linux Academy	</span>
-											</li>
 											<li>When creating AWS account, there is a default VPS being created for a user. So everybody has their own VPC.</li>
+											<li>VPC architecture and components:
+												<br>
+												<img src="images/vpc.JPG" width="300"><span style="font-size:12px;">source: Linux Academy</span>
+												<br>
+												- Interntet Gateway (IGW) that allows communication between your VPC and the internet..<br>
+												- A route table: lists predefined routes to the default subnets.<br>
+												- A Network Access control List: has predefined rules for access.<br>
+												- Subnets to provision AWS resources in (e.g. EC2 instances).
+											</li>
 										</ul>
 
 										<!-- <h5>6. Continuous monitoring:</h5>
