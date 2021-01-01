@@ -441,19 +441,34 @@
 														<td>Accessing limited number of records.</td>
 														<td>Accessing even milion of rows if needed.</td>
 													</tr>
+													<tr>
+														<td>Usually one source that serves an application.</td>
+														<td>Typically a collection of many data sources.</td>
+													</tr>
 												</tbody>
 											</table>
 										</li>
+										<!-- <li>Traditional datawarehouse vs cloud datawarehouse:
+										<br><br>
+										</li> -->
+
 										<li>AWS offer data warehouse service with <b>Amazon Redshift</b> whose architecture looks like below:
 											<br><br>
 											<img src="images/redshift.JPG" width="600"><span style="font-size:12px;">source: simplilearn</span>
 											<br>
 											- The main element of Amazon Redshift is a cluster of nodes - datawarehouse cluster.<br>
 											- There are <b>compute nodes</b> that process data and the <b>leader node</b> that gives instructions.<br>
-											- Leader node also manages <b>client applications</b> that require data from the Redshift.<br>
+											- Leader node also manages <b>client applications</b>, like BI tools, that require data from the Redshift.<br>
 											- Leader node uses <b>JDBS (Java Database Connectivity)</b> to monitor all of the connections to client appications.<br>
-											- Client applications uses <b>ODBC (Open Database Connectivity)</b> to interact with live data of the datawarehouse cluster.<br>
+											- Client applications uses <b>ODBC (Open Database Connectivity)</b> to interact with live data of the datawarehouse cluster sending SQL queries.<br>
 											- Compute nodes are divided into slice with dedicated memory space. They run in parallel to process the data in a fast manner.<br>
+											- Workflow:
+											<br>
+											1. Client app sends query to the leader node.<br>
+											2. Leader node receives the query and develop a suitable execution plan.<br>
+											3. Once the plan is set up, compute nodes and compute slices start working on this plan.<br>
+											4. Compute nodes work in parallel and transfer data among themeselves in order to solve the query.<br>
+											5. Once excution is done. the leader node aggregates the results and sends it backt to clien app.
 									 </li>
 									</ul>
 
@@ -487,18 +502,10 @@
 										<li>You only pay for queries you run and that's all.</li>
 									</ul>
 
-
 									<!-- <h5>Message Broker:</h5>
 									<ul>
 										<li></li>
-										<li>You can add consumer instances based on the auto-scalling feature.</li>
-
-									</ul>
-
-									<h5>Remaining AWS services:</h5>
-									<ul>
-										<li>AWS Inspecotr - </li>
-									</ul> -->
+									</ul>-->
 
 								</div>
 							</section>
