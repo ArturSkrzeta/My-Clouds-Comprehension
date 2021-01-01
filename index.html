@@ -471,13 +471,22 @@
 												Dynamic frame is a data abstraction to organize data into rows and columns where each record is self-describing so no schema is required initially.
 												We can freely be converting dynamic frames into Spark dataframes.
 										</li>
-										<li>Applicatons:
+										<li>Here are some applicatons:
 												<br>
 												- AWS Glue can catalog S3 data lake making it available for quering with Amazon Athena and Amazon Redshift.<br>
 												- Making event-driven ETL pipelines: running ETL jobs as soon as new data comes in Amazon S3 by invoking your AWS Glue ETL jobs from an AWS Lambda function.
 												- Cataloging data for quick search of datasets and maintaining relevant metadata in once central repository.
 										</li>
 									</ul>
+
+									<h5>AWS Athena:</h5>
+									<ul>
+										<li>Query service for managing Amazon S3 data with standard SQL.</li>
+										<li>There is no need for any underlying compute infrastructure, no need for loading data into Amazon Athena or transforming it for the analysis.</li>
+										<li>We can access Athena through either the <b>AWS Management Console</b>, an application programming interface (API) or a Java Database Connectivity driver, then we we define schema and here we go - we can execute SQL queires.</li>
+										<li>You only pay for queries you run and that's all.</li>
+									</ul>
+
 
 									<!-- <h5>Message Broker:</h5>
 									<ul>
@@ -488,7 +497,6 @@
 
 									<h5>Remaining AWS services:</h5>
 									<ul>
-										<li>AWS Athena - a service that allows us to analyze various log files from S3 using standard SQL.</li>
 										<li>AWS Inspecotr - </li>
 									</ul> -->
 
