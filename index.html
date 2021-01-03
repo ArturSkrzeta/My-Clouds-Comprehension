@@ -609,10 +609,23 @@
 										</li>
 									</ul>
 
-									<!-- <h5>Amazon EKS:</h5>
+									<h5>AWS CloudWatch:</h5>
 									<ul>
-										<li></li>
-									</ul>-->
+										<li>Monitoring service fro AWS servers and applications.</li>
+										<li>It collects and monitors log files, sets alarms, reacts to changes in the AWS resources automatically, for example:
+												when CPU utilization in an EC2 instance is grater than 70 % then you get the email alarming notification.<br>
+										</li>
+										<li>AWS CloudWatch Logs:
+												<br>
+												- Server can keep a lot of log files both sytem and application logs.<br>
+												- It is iportant to have a log files during application's debugging. If there is something that doesn't work as expected then we would need to check the errors in the specific log file.<br>
+												- In traditional way, when debugging we need to grant access to the server for an individual who wants to check a log file.
+													On the other hand, what poses the risk is that when server termiantes, the logs are lost.<br>
+													- The better way is to create a central logs server in which we want to push the log files from individual systems. Then we can go with the central log monitoring.<br>
+													- AWS CloudWatch Logs is the <b>centralized logs management</b> to monitor, store, and access log files form Amazon EC2 instances, Route 53 and other sourcers.<br>
+											</li>
+									</ul>
+
 
 									<!-- <h5>Message Broker:</h5>
 									<ul>
