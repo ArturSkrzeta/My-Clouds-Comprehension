@@ -504,6 +504,27 @@
 									 </li>
 									</ul>
 
+									<h5>Snwoflake DW:</h5>
+									<ul>
+										<li>I like the way they describe it: <i>combines the power of data warehousing, the flexibility of big data platforms, and the elasticity of the cloud</i>.</li>
+										<li>Snowflake architecture:
+											<br>
+											- storage layer based on Amazon S3,<br>
+											- compute layer.<br>
+											- service layer.
+										</li>
+										<li>Snowflake supports <b>Online Analytical Processing (OLAP)</b> for scanning all of the data in particular columns as opposed to <b>Online Transactional Processing (OLTP)</b> where we want to retrieve one or many rows from database.
+											<br><br>
+											<img src="images/olap.JPG" style="border: 1px solid gray;" width="420"><span style="font-size:12px">soruce: Data Council</span>
+										</li>
+										<li>While a classic databases like PostgreSQL or MySQL are type of <b>raw store</b> (OLTP) that keeps data linearly row by row, from left to right, from top to bottom, Snowflake supports <b>column store</b> (OLAP) which allows to traverse entire columns one by one.
+											<br><br>
+											<img src="images/columnstore.JPG" style="border: 1px solid gray;" width="640"><span style="font-size:12px">soruce: Data Council</span>
+											<br>
+											- using column store makes sense when we want to analyze one or two specific columns and skip reading other ones.
+										</li>
+									</ul>
+
 									<h5>AWS Glue:</h5>
 									<ul>
 										<li>ETL service to categorize, clean, enrich, and reliably move data between various data stores.</li>
