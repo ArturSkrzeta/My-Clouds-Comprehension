@@ -48,9 +48,7 @@
 									<header class="major">
 
 										<h2>My Comprehension of AWS Services</h2>
-
 										<h3>Intro</h3>
-
 										<p style="text-align: justify">In order to learn clouds, I choose AWS Web Services as the example to explore.
 												The best thing about cloud solutions is that companies can simply rent a server instead of building, maintaining and paying for its own infrastructure.</p>
 
@@ -86,186 +84,10 @@
 											<li><a href="#storageclasses">Storage classes</a></li>
 										</ul>
 
-										<h5 id="cloudcomputing">Cloud Computing:</h5>
-										<ul>
-											<li>Common opinion on cloud computing is that it concerns System Administrators or DevOps Engineers because of solutions it provides on servers provsion, networking etc.
-												In fact, It also concerns Software Developers, Security Engineers, Program Managers and so on as there are many services related to computing, storage, database, analytics, encryption, deployment and more	.</li>
-											<li>Cloud computing is basically a model in which computing resources are available as a service.</li>
-											<li>Important characteristics of cloud computing:
-												<br>
-												- <u>On-demand and self-serviced</u>: we can launch it at any time with no manual intervention.
-													What that means is we can provison resources whenever needed without requireing any human's action from provider's side.<br>
-												- <u>Elasticity</u>: we can scale it up or down at any time due to our needs.
-													This property is strictly related to scalability that can be horizontal (adding or removing servers in a cluster) or vertical (adding or removing resources in existing server).<br>
-												- <u>Measured</u>: we pay as much as much resources we use.<br>
-												- <u>High-Availability</u>: making backups and accommodating failure of a single component. I case of a server's failure there is another instance to back it up.
-											</li>
-											<li>There are 3 types of cloud computing:
-												<br>
-												- <b>Software as a Service (Saas)</b> - a ready-to-use application typically accessible via a browser. Provider takes responsibility for upgrading, security, error handling etc.<br>
-												- <b>Platform as a Service (PaaS)</b> - deploying Python application on server along with all dependencies.<br>
-												- <b>Infrastructure as a Service (Iaas)</b> - gives the highest level of flexibility and management control over entire IT infrastrstructure without having to physically maintain it.
-													It provides access to networking features, computers (virtual or on dedicated hardware), and data storage space.<br>
-												<br>
-												<img src="images/service_models.png" width="600"><span style="font-size:12px">source: wp-includes.com</span>
-											</li>
-											<li>Cloud Architecture:
-												<br>
-												1. Clouds is actually a real Data Center with X servers already set up.<br>
-												2. Data Center provides Virtualization layer (in case of AWS  it's mainly XEN).<br>
-												3. On top of virtualization layer there are multiple Virtual servers.<br>
-												<br>
-												<img src="images/architecture.JPG" width="400">
-											</li>
-											<li>Data centers are organized into availability zones that are separated by geograpic region. They play a role of backups in case of one of the Data Centers failure.</li>
-											<li>Each AWS region contains at least 2 availability zones.</li>
-										</ul>
-
-										<h5 id="serverconnection">Server Connection:</h5>
-										<ul>
-											<li>For server connection we need to get:
-												<br>
-												- <u>SSH Client</u> for Linux Server or<br>
-												- <u>RDP Client</u> for Windows Server<br>
-												which allows us to get connected with the server.
-											</li>
-											<li>To get SSH client for windows on local machine I use MobaXterm.</li>
-											<li>MAC and Linux has its own terminal with already built-in SHH client.</li>
-											<li>There is also a way of connecting to server from a browser using <b>Broweser Based SSH Connection</b>.
-													Then you don'y have to have any SSG client. It can be done from AWS console directly.</li>
-											<li>There is also a need for establishing the <b>Key Based Authentication</b>.
-												<br>
-												- it replaces the password based authentication as using password for authentication is less secure,<br>
-												- in key based authentication there are two special keys: public key and private key,<br>
-												- when public key is stored in a server then only corresponding private key can authenticate successfully,<br>
-												- we can simply create a key pair for exampple in EC2 in the AWS console.
-													We can choose its format as pem (when using OpenSSH) or ppk (when using PuTTY).
-													Once created, key gets downloaded to local machine as the private key.<br>
-											</li>
-										</ul>
-
-										<h5 id="iaac">Infrastructure as a Code (IaaC):</h5>
-										<ul>
-											<li>There are two ways of building the infrastructure: manually or with script's automation.</li>
-											<li>Automation with Iaac helps to autmate infrastrucutre building on every stage of app's service:
-												<br>
-												1. As every time a new app's service comes up, its infrastructure needs to be first built up in the development environment.<br>
-												2. Then app's service comes to the staging area for testing where the same infrastructure needs to be built once again.<br>
-												3. Moving to the production environment where all the infrastructure has to be replicated.
-											</li>
-											<li>It's getting even more helpful when deploying multiple app's services.</li>
-											<br>
-											<img src="images/iaac.JPG" width="610"><span style="font-size:12px;">source: udemy</span>
-											<li>One IaaC template can be reused for building infrastructure for different stages of different app's services during deployment.</li>
-											<li>Tools for IaaC: Terraform or AWS CloudFormation.</li>
-											<li>AWS CloudFormation:
-												<br>
-												- provides template where you describe your desired resources and their dependencies so that you can launch and configure them together as a stack.<br>
-												- workflow:<br>
-												<img src="images/cloud_formation.png" width="600"><span style="font-size:12px">source: AWS</span>
-											</li>
-										</ul>
-
-										<h5 id="awsstorage">AWS Storage types:</h5>
-										<table>
-											<thead>
-												<tr>
-													<th>Block Storage</th>
-													<th>Object Storage</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Data (files) is split into smaller chunks of a fixed size (blocks).</td>
-													<td>Each store fiels is an object.</td>
-												</tr>
-												<tr>
-													<td>Each block has its own address.</td>
-													<td>Each object has unique identifier.</td>
-												</tr>
-												<tr>
-													<td>No metadata about blocks.</td>
-													<td>Metadata with contextual information about single object.</td>
-												</tr>
-												<tr>
-													<td>Supports read/write operations.</td>
-													<td>Data is mostly read (rather than written to).</td>
-												</tr>
-												<tr>
-													<td>Easy data modification accessing specific block.</td>
-													<td>Modifying a file means uploading a new revision.</td>
-												</tr>
-												<tr>
-													<td>Accessing blocks on server with underlying file system protocol (NFS, CIFS, ext3/ext4).</td>
-													<td>Accessing objects relies on HTTP protocol.</td>
-												</tr>
-											</tbody>
-										</table>
-
-										<h5 id="domainnamesystem">Domain Name System:</h5>
-										<ul>
-											<li>Translates Domain Name to corresponding server's IP address:
-												<br>
-												<code>www.example.com</code> -> <code>1.2.3.4</code>
-											</li>
-											<li>Workflow:
-												<br>
-												1. User enters <code>www.example.com</code> in a browser.<br>
-												2. IPS DNS Resolver looks up corresponding IP address and returns <code>1.2.3.4</code>.<br>
-												3. Browser takes server IP address and makes HTTP request to AWS server.<br>
-												4. AWS EC2 server accepts request.
-											</li>
-											<br>
-											<img src="images/dns.JPG" style="border: 1px solid #939393"><span style="font-size:12px;">source: AWS</span>
-										</ul>
-
-										<h5 id="serverlessservices">Serverless Services:</h5>
-										<ul>
-											<li>In fact, it doesn't mean that there is no server being present.
-													There are server to host your application, however is completely managed by the provider.
-													You only care about the app's code.</li>
-											<li>Very popular way of having serverless service is a PaaS model where only need is to upload the the application.
-													PaaS provider takes care of the rest which is setting up the capacity, launching servers in high-availability and auto-scaling mode, installing technology-specifc packages and dependencies, security, patching, monitoring.
-											<li>There are AWS Services that can be used without any server instantiation.
-													There is no need for any capacity planning or how much resources we might need.
-													We are being charged only for the computing time we consume.
-													Example serverless services:
-												<br>
-												- AWS Lmabda for computing,<br>
-												- AWS S3 for storage,<br>
-												- DynamoDB for Database, <br>
-												- SQS, SNS for an app integration.
-											</li>
-										</ul>
-
-										<h5 id="storageclasses">Storage classes:</h5>
-										<ul>
-											<li>Depending on Storage Class, the availablity, durability and perfomrance, thus <u>pricing</u> will differ:
-												<br>
-												<b>- Standard S3</b>: for general purpose, has higher availablility and pricing much higher than for infrequent access.<br>
-												<b>- Standard S3 with Infrequent Access (Standard IA)</b>: when we don't care about high availablity then we can go with that opition with lower pricing.<br>
-												<b>- Reduced Redundancy Storage (RRS)</b>: lower durability and lower availablity so we could keep only non-critical, reproducible data.<br>
-												<b>- Glacier</b>: meant for archiving and storing long-term backups. It has a very high durability however low availability - it takes even a few hours to get data restored.<br>
-												<b>- Glacier Deep Archive</b>: lowest-costs possible storage class that AWS offers. Supports long-term retention for data that may be accessed once or twiece a year.
-													It has very lowe availablity - data can be restored within 12 hours.<br>
-												<b>- Intelligent Tiering</b>: it detects seldom used data and moves it to most cost-effective tier like Standard IA.
-													So we end up with frequent access tier and infrequent access tier that differ with pricing.
-													This type is preferable when we store long-lived data where access patterns are unknown or unpredictable - we cannot assess which part of data will bea accessed frequently and which not.
-													<br>
-												<b>- One Zone-IA</b>: while Standard S3 or Standard IA sores data in min. 3 availability zones, S3 On Zone_IA stores data in single availablity zone which reduces overall costs.
-													It's a good solution for a secondary backup copies of on-premises data or for the data that can be easily recreated. Only risk is the data will be lost in case of availablity zone destruction.
-											</li>
-											<li>We can choose storage class while uploading object to S3:
-												<br><br>
-												<img src="images/storage_classes.png" width="780">
-											</li>
-										</ul>
-
 										<!-- <h5>6. Continuous monitoring:</h5>
 										<ul>
 											<li>...</li>
 											firewall configures some security rules. Accepting connection from trusted network and blocking connection from untrusted network.
-
 										</ul> -->
 
 									</header>
@@ -287,6 +109,181 @@
 							<section id="three">
 								<div class="container">
 									<h3>Demo</h3>
+
+									<h5 id="cloudcomputing">Cloud Computing:</h5>
+									<ul>
+										<li>Common opinion on cloud computing is that it concerns System Administrators or DevOps Engineers because of solutions it provides on servers provsion, networking etc.
+											In fact, It also concerns Software Developers, Security Engineers, Program Managers and so on as there are many services related to computing, storage, database, analytics, encryption, deployment and more	.</li>
+										<li>Cloud computing is basically a model in which computing resources are available as a service.</li>
+										<li>Important characteristics of cloud computing:
+											<br>
+											- <u>On-demand and self-serviced</u>: we can launch it at any time with no manual intervention.
+												What that means is we can provison resources whenever needed without requireing any human's action from provider's side.<br>
+											- <u>Elasticity</u>: we can scale it up or down at any time due to our needs.
+												This property is strictly related to scalability that can be horizontal (adding or removing servers in a cluster) or vertical (adding or removing resources in existing server).<br>
+											- <u>Measured</u>: we pay as much as much resources we use.<br>
+											- <u>High-Availability</u>: making backups and accommodating failure of a single component. I case of a server's failure there is another instance to back it up.
+										</li>
+										<li>There are 3 types of cloud computing:
+											<br>
+											- <b>Software as a Service (Saas)</b> - a ready-to-use application typically accessible via a browser. Provider takes responsibility for upgrading, security, error handling etc.<br>
+											- <b>Platform as a Service (PaaS)</b> - deploying Python application on server along with all dependencies.<br>
+											- <b>Infrastructure as a Service (Iaas)</b> - gives the highest level of flexibility and management control over entire IT infrastrstructure without having to physically maintain it.
+												It provides access to networking features, computers (virtual or on dedicated hardware), and data storage space.<br>
+											<br>
+											<img src="images/service_models.png" width="600"><span style="font-size:12px">source: wp-includes.com</span>
+										</li>
+										<li>Cloud Architecture:
+											<br>
+											1. Clouds is actually a real Data Center with X servers already set up.<br>
+											2. Data Center provides Virtualization layer (in case of AWS  it's mainly XEN).<br>
+											3. On top of virtualization layer there are multiple Virtual servers.<br>
+											<br>
+											<img src="images/architecture.JPG" width="400">
+										</li>
+										<li>Data centers are organized into availability zones that are separated by geograpic region. They play a role of backups in case of one of the Data Centers failure.</li>
+										<li>Each AWS region contains at least 2 availability zones.</li>
+									</ul>
+
+									<h5 id="serverconnection">Server Connection:</h5>
+									<ul>
+										<li>For server connection we need to get:
+											<br>
+											- <u>SSH Client</u> for Linux Server or<br>
+											- <u>RDP Client</u> for Windows Server<br>
+											which allows us to get connected with the server.
+										</li>
+										<li>To get SSH client for windows on local machine I use MobaXterm.</li>
+										<li>MAC and Linux has its own terminal with already built-in SHH client.</li>
+										<li>There is also a way of connecting to server from a browser using <b>Broweser Based SSH Connection</b>.
+												Then you don'y have to have any SSG client. It can be done from AWS console directly.</li>
+										<li>There is also a need for establishing the <b>Key Based Authentication</b>.
+											<br>
+											- it replaces the password based authentication as using password for authentication is less secure,<br>
+											- in key based authentication there are two special keys: public key and private key,<br>
+											- when public key is stored in a server then only corresponding private key can authenticate successfully,<br>
+											- we can simply create a key pair for exampple in EC2 in the AWS console.
+												We can choose its format as pem (when using OpenSSH) or ppk (when using PuTTY).
+												Once created, key gets downloaded to local machine as the private key.<br>
+										</li>
+									</ul>
+
+									<h5 id="iaac">Infrastructure as a Code (IaaC):</h5>
+									<ul>
+										<li>There are two ways of building the infrastructure: manually or with script's automation.</li>
+										<li>Automation with Iaac helps to autmate infrastrucutre building on every stage of app's service:
+											<br>
+											1. As every time a new app's service comes up, its infrastructure needs to be first built up in the development environment.<br>
+											2. Then app's service comes to the staging area for testing where the same infrastructure needs to be built once again.<br>
+											3. Moving to the production environment where all the infrastructure has to be replicated.
+										</li>
+										<li>It's getting even more helpful when deploying multiple app's services.</li>
+										<br>
+										<img src="images/iaac.JPG" width="610"><span style="font-size:12px;">source: udemy</span>
+										<li>One IaaC template can be reused for building infrastructure for different stages of different app's services during deployment.</li>
+										<li>Tools for IaaC: Terraform or AWS CloudFormation.</li>
+										<li>AWS CloudFormation:
+											<br>
+											- provides template where you describe your desired resources and their dependencies so that you can launch and configure them together as a stack.<br>
+											- workflow:<br>
+											<img src="images/cloud_formation.png" width="600"><span style="font-size:12px">source: AWS</span>
+										</li>
+									</ul>
+
+									<h5 id="awsstorage">AWS Storage types:</h5>
+									<table>
+										<thead>
+											<tr>
+												<th>Block Storage</th>
+												<th>Object Storage</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Data (files) is split into smaller chunks of a fixed size (blocks).</td>
+												<td>Each store fiels is an object.</td>
+											</tr>
+											<tr>
+												<td>Each block has its own address.</td>
+												<td>Each object has unique identifier.</td>
+											</tr>
+											<tr>
+												<td>No metadata about blocks.</td>
+												<td>Metadata with contextual information about single object.</td>
+											</tr>
+											<tr>
+												<td>Supports read/write operations.</td>
+												<td>Data is mostly read (rather than written to).</td>
+											</tr>
+											<tr>
+												<td>Easy data modification accessing specific block.</td>
+												<td>Modifying a file means uploading a new revision.</td>
+											</tr>
+											<tr>
+												<td>Accessing blocks on server with underlying file system protocol (NFS, CIFS, ext3/ext4).</td>
+												<td>Accessing objects relies on HTTP protocol.</td>
+											</tr>
+										</tbody>
+									</table>
+
+									<h5 id="domainnamesystem">Domain Name System:</h5>
+									<ul>
+										<li>Translates Domain Name to corresponding server's IP address:
+											<br>
+											<code>www.example.com</code> -> <code>1.2.3.4</code>
+										</li>
+										<li>Workflow:
+											<br>
+											1. User enters <code>www.example.com</code> in a browser.<br>
+											2. IPS DNS Resolver looks up corresponding IP address and returns <code>1.2.3.4</code>.<br>
+											3. Browser takes server IP address and makes HTTP request to AWS server.<br>
+											4. AWS EC2 server accepts request.
+										</li>
+										<br>
+										<img src="images/dns.JPG" style="border: 1px solid #939393"><span style="font-size:12px;">source: AWS</span>
+									</ul>
+
+									<h5 id="serverlessservices">Serverless Services:</h5>
+									<ul>
+										<li>In fact, it doesn't mean that there is no server being present.
+												There are server to host your application, however is completely managed by the provider.
+												You only care about the app's code.</li>
+										<li>Very popular way of having serverless service is a PaaS model where only need is to upload the the application.
+												PaaS provider takes care of the rest which is setting up the capacity, launching servers in high-availability and auto-scaling mode, installing technology-specifc packages and dependencies, security, patching, monitoring.
+										<li>There are AWS Services that can be used without any server instantiation.
+												There is no need for any capacity planning or how much resources we might need.
+												We are being charged only for the computing time we consume.
+												Example serverless services:
+											<br>
+											- AWS Lmabda for computing,<br>
+											- AWS S3 for storage,<br>
+											- DynamoDB for Database, <br>
+											- SQS, SNS for an app integration.
+										</li>
+									</ul>
+
+									<h5 id="storageclasses">Storage classes:</h5>
+									<ul>
+										<li>Depending on Storage Class, the availablity, durability and perfomrance, thus <u>pricing</u> will differ:
+											<br>
+											<b>- Standard S3</b>: for general purpose, has higher availablility and pricing much higher than for infrequent access.<br>
+											<b>- Standard S3 with Infrequent Access (Standard IA)</b>: when we don't care about high availablity then we can go with that opition with lower pricing.<br>
+											<b>- Reduced Redundancy Storage (RRS)</b>: lower durability and lower availablity so we could keep only non-critical, reproducible data.<br>
+											<b>- Glacier</b>: meant for archiving and storing long-term backups. It has a very high durability however low availability - it takes even a few hours to get data restored.<br>
+											<b>- Glacier Deep Archive</b>: lowest-costs possible storage class that AWS offers. Supports long-term retention for data that may be accessed once or twiece a year.
+												It has very lowe availablity - data can be restored within 12 hours.<br>
+											<b>- Intelligent Tiering</b>: it detects seldom used data and moves it to most cost-effective tier like Standard IA.
+												So we end up with frequent access tier and infrequent access tier that differ with pricing.
+												This type is preferable when we store long-lived data where access patterns are unknown or unpredictable - we cannot assess which part of data will bea accessed frequently and which not.
+												<br>
+											<b>- One Zone-IA</b>: while Standard S3 or Standard IA sores data in min. 3 availability zones, S3 On Zone_IA stores data in single availablity zone which reduces overall costs.
+												It's a good solution for a secondary backup copies of on-premises data or for the data that can be easily recreated. Only risk is the data will be lost in case of availablity zone destruction.
+										</li>
+										<li>We can choose storage class while uploading object to S3:
+											<br><br>
+											<img src="images/storage_classes.png" width="780">
+										</li>
+									</ul>
 
 									<h5 id="iam">AWS Identity and Access Management (IAM)</h5>
 									<ul>
