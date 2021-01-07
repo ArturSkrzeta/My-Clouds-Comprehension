@@ -508,11 +508,11 @@
 									<h5>Snowflake DW:</h5>
 									<ul>
 										<li>I like the way they describe it: <i>combines the power of data warehousing, the flexibility of big data platforms, and the elasticity of the cloud</i>.</li>
-										<li>In Snowflake's architecture, the key is a separation of storage, compute and metadata services:
+										<li>In Snowflake's architecture, the key is a separation of storage, compute and services:
 											<br>
 											- S3 as storage layer,<br>
 											- EC2 Virtual Warehouse as a compute layer .<br>
-											- service layer.
+											- metadata, security, transactions and concurrency management as service layer.
 										</li>
 										<li>Snowflake supports <b>Online Analytical Processing (OLAP)</b> for scanning all of the data in particular columns as opposed to <b>Online Transactional Processing (OLTP)</b> where we want to retrieve one or many rows from database.
 											<br><br>
@@ -523,6 +523,17 @@
 											<img src="images/columnstore.JPG" style="border: 1px solid gray;" width="640"><span style="font-size:12px">soruce: Data Council</span>
 											<br>
 											- using column store makes sense when we want to analyze one or two specific columns and skip reading other ones.
+										</li>
+										<li>Snowflake workflow:
+											<br>
+											- Dividig big tabular data into x-consecutive rows segments called micropartitions.<br>
+											- Reorganizing the data of each micropartition by flipping row store into columnar - column values of each row get stored together.<br>
+											- Adding a header to each micropartition. Header contains metadata of given micropartition and columns it contains.<br>
+											- Micropartitions are being stored in S3 as the immutable files.<br>
+											- All the information about micropartitions are being stored in Sknowflake's metadata layer.<br>
+											- When query comes in, metada layer knows which micropartition in S3 belongs to queried table.<br>
+											- Reading a S3 file, it searches for a specific header first and then reads the only column we specified in the query.<br>
+											- That way it read the only data it needs ingnoring the rest of the S3 file.
 										</li>
 									</ul>
 
