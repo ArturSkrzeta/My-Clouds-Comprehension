@@ -54,7 +54,39 @@
 										<p style="text-align: justify">In order to learn clouds, I choose AWS Web Services as the example to explore.
 												The best thing about cloud solutions is that companies can simply rent a server instead of building, maintaining and paying for its own infrastructure.</p>
 
-										<h5>Cloud Computing:</h5>
+										<h5>Navigate to services:</h5>
+										<ul>
+											<li><a href="#iam">IAM</a></li>
+											<li><a href="#vpc">VPC</a></li>
+											<li><a href="#ec2">EC2</a></li>
+											<li><a href="#rds">RDS</a></li>
+											<li><a href="#s3">S3</a></li>
+											<li><a href="#lambda">Lambda</a></li>
+											<li><a href="#cloudfront">CloudFront</a></li>
+											<li><a href="#storagegateway">Storage Gateway</a></li>
+											<li><a href="#redshift">Redshift</a></li>
+											<li><a href="#snowflake">Snowflake</a></li>
+											<li><a href="#glue">Glue</a></li>
+											<li><a href="#athena">Athena</a></li>
+											<li><a href="#emr">Elastic MapReduce</a></li>
+											<li><a href="#datalake">Data Lake</a></li>
+											<li><a href="#cloudwatch">Cloud Watch</a></li>
+											<li><a href="#route53">Route 53</a></li>
+											<li><a href="#elasticache">ElastiCache</a></li>
+										</ul>
+
+										<h5>Navigate to AWS aspects:</h5>
+										<ul>
+											<li><a href="#cloudcomputing">Cloud Computing</a></li>
+											<li><a href="#serverconnection">Server Connection</a></li>
+											<li><a href="#iaac">Infrastructure as a Code</a></li>
+											<li><a href="#awsstorage">Aws storage</a></li>
+											<li><a href="#domainnamesystem">Domain Name System</a></li>
+											<li><a href="#serverlessservices">Serverless services</a></li>
+											<li><a href="#storageclasses">Storage classes</a></li>
+										</ul>
+
+										<h5 id="cloudcomputing">Cloud Computing:</h5>
 										<ul>
 											<li>Common opinion on cloud computing is that it concerns System Administrators or DevOps Engineers because of solutions it provides on servers provsion, networking etc.
 												In fact, It also concerns Software Developers, Security Engineers, Program Managers and so on as there are many services related to computing, storage, database, analytics, encryption, deployment and more	.</li>
@@ -89,7 +121,7 @@
 											<li>Each AWS region contains at least 2 availability zones.</li>
 										</ul>
 
-										<h5>Server Connection:</h5>
+										<h5 id="serverconnection">Server Connection:</h5>
 										<ul>
 											<li>For server connection we need to get:
 												<br>
@@ -112,18 +144,7 @@
 											</li>
 										</ul>
 
-										<h5>AWS Identity and Access Management (IAM)</h5>
-										<ul>
-											<li>Managing access and user roles to AWS services and resources.</li>
-											<li>IAM as a feature is free of charge. You are only charged for use of AWS services by your users.</li>
-											<li>Things we can do with IAM:
-												<br>
-												- creating users assigning them individual security credentials and providing access to AWS services and resources,<br>
-												- managing user roles and permissions to control what operation can be perfomred by the individaul or what AWS resources the individual is allowed to access,<br>
-											</li>
-										</ul>
-
-										<h5>Infrastructure as a Code (IaaC):</h5>
+										<h5 id="iaac">Infrastructure as a Code (IaaC):</h5>
 										<ul>
 											<li>There are two ways of building the infrastructure: manually or with script's automation.</li>
 											<li>Automation with Iaac helps to autmate infrastrucutre building on every stage of app's service:
@@ -145,7 +166,7 @@
 											</li>
 										</ul>
 
-										<h5>AWS Storage types:</h5>
+										<h5 id="awsstorage">AWS Storage types:</h5>
 										<table>
 											<thead>
 												<tr>
@@ -181,7 +202,7 @@
 											</tbody>
 										</table>
 
-										<h5>Domain Name System:</h5>
+										<h5 id="domainnamesystem">Domain Name System:</h5>
 										<ul>
 											<li>Translates Domain Name to corresponding server's IP address:
 												<br>
@@ -198,23 +219,45 @@
 											<img src="images/dns.JPG" style="border: 1px solid #939393"><span style="font-size:12px;">source: AWS</span>
 										</ul>
 
-										<h5>Virtual Private Cloud (VPC):</h5>
+										<h5 id="serverlessservices">Serverless Services:</h5>
 										<ul>
-											<li>It is a private sub-section of AWS which you are in control of in terms of who has access to what AWS resources.</li>
-											<li>More technically, AWS lets us provision a logically isolated cloud's section in which we can define a custom virtual network configurations like IP addresses, subnets, route tables and network gateways.</li>
-											<li>When creating AWS account, there is a default VPS being created for a user. So everybody has their own VPC.</li>
-											<li>VPC architecture and components:
+											<li>In fact, it doesn't mean that there is no server being present.
+													There are server to host your application, however is completely managed by the provider.
+													You only care about the app's code.</li>
+											<li>Very popular way of having serverless service is a PaaS model where only need is to upload the the application.
+													PaaS provider takes care of the rest which is setting up the capacity, launching servers in high-availability and auto-scaling mode, installing technology-specifc packages and dependencies, security, patching, monitoring.
+											<li>There are AWS Services that can be used without any server instantiation.
+													There is no need for any capacity planning or how much resources we might need.
+													We are being charged only for the computing time we consume.
+													Example serverless services:
 												<br>
-												<img src="images/vpc.JPG" width="300"><span style="font-size:12px;">source: Linux Academy</span>
-												<br>
-												- Internet Gateway (IGW) allows communication between your VPC and the internet..<br>
-												- A route table lists predefined routes to the default subnets.<br>
-												- A Network Access control List has pre-defined rules for access.<br>
-												- VPC is partitioned into subnets to provision AWS resources in (e.g. EC2 instances).
+												- AWS Lmabda for computing,<br>
+												- AWS S3 for storage,<br>
+												- DynamoDB for Database, <br>
+												- SQS, SNS for an app integration.
 											</li>
-											<li>We can set a specific VPC for an EC2 instance:
+										</ul>
+
+										<h5 id="storageclasses">Storage classes:</h5>
+										<ul>
+											<li>Depending on Storage Class, the availablity, durability and perfomrance, thus <u>pricing</u> will differ:
+												<br>
+												<b>- Standard S3</b>: for general purpose, has higher availablility and pricing much higher than for infrequent access.<br>
+												<b>- Standard S3 with Infrequent Access (Standard IA)</b>: when we don't care about high availablity then we can go with that opition with lower pricing.<br>
+												<b>- Reduced Redundancy Storage (RRS)</b>: lower durability and lower availablity so we could keep only non-critical, reproducible data.<br>
+												<b>- Glacier</b>: meant for archiving and storing long-term backups. It has a very high durability however low availability - it takes even a few hours to get data restored.<br>
+												<b>- Glacier Deep Archive</b>: lowest-costs possible storage class that AWS offers. Supports long-term retention for data that may be accessed once or twiece a year.
+													It has very lowe availablity - data can be restored within 12 hours.<br>
+												<b>- Intelligent Tiering</b>: it detects seldom used data and moves it to most cost-effective tier like Standard IA.
+													So we end up with frequent access tier and infrequent access tier that differ with pricing.
+													This type is preferable when we store long-lived data where access patterns are unknown or unpredictable - we cannot assess which part of data will bea accessed frequently and which not.
+													<br>
+												<b>- One Zone-IA</b>: while Standard S3 or Standard IA sores data in min. 3 availability zones, S3 On Zone_IA stores data in single availablity zone which reduces overall costs.
+													It's a good solution for a secondary backup copies of on-premises data or for the data that can be easily recreated. Only risk is the data will be lost in case of availablity zone destruction.
+											</li>
+											<li>We can choose storage class while uploading object to S3:
 												<br><br>
-												<img src="images/ec2_vpc.jpg" width="700">
+												<img src="images/storage_classes.png" width="780">
 											</li>
 										</ul>
 
@@ -245,7 +288,38 @@
 								<div class="container">
 									<h3>Demo</h3>
 
-									<h5>EC2:</h5>
+									<h5 id="iam">AWS Identity and Access Management (IAM)</h5>
+									<ul>
+										<li>Managing access and user roles to AWS services and resources.</li>
+										<li>IAM as a feature is free of charge. You are only charged for use of AWS services by your users.</li>
+										<li>Things we can do with IAM:
+											<br>
+											- creating users assigning them individual security credentials and providing access to AWS services and resources,<br>
+											- managing user roles and permissions to control what operation can be perfomred by the individaul or what AWS resources the individual is allowed to access,<br>
+										</li>
+									</ul>
+
+									<h5 id="vpc">Virtual Private Cloud (VPC):</h5>
+									<ul>
+										<li>It is a private sub-section of AWS which you are in control of in terms of who has access to what AWS resources.</li>
+										<li>More technically, AWS lets us provision a logically isolated cloud's section in which we can define a custom virtual network configurations like IP addresses, subnets, route tables and network gateways.</li>
+										<li>When creating AWS account, there is a default VPS being created for a user. So everybody has their own VPC.</li>
+										<li>VPC architecture and components:
+											<br>
+											<img src="images/vpc.JPG" width="300"><span style="font-size:12px;">source: Linux Academy</span>
+											<br>
+											- Internet Gateway (IGW) allows communication between your VPC and the internet..<br>
+											- A route table lists predefined routes to the default subnets.<br>
+											- A Network Access control List has pre-defined rules for access.<br>
+											- VPC is partitioned into subnets to provision AWS resources in (e.g. EC2 instances).
+										</li>
+										<li>We can set a specific VPC for an EC2 instance:
+											<br><br>
+											<img src="images/ec2_vpc.jpg" width="700">
+										</li>
+									</ul>
+
+									<h5 id="ec2">EC2:</h5>
 									<ul>
 										<li>It stands for Elastic Computing Cloud.</li>
 										<li>Actually, it's a name for a server that we can launch in AWS.</li>
@@ -312,7 +386,7 @@
 										</li>
 									</ul>
 
-									<h5>AWS Relational Database Service (RDS):</h5>
+									<h5 id="rds">AWS Relational Database Service (RDS):</h5>
 									<ul>
 										<li>AWS RDS supports various database engines like MySQL, PostgreSQL, Microsoft SQL Server, Oracle that can be hosted on EC2.</li>
 										<li>AWS offers also the noSQL databse in DynamoDB that stores key-value pairs.</li>
@@ -333,49 +407,7 @@
 										</li>
 									</ul>
 
-									<h5>Serverless Services:</h5>
-									<ul>
-										<li>In fact, it doesn't mean that there is no server being present.
-												There are server to host your application, however is completely managed by the provider.
-												You only care about the app's code.</li>
-										<li>Very popular way of having serverless service is a PaaS model where only need is to upload the the application.
-												PaaS provider takes care of the rest which is setting up the capacity, launching servers in high-availability and auto-scaling mode, installing technology-specifc packages and dependencies, security, patching, monitoring.
-										<li>There are AWS Services that can be used without any server instantiation.
-												There is no need for any capacity planning or how much resources we might need.
-												We are being charged only for the computing time we consume.
-												Example serverless services:
-											<br>
-											- AWS Lmabda for computing,<br>
-											- AWS S3 for storage,<br>
-											- DynamoDB for Database, <br>
-											- SQS, SNS for an app integration.
-										</li>
-									</ul>
-
-									<h5>Storage classes:</h5>
-									<ul>
-										<li>Depending on Storage Class, the availablity, durability and perfomrance, thus <u>pricing</u> will differ:
-											<br>
-											<b>- Standard S3</b>: for general purpose, has higher availablility and pricing much higher than for infrequent access.<br>
-											<b>- Standard S3 with Infrequent Access (Standard IA)</b>: when we don't care about high availablity then we can go with that opition with lower pricing.<br>
-											<b>- Reduced Redundancy Storage (RRS)</b>: lower durability and lower availablity so we could keep only non-critical, reproducible data.<br>
-											<b>- Glacier</b>: meant for archiving and storing long-term backups. It has a very high durability however low availability - it takes even a few hours to get data restored.<br>
-											<b>- Glacier Deep Archive</b>: lowest-costs possible storage class that AWS offers. Supports long-term retention for data that may be accessed once or twiece a year.
-												It has very lowe availablity - data can be restored within 12 hours.<br>
-											<b>- Intelligent Tiering</b>: it detects seldom used data and moves it to most cost-effective tier like Standard IA.
-												So we end up with frequent access tier and infrequent access tier that differ with pricing.
-												This type is preferable when we store long-lived data where access patterns are unknown or unpredictable - we cannot assess which part of data will bea accessed frequently and which not.
-												<br>
-											<b>- One Zone-IA</b>: while Standard S3 or Standard IA sores data in min. 3 availability zones, S3 On Zone_IA stores data in single availablity zone which reduces overall costs.
-											 	It's a good solution for a secondary backup copies of on-premises data or for the data that can be easily recreated. Only risk is the data will be lost in case of availablity zone destruction.
-										</li>
-										<li>We can choose storage class while uploading object to S3:
-											<br><br>
-											<img src="images/storage_classes.png" width="780">
-										</li>
-									</ul>
-
-									<h5>Amazon Simple Storage Service (Amazon S3):</h5>
+									<h5 id="s3">Amazon Simple Storage Service (Amazon S3):</h5>
 									<ul>
 										<li>S3 is the durable storage system and is based on object storage.</li>
 										<li>In S3 we have buckets that are like folders where we can store multiple objects (files).
@@ -386,7 +418,7 @@
 										<li>When you upload some files to the cloud storage it backs file up automatically.</li>
 									</ul>
 
-									<h5>AWS Lambda:</h5>
+									<h5 id="lambda">AWS Lambda:</h5>
 									<ul>
 										<li>It's a fully managed compute service that runs our code when event appears (for instance uploading objects to S3 can trigger Lambda function)or on the time base.</li>
 										<li>AWS Lambda provides:
@@ -414,7 +446,7 @@
 										</li>
 									</ul>
 
-									<h5>CloudFront:</h5>
+									<h5 id="cloudfront">AWS CloudFront:</h5>
 									<ul>
 										<li>Service for Content Delivery Network (CDN) which acts like a proxy that receives requests and forward those requests to the backend systems.</li>
 										<li>CDN caches website or application files, HTML, CSS, JS, images or videos at data centers around the world.
@@ -428,7 +460,7 @@
 										<li>Content is being cached at the edge location for a specific period of time - <b>Time To Live (TTL)</b>.</li>
 									</ul>
 
-									<h5>AWS Storage Gateway:</h5>
+									<h5 id="storagegateway">AWS Storage Gateway:</h5>
 									<ul>
 										<li>A service that lets the on-premise application to access and use the cloud storage.</li>
 										<br>
@@ -442,7 +474,7 @@
 										</li>
 									</ul>
 
-									<h5>Data Warehouse:</h5>
+									<h5 id="redshift">Data Warehouse:</h5>
 									<ul>
 										<li>Using in Business Intelligence in which we transofrm raw data into useful business insights. It goes with following steps:
 											<br>
@@ -505,7 +537,7 @@
 									 </li>
 									</ul>
 
-									<h5>Snowflake DW:</h5>
+									<h5 id="snowflake">Snowflake DW:</h5>
 									<ul>
 										<li>I like the way they describe it: <i>combines the power of data warehousing, the flexibility of big data platforms, and the elasticity of the cloud</i>.</li>
 										<li>In Snowflake's architecture, the key is a separation of storage, compute and services:
@@ -537,7 +569,7 @@
 										</li>
 									</ul>
 
-									<h5>AWS Glue:</h5>
+									<h5 id="glue">AWS Glue:</h5>
 									<ul>
 										<li>ETL service to categorize, clean, enrich, and reliably move data between various data stores.</li>
 										<li>It collects different data carriers, then identifies the data types, suggests some transformations and generates editable code (ETL script) to execute the overall transformation and datawarehouse loading process.</li>
@@ -559,7 +591,7 @@
 										</li>
 									</ul>
 
-									<h5>AWS Athena:</h5>
+									<h5 id="athena">AWS Athena:</h5>
 									<ul>
 										<li>Query service for managing Amazon S3 data with standard SQL.</li>
 										<li>There is no need for any underlying compute infrastructure, no need for loading data into Amazon Athena or transforming it for the analysis.</li>
@@ -567,7 +599,7 @@
 										<li>You only pay for queries you run and that's all.</li>
 									</ul>
 
-									<h5>AWS Elastic MapReduce (EMR):</h5>
+									<h5 id="emr">AWS Elastic MapReduce (EMR):</h5>
 									<ul>
 										<li>Platform for computational processing of vast amounts of data with the help of the MapReduce framework. It simplifies the enitre setup and management of the cluster and Hadoop components.</li>
 										<li>Hence, It uses Hadoop to distribute the data and process it across an auto-scaling cluster of computing nodes (EC2 instances).</li>
@@ -578,7 +610,7 @@
 										</li>
 									</ul>
 
-									<h5>Data Lake:</h5>
+									<h5 id="datalake">Data Lake:</h5>
 									<ul>
 										<li>Data Lake vs Data Warehouse
 											<br><br>
@@ -653,7 +685,7 @@
 										</li>
 									</ul>
 
-									<h5>AWS CloudWatch:</h5>
+									<h5 id="cloudwatch">AWS CloudWatch:</h5>
 									<ul>
 										<li>Monitoring service fro AWS servers and applications.</li>
 										<li>It collects and monitors log files, sets alarms, reacts to changes in the AWS resources automatically, for example:
@@ -670,7 +702,7 @@
 											</li>
 									</ul>
 
-									<h5>AWS Route 53:</h5>
+									<h5 id="route53">AWS Route 53:</h5>
 									<ul>
 										<li>Domain Name System (DNS) web service used to route end users to Internet applications by translating names like www.example.com into the numeric IP addresses like 192.0.2.1 that computers use to connect to each other. </li>
 										<li>Amazon Route 53 connects user requests to infrastructure running in AWS (EC2, S3) or routes users to infrastructure outside of AWS.</li>
@@ -678,7 +710,7 @@
 										<li>It is not limited to a specific region. We can launch it globally.</li>
 									</ul>
 
-									<h5>AWS ElastiCache:</h5>
+									<h5 id="elasticache">AWS ElastiCache:</h5>
 									<ul>
 										<li>In-memory cache in the cloud. It caches the response associated with frequent queries.</li>
 										<li>This allows better response time and decreases the load on the database server.</li>
