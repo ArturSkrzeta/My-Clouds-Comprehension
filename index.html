@@ -547,12 +547,12 @@
 										</li>
 										<li>Snowflake for OLAP:
 											<br>
-											- Snowflake supports <b>Online Analytical Processing (OLAP)</b> for scanning all of the data in columns in order to get aggregated values as opposed to <b>Online Transactional Processing (OLTP)</b> where we want to retrieve one or many rows from database.
+											- snowflake supports <b>Online Analytical Processing (OLAP)</b> for scanning all of the data in columns in order to get aggregated values as opposed to <b>Online Transactional Processing (OLTP)</b> where we want to retrieve one or many rows from database.
 												The main purpose of OLAP is data analysis and when it comes to OLTP then main purpose is data processing (inserting, updating).
 											<br><br>
 											<img src="images/olap.JPG" style="border: 1px solid gray;" width="420"><span style="font-size:12px">soruce: Data Council</span>
 											<br>
-											- While a classic databases like PostgreSQL or MySQL are type of <b>raw store</b> (OLTP) that keeps data linearly row by row, from left to right, from top to bottom, Snowflake supports <b>columnar store</b> (OLAP) which allows to traverse entire columns one by one.
+											- while a classic databases like PostgreSQL or MySQL are type of <b>raw store</b> (OLTP) that keeps data linearly row by row, from left to right, from top to bottom, Snowflake supports <b>columnar store</b> (OLAP) which allows to traverse entire columns one by one.
 											<br><br>
 											<img src="images/columnstore.JPG" style="border: 1px solid gray;" width="640"><span style="font-size:12px">soruce: Data Council</span>
 											<br>
@@ -571,11 +571,14 @@
 										</li>
 										<li>Snowflake architecture:
 											<br>
-											- Database - contains tables, schemas, views, stages, sequences.<br>
+											- Database - contains tables, schemas, views, stages, file formats, sequences.<br>
 											- Stage - a data lake like place from which data files are being copied into the tables.<br>
+											- File format - we need to define fomrat of the files bieng stored at stage.<br>
 											- Warehouse - computing enginge.<br>
 											- Worksheet - a place where we can proceed with writing or loading ready SQL scripts.<br>
 										</li>
+										<li>Every action on db can be performed with sql script along with setting up stages, file formats,
+												configuring warehouse, copying data to a table from a stage.</li>
 									</ul>
 
 									<h5 id="glue">AWS Glue:</h5>
