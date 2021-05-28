@@ -545,16 +545,18 @@
 											- EC2 Virtual Warehouse as a compute layer .<br>
 											- metadata, security, transactions and concurrency management as service layer.
 										</li>
-										<li>Snowflake supports <b>Online Analytical Processing (OLAP)</b> for scanning all of the data in columns in order to get aggregated values as opposed to <b>Online Transactional Processing (OLTP)</b> where we want to retrieve one or many rows from database.
+										<li>Snowflake for OLAP:
+											<br>
+											- Snowflake supports <b>Online Analytical Processing (OLAP)</b> for scanning all of the data in columns in order to get aggregated values as opposed to <b>Online Transactional Processing (OLTP)</b> where we want to retrieve one or many rows from database.
 												The main purpose of OLAP is data analysis and when it comes to OLTP then main purpose is data processing (inserting, updating).
 											<br><br>
 											<img src="images/olap.JPG" style="border: 1px solid gray;" width="420"><span style="font-size:12px">soruce: Data Council</span>
-										</li>
-										<li>While a classic databases like PostgreSQL or MySQL are type of <b>raw store</b> (OLTP) that keeps data linearly row by row, from left to right, from top to bottom, Snowflake supports <b>columnar store</b> (OLAP) which allows to traverse entire columns one by one.
+											<br>
+											- While a classic databases like PostgreSQL or MySQL are type of <b>raw store</b> (OLTP) that keeps data linearly row by row, from left to right, from top to bottom, Snowflake supports <b>columnar store</b> (OLAP) which allows to traverse entire columns one by one.
 											<br><br>
 											<img src="images/columnstore.JPG" style="border: 1px solid gray;" width="640"><span style="font-size:12px">soruce: Data Council</span>
 											<br>
-											- using columnar store makes sense when we want to analyze one or two specific columns and skip reading other ones.
+											- using columnar storage makes sense when we want to analyze one or two specific columns and skip reading other ones.
 										</li>
 										<li>Snowflake workflow:
 											<br>
