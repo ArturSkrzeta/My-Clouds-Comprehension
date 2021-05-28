@@ -565,7 +565,7 @@
 											- All the information about micropartitions are being stored in Sknowflake's metadata layer.<br>
 											- When query comes in, metadata layer knows which micropartition in S3 belongs to the queried table.<br>
 											- Reading a S3 file, it searches for a specific header first and then reads the only column we specified in the query.<br>
-											- That way it reads the only data it needs ingnoring the rest of the S3 file.
+											- It reads the only queried data ingnoring the rest of S3 files.
 										</li>
 										<li>Snowflake architecture:
 											<br>
