@@ -536,7 +536,8 @@
 
 									<h5 id="snowflake">Snowflake:</h5>
 									<ul>
-										<li>We can utelize AWS S3 as the data storage for OLAP in Snowflake.</li>
+										<li>Snowflake is the platform delivered as a service which means we don't have to worry about patches, upgrades or maintenance.</li>
+										<li>We can utilize AWS S3 as the data storage for OLAP in Snowflake.</li>
 										<li>I like the way they describe it: <i>combines the power of data warehousing, the flexibility of big data platforms, and the elasticity of the cloud</i>.</li>
 										<li>In Snowflake's architecture, the key is a separation of storage, compute and services:
 											<br><br>
@@ -612,6 +613,8 @@
 											<code>CREATE STAGE csvfiles;</code><br>
 											<code>PUT file:///tmp/load/abc*.csv @csvfiles;</code><br>
 											<code>LIST @csvfiles;</code><br>
+											<code>CREATE WAREHOUSE IF NOT EXISTS "dataload" WAREHOUSE.SIZE = "Large"</code><br>&nbsp&nbsp&nbsp&nbsp
+												<code>AUTOSUSPEND = 300 AUTO_RESUME = TRUE;</code><br>
 											<code>USE WAREHUSE dataload;</code><br>
 											<code>COPY INTO my_tbl</code><br>&nbsp&nbsp&nbsp&nbsp
 												<code>FROM @csvfiles</code><br>&nbsp&nbsp&nbsp&nbsp
