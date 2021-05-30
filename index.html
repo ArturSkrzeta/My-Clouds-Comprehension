@@ -577,7 +577,7 @@
 										</li>
 										<li>Snowflake architecture:
 											<br>
-											- Database - containing schemas, tables, views, stages, file formats, sequences.<br>
+											- Database - containing schemas, tables, views, stages, file formats, sequences. All the tables are created in PUBLIC schema by default.<br>
 											- Stage - a data lake like place from which data files are being copied into the tables.<br>
 											- File format - we need to define fomrat of the files bieng stored at stage.<br>
 											- Warehouse - computing enginge.<br>
@@ -590,6 +590,11 @@
 												<br>
 												<img src="images/sql_script2.JPG">
 										</li>
+										<li>Data Loading consists of two parts:
+											<br>
+											1. Staging the files into the place where Snowflake can retrieve data files from. We cam have both internal and exteranl (S3, GSP) storages.<br>
+											2. Loding the data into a specific table.
+										</li>
 										<li>SnowSQL:
 											<br>
 											- the command line interface client for connecting to Snowflake,<br>
@@ -597,6 +602,22 @@
 											- we can install it from Snowflake UI and there is info on how to connect at the end:
 											<br><br>
 											<img src="images/snowsql_installation.JPG">
+											<br>
+											- example:
+											<br>
+											<code>USE DATABASE my_db;</code><br>
+											<code>CREATE OR REPLACE TABLE my_tbl {</code><br>&nbsp&nbsp&nbsp&nbsp
+												<code>...</code><br>
+											<code>};</code><br>
+											<code>CREATE STAGE csvfiles;</code><br>
+											<code>PUT file:///tmp/load/abc*.csv @csvfiles;</code><br>
+											<code>LIST @csvfiles;</code><br>
+											<code>USE WAREHUSE dataload;</code><br>
+											<code>COPY INTO my_tbl</code><br>&nbsp&nbsp&nbsp&nbsp
+												<code>FROM @csvfiles</code><br>&nbsp&nbsp&nbsp&nbsp
+												<code>PATTERN = '.*file0[1-4].csv.gz'</code><br>&nbsp&nbsp&nbsp&nbsp
+												<code>ON_ERROR = 'skip_file';</code><br>
+											<code>SELECT * FROM my_tbl LIMIT 10;</code>
 										</li>
 										<li>We can learn a lot from the documentation:
 												<u><a href="https://docs.snowflake.com/en/">Snowflake documentation</a></u>
