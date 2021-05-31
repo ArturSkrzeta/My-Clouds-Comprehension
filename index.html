@@ -74,7 +74,6 @@
 											<li><a href="#cloudfront">CloudFront</a></li>
 											<li><a href="#storagegateway">Storage Gateway</a></li>
 											<li><a href="#redshift">Redshift</a></li>
-											<li><a href="#snowflake">Snowflake</a></li>
 											<li><a href="#glue">Glue</a></li>
 											<li><a href="#athena">Athena</a></li>
 											<li><a href="#emr">Elastic MapReduce</a></li>
@@ -532,99 +531,6 @@
 											4. Compute nodes work in parallel and transfer data among themeselves in order to solve the query.<br>
 											5. Once excution is done. the leader node aggregates the results and sends it backt to clien app.
 									 </li>
-									</ul>
-
-									<h5 id="snowflake">Snowflake:</h5>
-									<ul>
-										<li>Snowflake is the platform delivered as a service which means we don't have to worry about patches, upgrades or maintenance.</li>
-										<li>We can utilize AWS S3 as the data storage for OLAP in Snowflake.</li>
-										<li>I like the way they describe it: <i>combines the power of data warehousing, the flexibility of big data platforms, and the elasticity of the cloud</i>.</li>
-										<li>In Snowflake's architecture, the key is a separation of storage, compute and services:
-											<br><br>
-											<img src="images/snowflake_architecture.png" width="640"><span style="font-size:12px">soruce: snowflake</span>
-											<br>
-											- S3 as a storage layer (Google Cloud Storage or Azure Blob Storage),<br>
-											- EC2 Virtual Warehouse as a compute layer .<br>
-											- metadata, security, transactions and concurrency management as service layer.
-										</li>
-										<li>Building pipelines with Snowflake:
-											<br><br>
-											<img src="images/snowflake_pipeline.JPG">
-											<span style="font-size:12px">soruce: snowflake</span>
-										</li>
-										<li>Snowflake for OLAP:
-											<br>
-											- snowflake supports <b>Online Analytical Processing (OLAP)</b> for scanning all of the data in columns in order to get aggregated values as opposed to <b>Online Transactional Processing (OLTP)</b> where we want to retrieve one or many rows from database.
-												The main purpose of OLAP is data analysis and when it comes to OLTP then main purpose is data processing (inserting, updating).
-											<br><br>
-											<img src="images/olap.JPG" style="border: 1px solid gray;" width="420"><span style="font-size:12px">soruce: Data Council</span>
-											<br>
-											- while a classic databases like PostgreSQL or MySQL are type of <b>raw store</b> (OLTP) that keeps data linearly row by row, from left to right, from top to bottom, Snowflake supports <b>columnar store</b> (OLAP) which allows to traverse entire columns one by one.
-											<br><br>
-											<img src="images/columnstore.JPG" style="border: 1px solid gray;" width="640"><span style="font-size:12px">soruce: Data Council</span>
-											<br>
-											- using columnar storage makes sense when we want to analyze one or two specific columns and skip reading other ones.
-										</li>
-										<li>Snowflake workflow:
-											<br>
-											- Dividig big tabular data into x-consecutive rows segments called micropartitions.<br>
-											- Reorganizing the data of each micropartition by flipping row store into columnar - column values of each row get stored together.<br>
-											- Adding a header to each micropartition. Header contains metadata of given micropartition and columns it contains.<br>
-											- Micropartitions are being stored in S3 as the immutable files.<br>
-											- All the information about micropartitions are being stored in Sknowflake's metadata layer.<br>
-											- When query comes in, metadata layer knows which micropartition in S3 belongs to the queried table.<br>
-											- Reading a S3 file, it searches for a specific header first and then reads the only column we specified in the query.<br>
-											- It reads the only queried data ingnoring the rest of S3 files.
-										</li>
-										<li>Snowflake architecture:
-											<br>
-											- Database - containing schemas, tables, views, stages, file formats, sequences. All the tables are created in PUBLIC schema by default.<br>
-											- Stage - a data lake like place from which data files are being copied into the tables.<br>
-											- File format - we need to define fomrat of the files bieng stored at stage.<br>
-											- Warehouse - computing enginge.<br>
-											- Worksheet - a place where we can proceed with writing or loading ready SQL scripts.<br>
-										</li>
-										<li>Every action on db can be performed with sql script along with setting up stages, file formats,
-												configuring warehouse, copying data to a table from a stage.
-												<br><br>
-												<img src="images/sql_script.JPG">
-												<br>
-												<img src="images/sql_script2.JPG">
-										</li>
-										<li>Data Loading consists of two parts:
-											<br>
-											1. Staging the files into the place where Snowflake can retrieve data files from. We cam have both internal and exteranl (S3, GSP) storages.<br>
-											2. Loding the data into a specific table.
-										</li>
-										<li>SnowSQL:
-											<br>
-											- the command line interface client for connecting to Snowflake,<br>
-											- allows to execute SQL queries to perform DDL and DML operations,<br>
-											- we can install it from Snowflake UI and there is info on how to connect at the end:
-											<br><br>
-											<img src="images/snowsql_installation.JPG">
-											<br>
-											- example:
-											<br>
-											<code>USE DATABASE my_db;</code><br>
-											<code>CREATE OR REPLACE TABLE my_tbl {</code><br>&nbsp&nbsp&nbsp&nbsp
-												<code>...</code><br>
-											<code>};</code><br>
-											<code>CREATE STAGE csvfiles;</code><br>
-											<code>PUT file:///tmp/load/abc*.csv @csvfiles;</code><br>
-											<code>LIST @csvfiles;</code><br>
-											<code>CREATE WAREHOUSE IF NOT EXISTS "dataload" WAREHOUSE.SIZE = "Large"</code><br>&nbsp&nbsp&nbsp&nbsp
-												<code>AUTOSUSPEND = 300 AUTO_RESUME = TRUE;</code><br>
-											<code>USE WAREHUSE dataload;</code><br>
-											<code>COPY INTO my_tbl</code><br>&nbsp&nbsp&nbsp&nbsp
-												<code>FROM @csvfiles</code><br>&nbsp&nbsp&nbsp&nbsp
-												<code>PATTERN = '.*file0[1-4].csv.gz'</code><br>&nbsp&nbsp&nbsp&nbsp
-												<code>ON_ERROR = 'skip_file';</code><br>
-											<code>SELECT * FROM my_tbl LIMIT 10;</code>
-										</li>
-										<li>We can learn a lot from the documentation:
-												<u><a href="https://docs.snowflake.com/en/">Snowflake documentation</a></u>
-										</li>
 									</ul>
 
 									<h5 id="glue">AWS Glue:</h5>
