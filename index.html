@@ -300,8 +300,12 @@
 											- <b>Client side encryption</b> - app on EC2 maintains key and ecrypts the data sending encrypted data into AWS S3.<br>
 											- <b>Server side encryption</b> - sending confidential data with HTTPS (security of data in-transit) to AWS S3 and the data gets encrypted from there (security data at-rest).
 										</li>
-										<li>
-
+										<li>Envelope encryption:
+											<br>
+											- encryption key for encrypting confidential data is called a Data Key which udnergoes following process:
+											<br>
+											<code>Data Key</code> >> <code>Encryption algorithm</code> + <code>Customer Master Key</code> >><br> <code>Encrypted Data Key</code><br>
+											- <b>Customer Master Key</b> can be either AWS managed or Customer managed.
 										</li>
 									</ul>
 
