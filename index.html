@@ -290,8 +290,19 @@
 										<li>KMS is used for storing and managing encrypting kyes on AWS data.</li>
 										<li>We apply encryption on sensitive data preventing unauthorized users form accessing.
 												Even hackers can have find it hard to decrypt the data even if he hacked your db server.</li>
-										<li>Need to be applied due to company policy or even because of external regularions like GDPR that enforces following personal data security.</li>
-										<li></li>
+										<li>Need to be applied due to company policy or even because of external regulations like GDPR that enforces following personal data security.</li>
+										<li>Here is the highlevel encryption flow:
+											<br>
+											<code>confidential data</code> >> <code>encryption algorithm</code> + <code>encryption key</code> >><br> <code>encrypted data on AWS storage</code>
+										</li>
+										<li>Encryption can be executed in two ways:
+											<br>
+											- <b>Client side encryption</b> - app on EC2 maintains key and ecrypts the data sending encrypted data into AWS S3.<br>
+											- <b>Server side encryption</b> - sending confidential data with HTTPS (security of data in-transit) to AWS S3 and the data gets encrypted from there (security data at-rest).
+										</li>
+										<li>
+
+										</li>
 									</ul>
 
 									<h5 id="iam">AWS Identity and Access Management (IAM):</h5>
