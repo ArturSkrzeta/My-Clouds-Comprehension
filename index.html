@@ -82,6 +82,7 @@
 											<li><a href="#cloudwatch">Cloud Watch</a></li>
 											<li><a href="#route53">Route 53</a></li>
 											<li><a href="#elasticache">ElastiCache</a></li>
+											<li><a href="#transferfamily">AWS Transfer Family</a></li>
 										</ul>
 
 										<!-- <h5>6. Continuous monitoring:</h5>
@@ -302,7 +303,7 @@
 										</li>
 										<li>Envelope encryption:
 											<br>
-											- encryption key for encrypting confidential data is called a Data Key which udnergoes following process:
+											- encryption key for encrypting confidential data is called a Data Key which undergoes the following process:
 											<br>
 											<code>Data Key</code> >> <code>Encryption algorithm</code> + <code>Customer Master Key</code> >><br> <code>Encrypted Data Key</code><br>
 											- <b>Customer Master Key</b> can be either AWS managed or Customer managed.
@@ -704,6 +705,24 @@
 										<li>In-memory cache in the cloud. It caches the response associated with frequent queries.</li>
 										<li>This allows better response time and decreases the load on the database server.</li>
 										<li>When user sents the same query once again, the response comes from cache engine instead of from database server.</li>
+									</ul>
+
+									<h5 id="transferfamily">AWS Transfer Family:</h5>
+									<ul>
+										<li>It provides endpoint for file transfers directly into and out of Amazon S3 using protocols:
+											<br>
+											- Secure File Transfer Protocol (SFTP),<br>
+											- File Transfer Protocol over SSL (FTPS),<br>
+											- File Transfer Protocol (FTP).
+										</li>
+										<li>Here is the worflow:
+											<br>
+											<img src="images/transfer_family.JPG" width="600"><span style="font-size:12px">source: Amazon</span>
+											<br>
+											- example of file transfer clients: WinSCP, Filezilla,<br>
+											- IAM roles are used to grant access to S3 bucketm from file transfer clients in a secure way,<br>
+											-
+										</li>
 									</ul>
 
 									<!-- <h5>Message Broker:</h5>
