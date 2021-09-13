@@ -481,10 +481,46 @@
 										<li>There are many AWS-related events that can trigger a lambda function:
 											<br><br>
 											<img src="images/lambda_triggers.png" width="550">
+											<br>
+											- trigger makes the lambda code being executed,<br>
+											- the event is the your code itself, the lambda code will get a copy of the event and usually we want to inspect that copy of the event data and perform an action based on it.
 										</li>
 										<li>We can specify Runtime while configuration:
 											<br><br>
 											<img src="images/runtime.JPG" width="550">
+										</li>
+										<li>We can integrate lambda with S3 bucket getting a file from it:
+<!-- start -->
+<pre>
+import os
+import boto3
+import csv
+
+key ='currima_input/20210628_CurrimaPG.csv'
+bucket = 'ferdi-poc'
+
+def lambda_handler(event,  context):
+    s3_resource = boto3.resource('s3')
+    s3_object = s3_resource.Object(bucket, key)
+
+    data = s3_object.get()['Body'].read().decode('utf-8').splitlines()
+
+    lines = list(csv.reader(data))
+
+    print(len(lines))
+    print(lines[0])
+
+    # for line in list(lines):
+    #     print(line)
+
+</pre>
+<!-- end -->
+										</li>
+										<li>
+											lambda is automatically passed a context JSON object that's essentially metadata about your lambda function
+											if you need to access it's attributes within your code:
+											<br>
+										 <code>lambda_handler(event, context)</code>.
 										</li>
 									</ul>
 
