@@ -461,6 +461,23 @@
 											- code,<br>
 											- money - as much as we use it.
 										</li>
+										<li>When we upload the code we receive so-called Amazon Resource Name (ARN):
+											<br>
+											- ARN is an unique identifier for a particular lambda application,<br>
+											- using ARN we have a mechanism to invoke lambda function,<br>
+											- behind the invocation there is the load balancer that manages compute resources (EC2),<br>
+											- so when invocation comes in lambda, the load balancer deploys the code into one or more EC2 instances,<br>
+											- multiple EC2 available when concurrent invocaions appear.
+										</li>
+										<li>Available integrations:
+											<br>
+											- lambda function behind API Gateway to creatre REST APIs,<br>
+											- hooking up S3 to lambda funciton in data processing - when new file inserted/updated/deleted, the lambda gets triggered to respond to that change,<br>
+											- SQS with lambda for message buffering and processing,<br>
+											- SNS with lambda for mesagge processing
+											- Step functions with lambda for workflow orchestration,<br>
+											- Snowflake or DynamoDB with lamda for a change detecting in a database's table.
+										</li>
 										<li>There are many AWS-related events that can trigger a lambda function:
 											<br><br>
 											<img src="images/lambda_triggers.png" width="550">
