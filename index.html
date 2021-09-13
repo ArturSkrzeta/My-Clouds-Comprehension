@@ -496,8 +496,8 @@ import os
 import boto3
 import csv
 
-key ='currima_input/20210628_CurrimaPG.csv'
-bucket = 'ferdi-poc'
+key ='sub_folder_name/file_name.csv'
+bucket = 's3_bucket_name'
 
 def lambda_handler(event,  context):
     s3_resource = boto3.resource('s3')
