@@ -72,6 +72,7 @@
 											<li><a href="#rds">RDS</a></li>
 											<li><a href="#s3">S3</a></li>
 											<li><a href="#lambda">Lambda</a></li>
+											<li><a href="#apigateway">API Gateway</a></li>
 											<li><a href="#cloudfront">CloudFront</a></li>
 											<li><a href="#storagegateway">Storage Gateway</a></li>
 											<li><a href="#redshift">Redshift</a></li>
@@ -524,6 +525,12 @@ def lambda_handler(event,  context):
 										</li>
 									</ul>
 
+									<h5 id="apigateway">API Gateway</h5>
+									<ul>
+										<li>AWS service that allows you to build HTTP or REST APIs.</li>
+										<li>We can connect API Gateway endpoints to Lambda functions.</li>
+									</ul>
+
 									<h5 id="cloudfront">AWS CloudFront:</h5>
 									<ul>
 										<li>Service for Content Delivery Network (CDN) which acts like a proxy that receives requests and forward those requests to the backend systems.</li>
@@ -595,7 +602,7 @@ def lambda_handler(event,  context):
 												</tbody>
 											</table>
 										</li>
-										<li>AWS offer data warehouse service with <b>Amazon Redshift</b> whose architecture looks like below:
+										<li>AWS offers data warehouse service with <b>Amazon Redshift</b> whose architecture looks like below:
 											<br><br>
 											<img src="images/redshift.JPG" width="600"><span style="font-size:12px;">source: simplilearn</span>
 											<br>
@@ -639,10 +646,11 @@ def lambda_handler(event,  context):
 
 									<h5 id="athena">AWS Athena:</h5>
 									<ul>
-										<li>Query service for managing Amazon S3 data with standard SQL.</li>
+										<li>Query service for managing Amazon S3 (od DynamoDB) data with standard SQL.</li>
 										<li>There is no need for any underlying compute infrastructure, no need for loading data into Amazon Athena or transforming it for the analysis.</li>
 										<li>We can access Athena through either the <b>AWS Management Console</b>, an application programming interface (API) or a Java Database Connectivity driver, then we we define schema and here we go - we can execute SQL queires.</li>
-										<li>You only pay for queries you run and that's all.</li>
+										<li>We can put S3 data through AWS Glue's crawler in order to get a data schema into a table where the data gets stored. Data schema can be defined manally as well.</li>
+										<li>Once table created we can move on with quering it with common SQL.</li>
 									</ul>
 
 									<h5 id="emr">AWS Elastic MapReduce (EMR):</h5>
