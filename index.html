@@ -313,12 +313,19 @@
 
 									<h5 id="iam">AWS Identity and Access Management (IAM):</h5>
 									<ul>
-										<li>Managing access and user roles to AWS services and resources.</li>
+										<li>Managing/comtrolling access and user roles to AWS services and resources (AWS entity like S3 bucket or other object).</li>
 										<li>IAM as a feature is free of charge. You are only charged for use of AWS services by your users.</li>
 										<li>Things we can do with IAM:
 											<br>
 											- creating users assigning them individual security credentials and providing access to AWS services and resources,<br>
 											- managing user roles and permissions to control what operation can be perfomred by the individaul or what AWS resources the individual is allowed to access,<br>
+										</li>
+										<li>IAM most important elements:
+											<br>
+											- users - individuals with logins,<br>
+											- groups - collection of users with the common theme - one permisions for entire group,<br>
+											- policy document giving away acess or restricting access,<br>
+											- roles - collection of policies assigned as well but they are interchangeable - sharing, limiting etc.<br>
 										</li>
 									</ul>
 
@@ -440,13 +447,13 @@
 										<li>Can be used for storing simple websites at the lower costs. With that solution there is no need for instantiating EC2 server.</li>
 										<li>When you upload some files to the cloud storage it backs file up automatically.</li>
 										<li>S3 has a lifecycle of a files which means file can either be moved to a cheaper storage or archived or even deleted when it's older than x days.</li>
-										<li>We can still configure S3 to define some replicatioon rules to copy into different bucker when file is uploaded.
+										<li>We can still configure S3 to define some replicatioon rules to copy into different bucket when file is uploaded.
 												We can also set some events which can be triggered once a file uploaded.</li>
 									</ul>
 
 									<h5 id="lambda">AWS Lambda:</h5>
 									<ul>
-										<li>It's a fully managed compute service that runs our code when event appears (for instance uploading objects to S3 can trigger Lambda function)or on the time base.</li>
+										<li>Fully managed compute service that runs our code when event appears (for instance uploading objects to S3 can trigger Lambda function) or on the time base.</li>
 										<li>AWS Lambda provides:
 											<br>
 											- servers,<br>
@@ -462,6 +469,7 @@
 											- code,<br>
 											- money - as much as we use it.
 										</li>
+										<li>All functions in lambda are stateless. To keep data there is a need for an integration with S3 od DynamoDB.</li>
 										<li>When we upload the code we receive so-called Amazon Resource Name (ARN):
 											<br>
 											- ARN is an unique identifier for a particular lambda application,<br>
@@ -521,8 +529,12 @@ def lambda_handler(event,  context):
 											lambda is automatically passed a context JSON object that's essentially metadata about your lambda function
 											if you need to access it's attributes within your code:
 											<br>
-										 <code>lambda_handler(event, context)</code>.
+										 <code>lambda_handler(event, context)</code><br>
+										 - event - action info about trigger that caused invocation ot the lambda instance,<br>
+										 - context - provides info about information about the invocation, function itself and execution environment.
 										</li>
+										<li>Function logs are stored in the AWS cloud watch.</li>
+										<li>Handler name = lamdbda_function from lambda.function.py + lambda_handler from def lambda_hanlder()</li>
 									</ul>
 
 									<h5 id="apigateway">API Gateway</h5>
