@@ -327,13 +327,17 @@
 											- policy document giving away acess or restricting access,<br>
 											- roles - collection of policies assigned as well but they are interchangeable - sharing, limiting etc.<br>
 										</li>
+										<li>Each role can have one or more policies assigned:
+											<br><br>
+											<img src="images/iam_roles.png">
+										</li>
 									</ul>
 
 									<h5 id="vpc">Virtual Private Cloud (VPC):</h5>
 									<ul>
 										<li>It is a private sub-section of AWS which you are in control of in terms of who has access to what AWS resources.</li>
 										<li>More technically, AWS lets us provision a logically isolated cloud's section in which we can define a custom virtual network configurations like IP addresses, subnets, route tables and network gateways.</li>
-										<li>When creating AWS account, there is a default VPS being created for a user. So everybody has their own VPC.</li>
+										<li>When creating AWS account, there is a default VPC being created for a user. So everybody has their own VPC.</li>
 										<li>VPC architecture and components:
 											<br>
 											<img src="images/vpc.JPG" width="300"><span style="font-size:12px;">source: Linux Academy</span>
@@ -432,8 +436,20 @@
 											<br><br>
 											<img src="images/rds.JPG" width="550">
 										</li>
+										<li>Connectivity:
+											<br>
+											- we can deploy RDS db into a specific VPC (further we would need to deploy lambda function into as the same VPC as it was for RDS db),<br>
+											- or we can set it up to Data API which allows interacting with db using a http enpoint by lambda for instance.
+										</li>
+										<li>Databse will be created with a bunch of technical details like enpoint and port which can be checked in <b>Connectivity and security</b> tab.</li>
 										<li>Amazon Aurora is a compromise between performance of traditional enterprise databases and simplicity and cost-effectiveness of open-source databases.
 												Once creating we don't have to specify the storage as it grows along with the size of it.
+										</li>
+										<li>Query editor:
+											<br>
+											- in order to query a database we need to create a connection when entering the query editor:
+											<br><br>
+											<img src="images/query_editor.png">
 										</li>
 									</ul>
 
@@ -535,6 +551,37 @@ def lambda_handler(event,  context):
 										</li>
 										<li>Function logs are stored in the AWS cloud watch.</li>
 										<li>Handler name = lamdbda_function from lambda.function.py + lambda_handler from def lambda_hanlder()</li>
+										<li>Getting connected with RDS database:
+											<br>
+<!-- start -->
+<pre>
+import boto3
+
+rds = boto3.client('rds-data')
+
+<span style="color:#00e5ff;">db_name</span> = 'db_name'
+<span style="color:#00e5ff;">db_cluster_arn</span> = 'db_arn'
+<span style="color:#00e5ff;">db_credentials_secret_arn</span> = '...'
+
+def <span style="color:#19ff00;">lambda_handler</span>(event, context):
+  resp = execute_sql('SELECT * FROM db_name.tbl_employees')
+  return resp
+
+def <span style="color:#19ff00;">execute_sql</span>(sql_string):
+  resp = rds_client.execute_statement(
+    secretArn = <span style="color:#00e5ff;">db_credentials_secret_arn</span>,
+    database = <span style="color:#00e5ff;">db_name</span>,
+    resourceArn = <span style="color:#00e5ff;">db_cluster_arn</span>,
+    sql=sql_string
+  )
+  return resp
+
+</pre>
+<!-- end -->
+											- <code>boto3</code> isthe library for interacting with AWS services endpoints.<br>
+											- We can set timeout in the configuration that teminates the runtime for a function.<br>
+
+										</li>
 									</ul>
 
 									<h5 id="apigateway">API Gateway</h5>
