@@ -564,7 +564,7 @@ rds = boto3.client('rds-data')
 
 def <span style="color:#19ff00;">lambda_handler</span>(event, context):
   resp = execute_sql('SELECT * FROM db_name.tbl_employees')
-  return resp
+  return resp['records']
 
 def <span style="color:#19ff00;">execute_sql</span>(sql_string):
   resp = rds_client.execute_statement(
@@ -579,7 +579,11 @@ def <span style="color:#19ff00;">execute_sql</span>(sql_string):
 <!-- end -->
 											- <code>boto3</code> isthe library for interacting with AWS services endpoints.<br>
 											- We can set timeout in the configuration that teminates the runtime for a function.<br>
-
+											- We need to have a new role that have following permissions:<br>
+											+ AmazonRDSDataFullAccess which hanldes alos permissons for secret keys,<br>
+											+ AWSLambdaBasicExecutionRole.<br>
+											If lambda has created its own role we need to replace it with the newly-customized one.<br>
+											- We receive back db result in JSON format.
 										</li>
 									</ul>
 
