@@ -517,16 +517,15 @@
 										<li>We can integrate lambda with S3 bucket getting a file from it:
 <!-- start -->
 <pre>
-import os
 import boto3
 import csv
 
-key ='sub_folder_name/file_name.csv'
-bucket = 's3_bucket_name'
+<span style="color:#00e5ff;">key</span> ='sub_folder_name/file_name.csv'
+<span style="color:#00e5ff;">bucket</span> = 's3_bucket_name'
 
-def lambda_handler(event,  context):
+def <span style="color:#19ff00;">lambda_handler</span>(event,  context):
     s3_resource = boto3.resource('s3')
-    s3_object = s3_resource.Object(bucket, key)
+    s3_object = s3_resource.Object(<span style="color:#00e5ff;">bucket</span>, <span style="color:#00e5ff;">key</span>)
 
     data = s3_object.get()['Body'].read().decode('utf-8').splitlines()
 
