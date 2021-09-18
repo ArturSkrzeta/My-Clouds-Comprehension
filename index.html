@@ -71,6 +71,7 @@
 											<li><a href="#ec2">EC2</a></li>
 											<li><a href="#rds">RDS</a></li>
 											<li><a href="#s3">S3</a></li>
+											<li><a href="#ecs">ECS</a></li>
 											<li><a href="#lambda">Lambda</a></li>
 											<li><a href="#apigateway">API Gateway</a></li>
 											<li><a href="#cloudfront">CloudFront</a></li>
@@ -465,6 +466,17 @@
 										<li>S3 has a lifecycle of a files which means file can either be moved to a cheaper storage or archived or even deleted when it's older than x days.</li>
 										<li>We can still configure S3 to define some replicatioon rules to copy into different bucket when file is uploaded.
 												We can also set some events which can be triggered once a file uploaded.</li>
+									</ul>
+
+									<h5 id="ecs">Elastic Container Service (ECS)</h5>
+									<ul>
+										<li>Deploying docker containers and making sure that containers are isloated from one another.</li>
+										<li>Allow launching, seting-up and monitoring docker containers on ECS cluster.</li>
+										<li>Serverless (with fargate) or managed (with EC2) options.</li>
+										<li>Auto-scaling of number of containers ensured based on traffic, memory or cpu utilization.</li>
+										<li>Either for ad-hoc jobs or full scale services.</li>
+										<li>Cost effective as we can host multiple different containers on a single computing resource.</li>
+										<li>With docker we only need one operating system wich is as opposed to virtual machines.</li>
 									</ul>
 
 									<h5 id="lambda">AWS Lambda:</h5>
