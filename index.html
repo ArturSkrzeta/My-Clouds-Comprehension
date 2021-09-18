@@ -478,10 +478,12 @@
 										<li>Cost effective as we can host multiple different containers on a single computing resource.</li>
 										<li>With docker we only need one operating system wich is as opposed to virtual machines.</li>
 										<li>ECS elements and workflow:
-											1. running docker file and uploading an image to amazon ECR - elastic container repository (like S3 for docker images).<br>
-											2....
-
-
+											<br>
+											1. Running docker file and uploading an image to amazon Elastic Container Repository (ECR) - like S3 for docker images.<br>
+											2. Defining a task in ECS - task is an abstracion on the top of a container that tells ECS how we want to spin up docker containers. Task can contain more than one container.<br>
+											3. A cluster - resoucrce farm (ec2 instances). We take task and run it on ecs cluster.<br>
+											4. We can put the sevice on a ECS cluster - it allows to specify a min number of tasks and therefore container running on the cluster at point of time.<br>
+											5. Load balancer.
 										</li>
 									</ul>
 
