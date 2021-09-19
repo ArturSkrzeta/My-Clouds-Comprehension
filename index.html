@@ -83,6 +83,7 @@
 											<li><a href="#athena">Athena</a></li>
 											<li><a href="#emr">Elastic MapReduce</a></li>
 											<li><a href="#datalake">Data Lake</a></li>
+											<li><a href="#kinesis">Kinesis Firehose</a></li>
 											<li><a href="#cloudwatch">Cloud Watch</a></li>
 											<li><a href="#route53">Route 53</a></li>
 											<li><a href="#elasticache">ElastiCache</a></li>
@@ -524,7 +525,6 @@ exports.handler = async (<span style="color:#19ff00;">event</span>) => {
 										<li>Moreover, SQS can be a subscirber to SNS.</li>
 									</ul>
 
-
 									<h5 id="lambda">AWS Lambda:</h5>
 									<ul>
 										<li>Fully managed compute service that runs our code when event appears (for instance uploading objects to S3 can trigger Lambda function) or on the time base.</li>
@@ -835,7 +835,7 @@ def <span style="color:#19ff00;">execute_sql</span>(sql_string):
 										  - data storage - Amazon S3.<br>
 											- data processing - AWS Lambda and AWS Glue.<br>
 											- data migration - AWS Data Migration Service (AWS DMS) and AWS Glue.<br>
-											- orchestration and metadata management - AWS Glue for.<br>
+											- orchestration and metadata management.<br>
 											- querying and data visualization Amazon Athena and Amazon QuickSight.
 										</li>
 										<li>Data Lakes in AWS:
@@ -856,6 +856,18 @@ def <span style="color:#19ff00;">execute_sql</span>(sql_string):
 											- The data lake infrastructure can be provisioned by AWSC CloudFormation.<br>
 											- Data lake API leverages Amazon API Gateway to provide access to data lake microservices through AWS Lambda functions.<br>
 											- These microservices interact with Amazon S3, AWS Glue, AWS Athena, AWS DynamoDB, AWS ES, and AWS CloudWatch Logs to provide data storage, management, and audit functions.<br>
+										</li>
+									</ul>
+
+									<h5 id="kinesis">Amazon Kinesis Firehose</h5>
+									<ul>
+										<li>Allows to deliver streaming or event data into various destinations such as BI database, data storage (S3, redshift, ElasticShearch), dashboards.</li>
+										<li>In other words it creaes a single data ingestion point and provides a means to deliver that data to some destination services we can specify when setting-up kinesis firehose stream.</li>
+										<li>Ingested data (large number of individaul events in application) be compressed or batched into a single output file and sent to one of the destinations.</li>
+										<li>Example worflow:
+											<br><br>
+											<img src="images/kinesis.png" width="900"><br>
+											<span style="font-size:12px;">source: Be a better dev</span>
 										</li>
 									</ul>
 
@@ -904,7 +916,7 @@ def <span style="color:#19ff00;">execute_sql</span>(sql_string):
 											<img src="images/transfer_family.JPG" width="600"><span style="font-size:12px">source: Amazon</span>
 											<br>
 											- example of file transfer clients: WinSCP, Filezilla,<br>
-											- IAM roles are used to grant access to S3 bucketm from file transfer clients in a secure way.<br>
+											- IAM roles are used to grant access to S3 bucket from file transfer clients in a secure way.<br>
 										</li>
 									</ul>
 
