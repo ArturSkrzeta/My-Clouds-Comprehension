@@ -492,13 +492,26 @@
 									<h5 id="sqs">Simple Queue Service (SQS)</h5>
 									<ul>
 										<li>Distributed message queuing service.</li>
+										<li>Supports standard queue (ordering not preserved) or FIFO (First In Frist Out).</li>
 										<li>Integration:
 											<br>
 											<code>Client</code> > <code>SQS</code> > <code>Lambda function</code><br>
 											- we can set lambda function as a consumer of queue's messages.
 										</li>
 										<li>SQS holds messages until someones come along (lambda) and read the message off the queue. Once done processing it - lambda deletes the message.</li>
-										<li>Supports standard queue (ordering not preserved) or FIFO (First In Frist Out).</li>
+										<li>Lmabda code handling the message:
+											<br>
+<!-- start -->
+<pre>
+exports.handler = async (<span style="color:#19ff00;">event</span>) => {
+  for ( const { <span style="color:#ff00e9;">messageId</span>, <span style="color:#ff00e9;">body</span> } of <span style="color:#19ff00;">event</span>.Records ) {
+    console.log('SQS message %s, %j', <span style="color:#ff00e9;">messageId</span>, <span style="color:#ff00e9;">body</span>);
+  };
+  return 'Successfully processed ${<span style="color:#19ff00;">event</span>.Records.length} messages.';
+}
+</pre>
+<!-- end -->
+										</li>
 										<li>We need to enable the SQS trigger in lambd function in order to integrate both :
 											<br><br>
 											<img src="images/sqs_trigger_enabling.png" width="800">
