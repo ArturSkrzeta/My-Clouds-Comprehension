@@ -72,6 +72,7 @@
 											<li><a href="#ec2">EC2</a></li>
 											<li><a href="#rds">RDS</a></li>
 											<li><a href="#s3">S3</a></li>
+											<li><a href="#dynamodb">DynamoDB</a></li>
 											<li><a href="#ecs">ECS</a></li>
 											<li><a href="#sqs">SQS</a></li>
 											<li><a href="#sns">SNS</a></li>
@@ -479,7 +480,19 @@
 										<li>We can still configure S3 to define some replicatioon rules to copy into different bucket when file is uploaded.
 												We can also set some events which can be triggered once a file uploaded.</li>
 										<li>Each object in the s3 bucket has its own object URL assigned. Everyone can access any object as long as someone has its url and we select 'Everyone' in Access control list of Permisson's tab.</li>
+									</ul>
 
+									<h5 id="dynamodb">DynamoDB</h5>
+									<ul>
+										<li>noSQL database.</li>
+										<li>DynamoDB Stream:
+											<br>
+											- It's a feature that launches events when record modifications occur on a dynamodb table.<br>
+											- We distingus 3 types of events on a table: insert, update, remove.<br>
+											- Events can carry the content of the rows being modified so we can have a look at before change and after chagne.<br>
+											- Events are in the same order as in which the modifications take place,<br>
+											- We can be detecting changes in a dynamoDB table using a lambda function - every time event occurs, lambda gets invoked.<br>
+										</li>
 									</ul>
 
 									<h5 id="ecs">Elastic Container Service (ECS)</h5>
