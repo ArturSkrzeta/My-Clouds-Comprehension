@@ -533,6 +533,10 @@ exports.handler = async (<span style="color:#19ff00;">event</span>) => {
 											3. or SQS for receiving SNS messages that can be consumed at a later time (no need for immediate data processing).
 										</li>
 										<li>It's necessary to have SNS in the middle in any of model as we don't want external customer service to know about each of consumer. Not having SNS in the middle causes also perfomance and scaling (adding more consumers) problems.</li>
+										<li>When setting a topic up we need to decide who is going to be able to publish messages to this topic and who can subscribe the topic:
+											<br><br>
+											<img src="images/sns_topic.png">
+										</li>
 									</ul>
 
 									<h5 id="lambda">AWS Lambda:</h5>
