@@ -871,9 +871,9 @@ def <span style="color:#19ff00;">execute_sql</span>(sql_string):
 											1. SNS data put to a topic in form of JSON.<br>
 											2. Lambda as the subscriber to SNS topic:<br>
 											- for every event on a specific topic there is the lambda function invocation,<br>
-											- lambda performs put operations into kinesis firehose endpoint.
-											3. Kinesis organizes data and delivers to buffer interval or buffer size,
-											4. S3 where data is delivered to store.
+											- lambda performs put operations into kinesis firehose endpoint.<br>
+											3. Kinesis organizes data and delivers to buffer interval or buffer size.<br>
+											4. S3 where data is delivered to store.<br>
 											5. Either kinesis firehose  can invoke another lambda function that applies bussines logic to the data.
 										</li>
 									</ul>
