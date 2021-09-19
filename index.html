@@ -535,7 +535,8 @@ exports.handler = async (<span style="color:#19ff00;">event</span>) => {
 										<li>It's necessary to have SNS in the middle in any of model as we don't want external customer service to know about each of consumer. Not having SNS in the middle causes also perfomance and scaling (adding more consumers) problems.</li>
 										<li>When setting a topic up we need to decide who is going to be able to publish messages to this topic and who can subscribe the topic:
 											<br><br>
-											<img src="images/sns_topic.png">
+											<img src="images/sns_topic.png"><br>
+											- when we select everyone as publishers, then anyone who has ARN of a topic can publish to that one.
 										</li>
 									</ul>
 
