@@ -65,6 +65,7 @@
 
 										<h5>Navigate to services:</h5>
 										<ul>
+											<li><a href="#cdk">CDK</a></li>
 											<li><a href="#kms">KMS</a></li>
 											<li><a href="#iam">IAM</a></li>
 											<li><a href="#vpc">VPC</a></li>
@@ -194,6 +195,14 @@
 											- workflow:<br>
 											<img src="images/cloud_formation.png" width="600"><span style="font-size:12px">source: AWS</span>
 										</li>
+									</ul>
+
+									<h5 id="cdk">Cloud Development Kit (CDK):</h5>
+									<ul>
+										<li>We can utilize a programming lanugae like Python or JS in order to create, configure and deploy AWS resources.</li>
+										<li>Enusres any other IDE functionalities like autocomplete, compil-time warnings, contrlo flow statements, obejct oriented programming.</li>
+										<li>CDK code compiles to cloud formation or terraform output which can be deployed to AWS.</li>
+										<li>This solution is better than Cloud Formation which requires YAML or JSON what makes hard sharing creations across different porjects in a scalable way.</li>
 									</ul>
 
 									<h5 id="awsstorage">AWS Storage types:</h5>
@@ -470,7 +479,7 @@
 										<li>We can still configure S3 to define some replicatioon rules to copy into different bucket when file is uploaded.
 												We can also set some events which can be triggered once a file uploaded.</li>
 										<li>Each object in the s3 bucket has its own object URL assigned. Everyone can access any object as long as someone has its url and we select 'Everyone' in Access control list of Permisson's tab.</li>
-										
+
 									</ul>
 
 									<h5 id="ecs">Elastic Container Service (ECS)</h5>
