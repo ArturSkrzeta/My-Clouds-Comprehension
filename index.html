@@ -521,8 +521,18 @@ exports.handler = async (<span style="color:#19ff00;">event</span>) => {
 
 									<h5 id="sns">Simple Notification Service (SNS)</h5>
 									<ul>
+										<li>Relation one publisher (publishing messages to the topics) to many consumers of the messages in a specific topic.</li>
+										<li>We can set up different kind of consumers: email, HTTP endpoint in nodJS or Python Flask app that is listening on a specific port, SQS etc.</li>
 										<li>While SQS has pulling mechanism (pulling messages from the queue), SNS has pushing mechanism (pushing messages to the subscribers).</li>
-										<li>Moreover, SQS can be a subscirber to SNS.</li>
+										<li>Two main elements: Topics and Subscriptions.</li>
+										<li>Purpose: App to Person or App to App.</li>
+										<li>App to App model:
+											<br>
+											1. External customer service publishes a message (details about order for instance).<br>
+											2. Serverless lambda function taking data, applies business logic optionally and pushes further to the database.<br>
+											3. or SQS for receiving SNS messages that can be consumed at a later time (no need for immediate data processing).
+										</li>
+										<li>It's necessary to have SNS in the middle in any of model as we don't want external customer service to know about each of consumer. Not having SNS in the middle causes also perfomance and scaling (adding more consumers) problems.</li>
 									</ul>
 
 									<h5 id="lambda">AWS Lambda:</h5>
