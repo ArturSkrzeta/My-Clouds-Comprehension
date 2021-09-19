@@ -497,7 +497,11 @@
 											<br>
 											<code>Client</code> > <code>SQS</code> > <code>Lambda function</code>
 										</li>
-										<li>...</li>
+										<li>Supports standard queue (ordering not preserved) or FIFO (First In Frist Out).</li>
+										<li>We need to enable the SQS trigger in lambd function in order to :
+											<br><br>
+											<img src="images/sqs_trigger_enabling.png" width="800">
+										</li>
 									</ul>
 
 									<h5 id="sns">Simple Notification Service (SNS)</h5>
