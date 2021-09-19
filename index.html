@@ -492,6 +492,8 @@
 											- Events can carry the content of the rows being modified so we can have a look at before change and after chagne.<br>
 											- Events are in the same order as in which the modifications take place,<br>
 											- We can be detecting changes in a dynamoDB table using a lambda function - every time event occurs, lambda gets invoked.<br>
+											- Lambda's arguments are the contents of the change that has occured.<br>
+											- No performance impact on source table.
 										</li>
 									</ul>
 
