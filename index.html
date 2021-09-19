@@ -867,7 +867,14 @@ def <span style="color:#19ff00;">execute_sql</span>(sql_string):
 										<li>Example worflow:
 											<br><br>
 											<img src="images/kinesis.png" width="900"><br>
-											<span style="font-size:12px;">source: Be a better dev</span>
+											<span style="font-size:12px;">source: Be a better dev</span><br>
+											1. SNS data put to a topic in form of JSON.<br>
+											2. Lambda as the subscriber to SNS topic:<br>
+											- for every event on a specific topic there is the lambda function invocation,<br>
+											- lambda performs put operations into kinesis firehose endpoint.
+											3. Kinesis organizes data and delivers to buffer interval or buffer size,
+											4. S3 where data is delivered to store.
+											5. Either kinesis firehose  can invoke another lambda function that applies bussines logic to the data.
 										</li>
 									</ul>
 
