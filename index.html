@@ -872,10 +872,12 @@ def <span style="color:#19ff00;">execute_sql</span>(sql_string):
 											2. Lambda as the subscriber to SNS topic:<br>
 											- for every event on a specific topic there is the lambda function invocation,<br>
 											- lambda performs put operations into kinesis firehose endpoint.<br>
-											3. Kinesis organizes data and delivers to buffer interval or buffer size.<br>
+											3. Kinesis organizes data and delivers due to buffer interval or buffer size.<br>
 											4. S3 where data is delivered to store.<br>
 											5. Either kinesis firehose  can invoke another lambda function that applies bussines logic to the data.
 										</li>
+										<li>Buffer size dictates how many files we end up in S3. If data is 10 MB large and buffer size is set up to 5MB then there will be two files stored in S3 at the end.</li>
+										<li>Buffer interval, if we don't achieve 5MB in size of dat then we push it to S3 after x seconds.</li>
 									</ul>
 
 									<h5 id="cloudwatch">AWS CloudWatch:</h5>
