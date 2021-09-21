@@ -686,10 +686,28 @@ def <span style="color:#19ff00;">execute_sql</span>(sql_string):
 										</li>
 									</ul>
 
-									<h5 id="apigateway">API Gateway</h5>
+									<h5 id="apigateway">API Gateway:</h5>
 									<ul>
 										<li>AWS service that allows you to build HTTP or REST APIs.</li>
 										<li>We can connect API Gateway endpoints to Lambda functions.</li>
+										<li>When configuring we need to provide:
+											<br>
+											- integration: lmabda function,<br>
+											- routes: methods (GET, POST), resource path (<code>/getResource</code>) and integration target that will handle the request (lambda function),<br>
+											- stage name that API will be deployed to,<br>
+										  - select auto-deploye every time there is a change to HTTP API.
+										</li>
+										<li>When created, AWS gives us invoke URL that is going to invoke our lambda function - this is a kind of endpoint that can be changed interacting with Route 53.</li>
+										<li>Using invoke URL with a declared resource path with a browser, it will send GET method lunching lambda and getting lambda's result.</li>
+										<li>When POST method with values in the body of requests sent to the resource path - the values are being passed into a lambda function in the event parameter.
+												We can be extracting values and some additional info like following:
+												<br>
+												- <code>event['rawPath']</code> - to get resource path,<br>
+												- <code>event['queryStringParameter']['param_name']</code> - to get value assigned to <code>param_name</code> within a url.<br>
+												- <code>decoded = json.loads(event['body'])</code><br>
+												&nbsp&nbsp<code>name = decoded['name']</code><br>
+												&nbsp&nbspwe need to parse JSON format in order to get body's values.
+										</li>
 									</ul>
 
 									<h5 id="cloudfront">AWS CloudFront:</h5>
