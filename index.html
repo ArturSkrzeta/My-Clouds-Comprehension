@@ -272,8 +272,8 @@
 												Example serverless services:
 											<br>
 											- AWS Lmabda for computing,<br>
-											- AWS S3 for storage,<br>
-											- DynamoDB for Database, <br>
+											- AWS S3 for the data storage,<br>
+											- DynamoDB for the Database, <br>
 											- SQS, SNS for an app integration.
 										</li>
 									</ul>
@@ -292,7 +292,7 @@
 												So we end up with frequent access tier and infrequent access tier that differ with pricing.
 												This type is preferable when we store long-lived data where access patterns are unknown or unpredictable - we cannot assess which part of data will bea accessed frequently and which not.
 												<br>
-											<b>- One Zone-IA</b>: while Standard S3 or Standard IA sores data in min. 3 availability zones, S3 On Zone_IA stores data in single availablity zone which reduces overall costs.
+											<b>- One Zone-IA</b>: while Standard S3 or Standard IA stores data in min. 3 availability zones, S3 On Zone_IA stores data in single availablity zone which reduces overall costs.
 												It's a good solution for a secondary backup copies of on-premises data or for the data that can be easily recreated. Only risk is the data will be lost in case of availablity zone destruction.
 										</li>
 										<li>We can choose storage class while uploading object to S3:
@@ -485,6 +485,9 @@
 										<li>We can still configure S3 to define some replicatioon rules to copy into different bucket when file is uploaded.
 												We can also set some events which can be triggered once a file uploaded.</li>
 										<li>Each object in the s3 bucket has its own object URL assigned. Everyone can access any object as long as someone has its url and we select 'Everyone' in Access control list of Permisson's tab.</li>
+										<li>When there are a big security requirements, each S3 bucket needs to have individual KMS encryption key (one to one relationship).
+												At best, the key alias should reference S3 bucket name - key ids are not self-explainatory.
+										</li>
 									</ul>
 
 									<h5 id="dynamodb">DynamoDB</h5>
@@ -681,13 +684,53 @@ def <span style="color:#19ff00;">execute_sql</span>(sql_string):
 
 </pre>
 <!-- end -->
-											- <code>boto3</code> isthe library for interacting with AWS services endpoints.<br>
-											- We can set timeout in the configuration that teminates the runtime for a function.<br>
+											- <code>boto3</code> is the library for interacting with AWS services endpoints.<br>
+											- We can set timeout in the configuration that terminates the runtime for a function.<br>
 											- We need to have a new role that have following permissions:<br>
 											+ <b>AmazonRDSDataFullAccess</b> which hanldes alos permissons for secret keys,<br>
 											+ <b>AWSLambdaBasicExecutionRole</b>.<br>
 											If lambda has created its own role we need to replace it with the newly-customized one.<br>
 											- We receive back db result in JSON format.
+										</li>
+										<li>Integratin Lmabda with AWS Athena:
+											<br>
+											- we need following persmissions for a role assigned to a lambda function:<br>
+											1. athena:StartQueryExecution,<br>
+											2. athena:GetQueryExecution,<br>
+											3. athena:GetQueryResults,<br>
+											4. glue:GetTable.<br>
+											- processflow:<br>
+											<code>Lambda function</code> > query > <code>Athena</code> > output > <code>S3 bucket</code>
+											<br>
+											- example code:
+<!-- start -->
+<pre>
+import boto3
+import json
+import time
+
+def <span style="color:#19ff00;">lambda_handler</span>(event, context):
+  <span style="color:#00e5ff;">client</span> = boto3.client('athena')
+
+  query = <span style="color:#00e5ff;">client</span>.start_query_execution(
+    QueryString = 'SELECT * FROM aws_athen_example_table;',
+    QueryExecutionContext = {
+      'Database': 'db_name'
+    },
+    ResultConfiguration = {
+      'OutputLocation': 's3://bucket_name/'
+    }
+  )
+
+  queryId = query['QueryExecutionId']
+  time.sleep(10)
+
+  results = <span style="color:#00e5ff;">client</span>.get_query_results(QueryExecutionId = queryId)
+  for row in results['ResultSet']['Rows']:
+    print(row)
+</pre>
+<!-- end -->
+
 										</li>
 									</ul>
 
@@ -956,8 +999,9 @@ def <span style="color:#19ff00;">execute_sql</span>(sql_string):
 												- It is iportant to have a log files during application's debugging. If there is something that doesn't work as expected then we would need to check the errors in the specific log file.<br>
 												- In traditional way, when debugging we need to grant access to the server for an individual who wants to check a log file.
 													On the other hand, what poses the risk is that when server termiantes, the logs are lost.<br>
-													- The better way is to create a central logs server in which we want to push the log files from individual systems. Then we can go with the central log monitoring.<br>
-													- AWS CloudWatch Logs is the <b>centralized logs management</b> to monitor, store, and access log files form Amazon EC2 instances, Route 53 and other sourcers.<br>
+												- The better way is to create a central logs server in which we want to push the log files from individual systems. Then we can go with the central log monitoring.<br>
+												- AWS CloudWatch Logs is the <b>centralized logs management</b> to monitor, store, and access log files form Amazon EC2 instances, Route 53 and other sourcers.<br>
+												- Can catch all the trafic that runs over SFTP server.
 											</li>
 									</ul>
 
@@ -978,13 +1022,14 @@ def <span style="color:#19ff00;">execute_sql</span>(sql_string):
 
 									<h5 id="transferfamily">AWS Transfer Family:</h5>
 									<ul>
+										<li>Setting up SFTP protocal for transferring files into S3 or Amazon EFS.</li>
 										<li>It provides endpoint for file transfers directly into and out of Amazon S3 using protocols:
 											<br>
 											- Secure File Transfer Protocol (SFTP),<br>
 											- File Transfer Protocol over SSL (FTPS),<br>
 											- File Transfer Protocol (FTP).
 										</li>
-										<li>Here is the worflow:
+										<li>Here is the workflow:
 											<br>
 											<img src="images/transfer_family.JPG" width="600"><span style="font-size:12px">source: Amazon</span>
 											<br>
