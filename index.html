@@ -47,49 +47,32 @@
 								<div class="container">
 									<header class="major">
 
-										<h2>My Comprehension of AWS Services</h2>
+										<h2>OLAP in Snowflake</h2>
 										<h3>Intro</h3>
-										<p style="text-align: justify">In order to learn clouds, I choose AWS Web Services as the example to explore.
-												The best thing about cloud solutions is that companies can simply rent a server instead of building, maintaining and paying for its own infrastructure.</p>
+										<p style="text-align: justify">Snowflake is the platform delivered as a service which means we don't have to worry about patches, upgrades or maintenance.
+										I like the way they describe it: <i>combines the power of data warehousing, the flexibility of big data platforms, and the elasticity of the cloud</i>.</p>
 
-										<h5>Navigate to AWS aspects:</h5>
+										<h5>Navigate to Snowflake aspects:</h5>
 										<ul>
-											<li><a href="#cloudcomputing">Cloud Computing</a></li>
-											<li><a href="#serverconnection">Server Connection</a></li>
-											<li><a href="#iaac">Infrastructure as a Code</a></li>
-											<li><a href="#awsstorage">AWS storage</a></li>
-											<li><a href="#domainnamesystem">Domain Name System</a></li>
-											<li><a href="#serverlessservices">Serverless services</a></li>
-											<li><a href="#storageclasses">Storage classes</a></li>
-										</ul>
-
-										<h5>Navigate to services:</h5>
-										<ul>
-											<li><a href="#cdk">CDK</a></li>
-											<li><a href="#kms">KMS</a></li>
-											<li><a href="#iam">IAM</a></li>
-											<li><a href="#vpc">VPC</a></li>
-											<li><a href="#ec2">EC2</a></li>
-											<li><a href="#rds">RDS</a></li>
-											<li><a href="#s3">S3</a></li>
-											<li><a href="#dynamodb">DynamoDB</a></li>
-											<li><a href="#ecs">ECS</a></li>
-											<li><a href="#sqs">SQS</a></li>
-											<li><a href="#sns">SNS</a></li>
-											<li><a href="#lambda">Lambda</a></li>
-											<li><a href="#apigateway">API Gateway</a></li>
-											<li><a href="#cloudfront">CloudFront</a></li>
-											<li><a href="#storagegateway">Storage Gateway</a></li>
-											<li><a href="#redshift">Redshift</a></li>
-											<li><a href="#glue">Glue</a></li>
-											<li><a href="#athena">Athena</a></li>
-											<li><a href="#emr">Elastic MapReduce</a></li>
-											<li><a href="#datalake">Data Lake</a></li>
-											<li><a href="#kinesis">Kinesis Firehose</a></li>
-											<li><a href="#cloudwatch">Cloud Watch</a></li>
-											<li><a href="#route53">Route 53</a></li>
-											<li><a href="#elasticache">ElastiCache</a></li>
-											<li><a href="#transferfamily">AWS Transfer Family</a></li>
+											<li><a href="#snowflake_architecture">Snowflake architecture</a></li>
+											<li><a href="#snowflake_pipeline">Snowflake pipeline</a></li>
+											<li><a href="#snowflake_objects">Snowflake objects</a></li>
+											<li><a href="#olap">Online Analytical Processing</a></li>
+											<li><a href="#snowflake_workflow">Snowflake workflow</a></li>
+											<li><a href="#sql_scripting">Sql scripting</a></li>
+											<li><a href="#data_load">Data load</a></li>
+											<li><a href="#snow_sql">SnowSQL</a></li>
+											<li><a href="#snow_pipe">SnowPipe</a></li>
+											<li><a href="#time_travel">Time Travel</a></li>
+											<li><a href="#bulk_unloading">Bulk Unloading</a></li>
+											<li><a href="#update_statement">Update Statement</a></li>
+											<li><a href="#stored_procedure">Stored procedure</a></li>
+											<li><a href="#variables">Variables</a></li>
+											<li><a href="#variables">Streams</a></li>
+											<li><a href="#tasks">Tasks</a></li>
+											<li><a href="#parse_json">Parse JSON</a></li>
+											<li><a href="#amazon">Integration with AWS</a></li>
+											<li><a href="#sap">Integration with SAP</a></li>
 										</ul>
 
 										<!-- <h5>6. Continuous monitoring:</h5>
@@ -108,7 +91,7 @@
 									<h3>Features</h3>
 									<p>App includes following features:</p>
 									<ul class="feature-icons">
-										<li class="icon solid fa-check">AWS</li>
+										<li class="icon solid fa-check">Snowflake</li>
 									</ul>
 								</div>
 							</section>
@@ -117,932 +100,952 @@
 							<section id="three">
 								<div class="container">
 									<h3>Demo</h3>
-
-									<h5 id="cloudcomputing">Cloud Computing:</h5>
+									<h5 id="snowflake_architecture">Snowflake architecture</h5>
 									<ul>
-										<li>Common opinion on cloud computing is that it concerns System Administrators or DevOps Engineers because of solutions it provides on servers provsion, networking etc.
-											In fact, It also concerns Software Developers, Security Engineers, Program Managers and so on as there are many services related to computing, storage, database, analytics, encryption, deployment and more	.</li>
-										<li>Cloud computing is basically a model in which computing resources are available as a service.</li>
-										<li>Important characteristics of cloud computing:
+										<li>In Snowflake's architecture, the key is a separation of storage, compute and services:
+											<br><br>
+											<img src="images/snowflake_architecture.png" width="640"><span style="font-size:12px">soruce: snowflake</span>
 											<br>
-											- <u>On-demand and self-serviced</u>: we can launch it at any time with no manual intervention.
-												What that means is we can provison resources whenever needed without requireing any human's action from provider's side.<br>
-											- <u>Elasticity</u>: we can scale it up or down at any time due to our needs.
-												This property is strictly related to scalability that can be horizontal (adding or removing servers in a cluster) or vertical (adding or removing resources in existing server).<br>
-											- <u>Measured</u>: we pay as much as much resources we use.<br>
-											- <u>High-Availability</u>: making backups and accommodating failure of a single component. I case of a server's failure there is another instance to back it up.
+											- S3 as a storage layer (Google Cloud Storage or Azure Blob Storage),<br>
+											- EC2 Virtual Warehouse as a compute layer .<br>
+											- metadata, security, transactions and concurrency management as service layer.
 										</li>
-										<li>There are 3 types of cloud computing:
-											<br>
-											- <b>Software as a Service (Saas)</b> - a ready-to-use application typically accessible via a browser. Provider takes responsibility for upgrading, security, error handling etc.<br>
-											- <b>Platform as a Service (PaaS)</b> - deploying Python application on server along with all dependencies.<br>
-											- <b>Infrastructure as a Service (Iaas)</b> - gives the highest level of flexibility and management control over entire IT infrastrstructure without having to physically maintain it.
-												It provides access to networking features, computers (virtual or on dedicated hardware), and data storage space.<br>
-											<br>
-											<img src="images/service_models.png" width="600"><span style="font-size:12px">source: wp-includes.com</span>
+										<li id="snowflake_pipeline">Building pipelines with Snowflake:
+											<br><br>
+											<img src="images/snowflake_pipeline.JPG">
+											<span style="font-size:12px">soruce: snowflake</span>
 										</li>
-										<li>Cloud Architecture:
-											<br>
-											1. Clouds is actually a real Data Center with X servers already set up.<br>
-											2. Data Center provides Virtualization layer (in case of AWS  it's mainly XEN).<br>
-											3. On top of virtualization layer there are multiple Virtual servers.<br>
-											<br>
-											<img src="images/architecture.JPG" width="400">
-										</li>
-										<li>Data centers are organized into availability zones that are separated by geograpic region. They play a role of backups in case of one of the Data Centers failure.</li>
-										<li>Each AWS region contains at least 2 availability zones.</li>
-									</ul>
-
-									<h5 id="serverconnection">Server Connection:</h5>
-									<ul>
-										<li>For server connection we need to get:
-											<br>
-											- <u>SSH Client</u> for Linux Server or<br>
-											- <u>RDP Client</u> for Windows Server<br>
-											which allows us to get connected with the server.
-										</li>
-										<li>To get SSH client for windows on local machine I use MobaXterm.</li>
-										<li>MAC and Linux has its own terminal with already built-in SHH client.</li>
-										<li>There is also a way of connecting to server from a browser using <b>Broweser Based SSH Connection</b>.
-												Then you don't have to have any SSG client. It can be done from AWS console directly.</li>
-										<li>There is also a need for establishing the <b>Key Based Authentication</b>.
-											<br>
-											- it replaces the password based authentication as using password for authentication is less secure,<br>
-											- in key based authentication there are two special keys: public key and private key,<br>
-											- when public key is stored in a server then only corresponding private key can authenticate successfully,<br>
-											- we can simply create a key pair for exampple in EC2 in the AWS console.
-												We can choose its format as pem (when using OpenSSH) or ppk (when using PuTTY).
-												Once created, key gets downloaded to local machine as the private key.<br>
-										</li>
-									</ul>
-
-									<h5 id="iaac">Infrastructure as a Code (IaaC):</h5>
-									<ul>
-										<li>There are two ways of building the infrastructure: manually or with script's automation.</li>
-										<li>Automation with IaaC helps to autmate infrastrucutre building on every stage of app's service:
-											<br>
-											1. As every time a new app's service comes up, its infrastructure needs to be first built up in the development environment.<br>
-											2. Then app's service comes to the staging area for testing where the same infrastructure needs to be built once again.<br>
-											3. Moving to the production environment where all the infrastructure has to be replicated.
-										</li>
-										<li>It's getting even more helpful when deploying multiple app's services.</li>
-										<br>
-										<img src="images/iaac.JPG" width="610"><span style="font-size:12px;">source: udemy</span>
-										<li>One IaaC template can be reused for building infrastructure for different stages of different app's services during deployment.</li>
-										<li>Tools for IaaC: Terraform or AWS CloudFormation.</li>
-										<li>AWS CloudFormation:
-											<br>
-											- provides template where you describe your desired resources and their dependencies so that you can launch and configure them together as a stack.<br>
-											- workflow:<br>
-											<img src="images/cloud_formation.png" width="600"><span style="font-size:12px">source: AWS</span>
-										</li>
-									</ul>
-
-									<h5 id="cdk">Cloud Development Kit (CDK):</h5>
-									<ul>
-										<li>We can utilize a programming lanugae like Python or JS in order to create, configure and deploy AWS resources.</li>
-										<li>Enusres any other IDE functionalities like autocomplete, compile-time warnings, control flow statements, obejct oriented programming.</li>
-										<li>CDK code compiles to cloud formation or terraform output which can be deployed to AWS.</li>
-										<li>This solution is better than Cloud Formation which requires YAML or JSON what makes hard sharing creations across different porjects in a scalable way.</li>
-									</ul>
-
-									<h5 id="awsstorage">AWS Storage types:</h5>
-									<table>
-										<thead>
-											<tr>
-												<th>Block Storage</th>
-												<th>Object Storage</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Data (files) is split into smaller chunks of a fixed size (blocks).</td>
-												<td>Each store fiels is an object.</td>
-											</tr>
-											<tr>
-												<td>Each block has its own address.</td>
-												<td>Each object has unique identifier.</td>
-											</tr>
-											<tr>
-												<td>No metadata about blocks.</td>
-												<td>Metadata with contextual information about single object.</td>
-											</tr>
-											<tr>
-												<td>Supports read/write operations.</td>
-												<td>Data is mostly read (rather than written to).</td>
-											</tr>
-											<tr>
-												<td>Easy data modification accessing specific block.</td>
-												<td>Modifying a file means uploading a new revision.</td>
-											</tr>
-											<tr>
-												<td>Accessing blocks on server with underlying file system protocol (NFS, CIFS, ext3/ext4).</td>
-												<td>Accessing objects relies on HTTP protocol.</td>
-											</tr>
-										</tbody>
-									</table>
-
-									<h5 id="domainnamesystem">Domain Name System:</h5>
-									<ul>
-										<li>Translates Domain Name to corresponding server's IP address:
-											<br>
-											<code>www.example.com</code> -> <code>1.2.3.4</code>
-										</li>
-										<li>Workflow:
-											<br>
-											1. User enters <code>www.example.com</code> in a browser.<br>
-											2. IPS DNS Resolver looks up corresponding IP address and returns <code>1.2.3.4</code>.<br>
-											3. Browser takes server IP address and makes HTTP request to AWS server.<br>
-											4. AWS EC2 server accepts request.
-										</li>
-										<br>
-										<img src="images/dns.JPG" style="border: 1px solid #939393"><span style="font-size:12px;">source: AWS</span>
-									</ul>
-
-									<h5 id="serverlessservices">Serverless Services:</h5>
-									<ul>
-										<li>In fact, it doesn't mean that there is no server being present.
-												There are server to host your application, however is completely managed by the provider.
-												You only care about the app's code.</li>
-										<li>Very popular way of having serverless service is a PaaS model where only need is to upload the the application.
-												PaaS provider takes care of the rest which is setting up the capacity, launching servers in high-availability and auto-scaling mode, installing technology-specifc packages and dependencies, security, patching, monitoring.
-										<li>There are AWS Services that can be used without any server instantiation.
-												There is no need for any capacity planning or how much resources we might need.
-												We are being charged only for the computing time we consume.
-												Example serverless services:
-											<br>
-											- AWS Lmabda for computing,<br>
-											- AWS S3 for the data storage,<br>
-											- DynamoDB for the Database, <br>
-											- SQS, SNS for an app integration.
-										</li>
-									</ul>
-
-									<h5 id="storageclasses">Storage classes:</h5>
-									<ul>
-										<li>Depending on Storage Class, the availablity, durability and perfomrance, thus <u>pricing</u> will differ:
-											<br>
-											<b>- Standard S3</b>: for general purpose, has higher availablility and pricing much higher than for infrequent access.<br>
-											<b>- Standard S3 with Infrequent Access (Standard IA)</b>: when we don't care about high availablity then we can go with that opition with lower pricing.<br>
-											<b>- Reduced Redundancy Storage (RRS)</b>: lower durability and lower availablity so we could keep only non-critical, reproducible data.<br>
-											<b>- Glacier</b>: meant for archiving and storing long-term backups. It has a very high durability however low availability - it takes even a few hours to get data restored.<br>
-											<b>- Glacier Deep Archive</b>: lowest-costs possible storage class that AWS offers. Supports long-term retention for data that may be accessed once or twiece a year.
-												It has very lowe availablity - data can be restored within 12 hours.<br>
-											<b>- Intelligent Tiering</b>: it detects seldom used data and moves it to most cost-effective tier like Standard IA.
-												So we end up with frequent access tier and infrequent access tier that differ with pricing.
-												This type is preferable when we store long-lived data where access patterns are unknown or unpredictable - we cannot assess which part of data will bea accessed frequently and which not.
+										<li id="snowflake_objects">Snowflake objects:
 												<br>
-											<b>- One Zone-IA</b>: while Standard S3 or Standard IA stores data in min. 3 availability zones, S3 On Zone_IA stores data in single availablity zone which reduces overall costs.
-												It's a good solution for a secondary backup copies of on-premises data or for the data that can be easily recreated. Only risk is the data will be lost in case of availablity zone destruction.
-										</li>
-										<li>We can choose storage class while uploading object to S3:
-											<br><br>
-											<img src="images/storage_classes.png" width="780">
-										</li>
-									</ul>
-
-									<h5 id="kms">Key Management Service (KMS):</h5>
-									<ul>
-										<li>KMS is used for storing and managing encrypting kyes on AWS data.</li>
-										<li>We apply encryption on sensitive data preventing unauthorized users form accessing.
-												Even hackers can have find it hard to decrypt the data even if he hacked your db server.</li>
-										<li>Need to be applied due to company policy or even because of external regulations like GDPR that enforces following personal data security.</li>
-										<li>Here is the highlevel encryption flow:
-											<br>
-											<code>confidential data</code> >> <code>encryption algorithm</code> + <code>encryption key</code> >><br> <code>encrypted data on AWS storage</code>
-										</li>
-										<li>Encryption can be executed in two ways:
-											<br>
-											- <b>Client side encryption</b> - app on EC2 maintains key and ecrypts the data sending encrypted data into AWS S3.<br>
-											- <b>Server side encryption</b> - sending confidential data with HTTPS (security of data in-transit) to AWS S3 and the data gets encrypted from there (security data at-rest).
-										</li>
-										<li>Envelope encryption:
-											<br>
-											- encryption key for encrypting confidential data is called a Data Key which undergoes the following process:
-											<br>
-											<code>Data Key</code> >> <code>Encryption algorithm</code> + <code>Customer Master Key</code> >><br> <code>Encrypted Data Key</code><br>
-											- <b>Customer Master Key</b> can be either AWS managed or Customer managed.
+												- Database - containing schemas, tables, views, stages, file formats, sequences. All the tables are created in PUBLIC schema by default.<br>
+												- Stage - a data lake like place from which data files are being copied into the tables.<br>
+												- File format - we need to define format of the files bieng stored at stage.<br>
+												- Warehouse - computing enginge.<br>
+												- Worksheet - a place where we can proceed with writing or loading ready SQL scripts.<br>
 										</li>
 									</ul>
 
-									<h5 id="iam">AWS Identity and Access Management (IAM):</h5>
+									<h5>Snowflake mechanism:</h5>
 									<ul>
-										<li>Managing/comtrolling access and user roles to AWS services and resources (AWS entity like S3 bucket or other object).</li>
-										<li>IAM as a feature is free of charge. You are only charged for use of AWS services by your users.</li>
-										<li>Things we can do with IAM:
+										<li id="olap">Snowflake for OLAP:
 											<br>
-											- creating users assigning them individual security credentials and providing access to AWS services and resources,<br>
-											- managing user roles and permissions to control what operation can be perfomred by the individaul or what AWS resources the individual is allowed to access,<br>
-										</li>
-										<li>IAM most important elements:
-											<br>
-											- users - individuals with logins,<br>
-											- groups - collection of users with the common theme - one permisions for entire group,<br>
-											- policy document giving away acess or restricting access,<br>
-											- roles - collection of policies assigned as well but they are interchangeable - sharing, limiting etc.<br>
-										</li>
-										<li>Each role can have one or more policies assigned:
+											- snowflake supports <b>Online Analytical Processing (OLAP)</b> for scanning all of the data in columns in order to get aggregated values as opposed to <b>Online Transactional Processing (OLTP)</b> where we want to retrieve one or many rows from database.
+												The main purpose of OLAP is data analysis and when it comes to OLTP then main purpose is data processing (inserting, updating).
 											<br><br>
-											<img src="images/iam_roles.png">
-										</li>
-										<li>User specific AWS Key and Secret Access Key will be created as soon as we create an user in the IAM:
+											<img src="images/olap.JPG" style="border: 1px solid gray;" width="420"><span style="font-size:12px">soruce: Data Council</span>
+											<br>
+											- while a classic databases like PostgreSQL or MySQL are type of <b>raw store</b> (OLTP) that keeps data linearly row by row, from left to right, from top to bottom, Snowflake supports <b>columnar store</b> (OLAP) which allows to traverse entire columns one by one.
 											<br><br>
-											<img src="images/aws_key.png"><br>
-											- we can download them with csv file.
+											<img src="images/columnstore.JPG" style="border: 1px solid gray;" width="640"><span style="font-size:12px">soruce: Data Council</span>
+											<br>
+											- using columnar storage makes sense when we want to analyze one or two specific columns and skip reading other ones.
 										</li>
-									</ul>
-
-									<h5 id="vpc">Virtual Private Cloud (VPC):</h5>
-									<ul>
-										<li>It is a private sub-section of AWS which you are in control of in terms of who has access to what AWS resources.</li>
-										<li>More technically, AWS lets us provision a logically isolated cloud's section in which we can define a custom virtual network configurations like IP addresses, subnets, route tables and network gateways.</li>
-										<li>When creating AWS account, there is a default VPC being created for a user. So everybody has their own VPC.</li>
-										<li>VPC architecture and components:
+										<li id="snowflake_workflow">Snowflake workflow:
 											<br>
-											<img src="images/vpc.JPG" width="300"><span style="font-size:12px;">source: Linux Academy</span>
-											<br>
-											- Internet Gateway (IGW) allows communication between your VPC and the internet..<br>
-											- A route table lists predefined routes to the default subnets.<br>
-											- A Network Access control List has pre-defined rules for access.<br>
-											- VPC is partitioned into subnets to provision AWS resources in (e.g. EC2 instances).
+											- Dividing big tabular data into x-consecutive rows segments called micropartitions.<br>
+											- Reorganizing the data of each micropartition by flipping row store into columnar - column values of each row get stored together.<br>
+											- Adding a header to each micropartition. Header contains metadata of given micropartition and columns it contains.<br>
+											- Micropartitions are being stored in S3 as the immutable files.<br>
+											- All the information about micropartitions are being stored in Sknowflake's metadata layer.<br>
+											- When query comes in, metadata layer knows which micropartition in S3 belongs to the queried table.<br>
+											- Reading a S3 file, it searches for a specific header first and then reads the only column we specified in the query.<br>
+											- It reads the only queried data ingnoring the rest of S3 files.
 										</li>
-										<li>We can set a specific VPC for an EC2 instance:
-											<br><br>
-											<img src="images/ec2_vpc.jpg" width="700">
-										</li>
-									</ul>
-
-									<h5 id="ec2">EC2:</h5>
-									<ul>
-										<li>It stands for Elastic Computing Cloud.</li>
-										<li>Actually, it's a name for a server that we can launch in AWS.</li>
-										<li>Elastic means that we can resize the server's capacity at any time.</li>
-										<li>AWS ensures high-availablity so when on EC2 server goes downm the hosted application can be still served on another EC2 server.</li>
-										<li>Launching server is as easy as hitting a button and going through a configuration
-											<br>
-											<img src="images/ec2.JPG" width="780">
-										</li>
-										<li>When launching a new instance of EC2 on AWS we need to configure following things:
-											<br>
-											- region,<br>
-											- server OS which is Amazon Machine Image (AMI),<br>
-											- CPU and memory size of EC2 instance,<br>
-											- num of instances,<br>
-											- storage capacity,<br>
-											- authentication key,<br>
-											- security (firewall).
-										</li>
-										<li>Once instance created, we can connect server with SSH:
-											<br>
-											- connecting to EC2 server:<br>
-											<code>ssh -i ec2-key.pem ec2-user@{Public IP}</code><br>
-											- getting admin rights:<br>
-											<code>sudo su -</code><br>
-											- intalling some stuff:<br>
-											<code>yum -y install nginx</code><br>
-											<code>yum -y install mysql</code><br>
-											- cd to location:<br>
-											<code>cd /usr/share/nginx/html/</code><br>
-											- modifying a file:<br>
-											<code>echo "Hello World" > index.html</code><br>
-											- running service:<br>
-											<code>service nginx start</code>
-										</li>
-										<li>OS for EC2 instance is the <b>Amazon Machine Image (AMI)</b>. We can run multiple instances from a single AMI.</li>
-										<li>There are also a persistent block storage volumes for AWS EC2 instances. We call it <b>Elastic Block Store (EBS)</b>:
-											<br>
-											- It's available under Root device property of the EC2 instance:<br>
-											<br>
-											<img src="images/ebs.jpg" width="700">
-											<br>
-											- Persistent means that the data will remain even when we stop the EC2 instance.<br>
-											- The volumes are replicated, backed up and connected to EC2 instances with the network.<br>
-											<br>
-											<img src="images/datacenter.JPG" width="700">
-											<br>
-											- We can still ustilize the instance's store which gives fast performance, however the data will be lost if you EC2 instance stops or terminates or the underlying hosting disk fails.
-												The recompensation might be the fact it's quite cost-effecitve, however, we need to make sure to back up the data in S3 for example.<br>
-											- What kind of storage we want to use, we need to specify on AMI configuration step:<br>
+										<li id="sql_scripting">Every action on db can be performed with sql script along with setting up stages, file formats,
+												configuring warehouse, copying data to a table from a stage.
+												<br><br>
+												<img src="images/sql_script.JPG">
 												<br>
-												<img src="images/instance_storage.JPG" width="700">
+												<img src="images/sql_script2.JPG">
 										</li>
-										<li>EC2 is equipped with <b>Elastic Load Balancer (ELB)</b> so that traffic can be distributed across multiple EC2 instances.</li>
-										<li>EC2 has <b>Auto-Scaling</b> built in which automatically adds or removes EC2 instances according to conditions we define e.g.:
+										<li id="data_load">Data Loading consists of two parts:
 											<br>
-											1. Dynamic Scaling:<br>&nbsp&nbsp&nbsp
-											- if average CPU utilization > 60 % then add two more instances,<br>&nbsp&nbsp&nbsp
-											- if average CPU utilization < 30 % then remove two instances.<br>
-											2. Scheduled Scaling:<br>&nbsp&nbsp
-											- servers are scaled based on a specific schedule.<br>
-											3. Predictive Scaling:<br>&nbsp&nbsp&nbsp
-											- based on machine learning algorithms to automatically adjusting servers capacity.
+											1. Staging the files into the place where Snowflake can retrieve data files from. We can have both internal and exteranl (S3, GSP) storages.<br>
+											2. Loding the data into a specific table.
 										</li>
 									</ul>
 
-									<h5 id="rds">AWS Relational Database Service (RDS):</h5>
+									<h5 id="snow_sql">Quering Snowlake's table:</h5>
 									<ul>
-										<li>AWS RDS supports various database engines like MySQL, PostgreSQL, Microsoft SQL Server, Oracle that can be hosted on EC2.</li>
-										<li>AWS offers also the noSQL databse in DynamoDB that stores key-value pairs.</li>
-										<li>Like in other services, AWS provides:
+										<li>We can either qury table jaki that:
 											<br>
-											- database provisioning via GUI,<br>
-											- security,<br>
-											- patching,<br>
-											- backup,<br>
-											- high-availablity.
+											<code>USE DATABSE my_db;</code><br>
+											<code>USE SCHEMA my_schema;</code><br>
+											<code>SELECT * FROM my_table;</code>
 										</li>
-										<li>We are able to pick up the engine while creating database
+										<li>or like that:
+											<br>
+											<code>SELECT * FROM my_db.my_schema.my_table</code>
+										</li>
+									</ul>
+
+
+									<h5 id="snow_sql">SnowSQL</h5>
+									<ul>
+										<li>The command line interface client for connecting to Snowflake.</li>
+										<li>Allows to execute SQL queries to perform DDL and DML operations</li>
+										<li>We can install it from Snowflake UI and there is info on how to connect at the end:
 											<br><br>
-											<img src="images/rds.JPG" width="550">
-										</li>
-										<li>Connectivity:
+											<img src="images/snowsql_installation.JPG">
 											<br>
-											- we can deploy RDS db into a specific VPC (further we would need to deploy lambda function into as the same VPC as it was for RDS db),<br>
-											- or we can set it up to Data API which allows interacting with db using a http enpoint by lambda for instance.
-										</li>
-										<li>Databse will be created with a bunch of technical details like enpoint and port which can be checked in <b>Connectivity and security</b> tab.</li>
-										<li>Amazon Aurora is a compromise between performance of traditional enterprise databases and simplicity and cost-effectiveness of open-source databases.
-												Once creating we don't have to specify the storage as it grows along with the size of it.
-										</li>
-										<li>Query editor:
+										<li>Example:
 											<br>
-											- in order to query a database we need to create a connection when entering the query editor:
-											<br><br>
-											<img src="images/query_editor.png">
+											<code>USE DATABASE my_db;</code><br>
+											<code>CREATE OR REPLACE TABLE my_tbl {</code><br>&nbsp&nbsp&nbsp&nbsp
+												<code>...</code><br>
+											<code>};</code><br>
+											<code>CREATE STAGE csvfiles;</code><br>
+											<code>PUT file:///tmp/load/abc*.csv @csvfiles;</code><br>
+											<code>LIST @csvfiles;</code><br>
+											<code>CREATE WAREHOUSE IF NOT EXISTS "dataload" WAREHOUSE.SIZE = "Large"</code><br>&nbsp&nbsp&nbsp&nbsp
+												<code>AUTOSUSPEND = 300 AUTO_RESUME = TRUE;</code><br>
+											<code>USE WAREHUSE dataload;</code><br>
+											<code>COPY INTO my_tbl</code><br>&nbsp&nbsp&nbsp&nbsp
+												<code>FROM @csvfiles</code><br>&nbsp&nbsp&nbsp&nbsp
+												<code>PATTERN = '.*file0[1-4].csv.gz'</code><br>&nbsp&nbsp&nbsp&nbsp
+												<code>ON_ERROR = 'skip_file';</code><br>
+											<code>SELECT * FROM my_tbl LIMIT 10;</code>
+										</li>
+										<li>We can learn a lot from the documentation:
+												<u><a href="https://docs.snowflake.com/en/">Snowflake documentation</a></u>
 										</li>
 									</ul>
 
-									<h5 id="s3">Amazon Simple Storage Service (Amazon S3):</h5>
+									<h5 id="snow_pipe">SnowPipe:</h5>
 									<ul>
-										<li>S3 is the durable storage system and is based on object storage.</li>
-										<li>In S3 we have buckets that are like folders where we can store multiple objects (files).
-												Bucket names are unique across enitre AWS namespace.
-												Buckets can have subfolders.
-										</li>
-										<li>Can be used for storing simple websites at the lower costs. With that solution there is no need for instantiating EC2 server.</li>
-										<li>When you upload some files to the cloud storage it backs file up automatically.</li>
-										<li>S3 has a lifecycle of a files which means file can either be moved to a cheaper storage or archived or even deleted when it's older than x days.</li>
-										<li>We can still configure S3 to define some replicatioon rules to copy into different bucket when file is uploaded.
-												We can also set some events which can be triggered once a file uploaded.</li>
-										<li>Each object in the s3 bucket has its own object URL assigned. Everyone can access any object as long as someone has its url and we select 'Everyone' in Access control list of Permisson's tab.</li>
-										<li>When there are a big security requirements, each S3 bucket needs to have individual KMS encryption key (one to one relationship).
-												At best, the key alias should reference S3 bucket name - key ids are not self-explainatory.
-										</li>
-									</ul>
-
-									<h5 id="dynamodb">DynamoDB</h5>
-									<ul>
-										<li>noSQL database.</li>
-										<li>DynamoDB Stream:
-											<br>
-											- It's a feature that launches events when record modifications occur on a dynamodb table.<br>
-											- We distingus 3 types of events on a table: insert, update, remove.<br>
-											- Events can carry the content of the rows being modified so we can have a look at before change and after chagne.<br>
-											- Events are in the same order as in which the modifications take place,<br>
-											- We can be detecting changes in a dynamoDB table using a lambda function - every time event occurs, lambda gets invoked.<br>
-											- Lambda's arguments are the contents of the change that has occured.<br>
-											- No performance impact on source table.
-										</li>
-									</ul>
-
-									<h5 id="ecs">Elastic Container Service (ECS)</h5>
-									<ul>
-										<li>Deploying docker containers and making sure that containers are isloated from one another.</li>
-										<li>Allow launching, seting-up and monitoring docker containers on ECS cluster.</li>
-										<li>Serverless (with fargate) or managed (with EC2) options.</li>
-										<li>Auto-scaling of number of containers ensured based on traffic, memory or cpu utilization.</li>
-										<li>Either for ad-hoc jobs or full scale services.</li>
-										<li>Cost effective as we can host multiple different containers on a single computing resource.</li>
-										<li>With docker we only need one operating system wich is as opposed to virtual machines.</li>
-										<li>ECS elements and workflow:
-											<br>
-											1. Running docker file and uploading an image to amazon Elastic Container Repository (ECR) - like S3 for docker images.<br>
-											2. Defining a task in ECS - task is an abstracion on the top of a container that tells ECS how we want to spin up docker containers. Task can contain more than one container.<br>
-											3. A cluster - resoucrce farm (ec2 instances). We take task and run it on ecs cluster.<br>
-											4. We can put the sevice on a ECS cluster - it allows to specify a min number of tasks and therefore container running on the cluster at point of time.<br>
-											5. Load balancer.
-										</li>
-									</ul>
-
-									<h5 id="sqs">Simple Queue Service (SQS)</h5>
-									<ul>
-										<li>Distributed message queuing service.</li>
-										<li>Supports standard queue (ordering not preserved) or FIFO (First In Frist Out).</li>
-										<li>Integration:
-											<br>
-											<code>Client</code> > <code>SQS</code> > <code>Lambda function</code><br>
-											- we can set lambda function as a consumer of queue's messages.
-										</li>
-										<li>SQS holds messages until someones come along (lambda) and read the message off the queue. Once done processing it - lambda deletes the message.</li>
-										<li>Lmabda code handling the message:
-											<br>
+										<li>It loads data from a sources like AWS S3 bucket into a certain target table.</li>
+										<li>With SnowPipe we can perform whole ETL process:
 <!-- start -->
 <pre>
-exports.handler = async (<span style="color:#19ff00;">event</span>) => {
-  for ( const { <span style="color:#ff00e9;">messageId</span>, <span style="color:#ff00e9;">body</span> } of <span style="color:#19ff00;">event</span>.Records ) {
-    console.log('SQS message %s, %j', <span style="color:#ff00e9;">messageId</span>, <span style="color:#ff00e9;">body</span>);
-  };
-  return 'Successfully processed ${<span style="color:#19ff00;">event</span>.Records.length} messages.';
-}
+<span style="color:#00ff45">CREATE PIPE</span> my_db.my_stage.my_pipe
+<span style="color:#00ff45">AUTO_INGEST</span> = FALSE
+<span style="color:#00ff45">AS</span>
+<span style="color:#00ff45">COPY INTO</span> "MY_DB"."MY_STAGE"."tbl_my_table" (col1, col2, col3, col4, col5, col6, col7, col8)
+  <span style="color:#00ff45">FROM</span> (
+    <span style="color:#00ff45">SELECT</span>
+      <span style="color:#00ffea">substr</span>(stage_alias.$3, 1, 7),
+      <span style="color:#00ffea">iff</span>(stage_alias.$1 = 100, replace(stage_alias, '100', 'Done'), 'In progress'),
+      stage_alias.$2,
+      stage_alias.$3,
+      <span style="color:#00ffea">replace</span>(stage_alias.$5, ',', '.'),
+      'Artur',
+      metadata$filename,
+      <span style="color:#00ffea">CURRENT_TIMESTAMP</span>()
+    <span style="color:#00ff45">FROM</span>
+      @"MY_DB"."MY_STAGE"."s3_bucket_name" stage_alias
+    )
+<span style="color:#00ff45">FILE FORMAT</span> = (format_name = "MY_DB"."MY_STAGE"."SAP_X")
+<span style="color:#00ff45">FORCE</span> = FALSE;
 </pre>
 <!-- end -->
+											- at first, we create a pipe name and assign it to the COPY INTO,<br>
+											- each pipe definition starts with COPY INTO then we state a destination table according to the path:<br>
+											<code>database</code>.<code>stage</code>.<code>destination table</code>,<br>
+											then we list all the destination columns that we want to feed with the data load.<br>
+											- In SELECT statement, we perform entire data manipulation where each line corresponds to a signle column listed in the COPY INTO line,<br>
+											- In SELECT statement, we work with indexes which refer to a column number in the data source,<br>
+											- In SELECT statement, we can jump over an index if we want to avoid some columns or we can manipulate the data source columns sequence,<br>
+											- In SELECT statement, we can either use source column (original or transformed) or we can give a hard-coded value there,<br>
+											- For example the first line in SELECT takes 3rd column from data source and transforms it with substr(),<br>
+											- Using <code>metadata$filename</code> gives us the name of current file's name,<br>
+											- with FILE FORMAT we tell Snowflake what is the structure of the data source, what is the delimiter there etc,<br>
+											- with <code>FORCE = FALSE</code> we tell Snowflake not to import the file agian if it was imported before,<br>
+											- with <code>AUTO_INGEST = TRUE</code> we ensure automatic dtata ingestion from S3 file when newly-created,<br>
 										</li>
-										<li>We need to enable the SQS trigger in lambd function in order to integrate both :
+										<li>Integration S3 with Snowflake:
+											<br>
+											1. Creating snowpipe.<br>
+											2. Displaying pipes with <code>SHOW pipes;</code>.<br>
+										 	3. Taking value from field notification_channel:
 											<br><br>
-											<img src="images/sqs_trigger_enabling.png" width="800">
+											<img src="images/notification_channel.png">
+											<br>
+											4. Pasting it as SQS queue ARN in S3 Event Notification - one of the S3 property where we can set the connection with Snowflake.<br>
+											5. Setting all types of object creation:
+											<br><br>
+											<img src="images/event_notification_types.png">
+											<br>
+											6. Providing SQS ARN:
+											<br><br>
+											<img src="images/event_notification_destination.png">
+										</li>
+										<li>AWS stage:
+											<br>
+											- in the example above we use the external stage of AWS S3,<br>
+											- to create the stage we need to provide S3 bucket's url along with credentials,<br>
+<!-- start -->
+<pre>
+<span style="color:#00ff45">CREATE OR REPLACE STAGE</span> "MY_DB"."MY_SCHEMA"."stage_name"
+  <span style="color:#00ff45">URL</span> = 's3://bucket_name/folder_name'
+  <span style="color:#00ff45">CREDENTIALS</span> = (aws_key_id='.....' aws_secret_key='.....')
+  <span style="color:#00ff45">ENCRYPTION</span> = (type='AWS_SSE_KMS' kms_key_id = '......');
+</pre>
+<!-- end -->
+											- encryption is being used in order to encrypt the confidential data.<br>
+											- instead of passing credentials to each stage we can move on with so-called STORAGE INTEGRAION:<br>
+<!-- start -->
+<pre>
+<span style="color:#00ff45">CREATE STORAGE INTEGRATION</span> "MY_DB"."MY_SCHEMA"."AWS_111111_Integration"
+<span style="color:#00ff45">TYPE</span> = EXTERNAL_STAGE
+<span style="color:#00ff45">STORAGE_PROVIDER</span> = S3
+<span style="color:#00ff45">ENABLED</span> = TRUE
+<span style="color:#00ff45">STORAGE_AWS_ROLE_ARN</span> = 'arn:aws:iam::111111:role/my_role'
+<span style="color:#00ff45">STORAGE_ALLOWED_LOCATIONS</span> = (
+  's3://bucket_name/',
+  's3://another_bucket_name/')
+</pre>
+<!-- end -->
+											- which we can use in CREAT OR REPLACE STAGE script:<br>
+<!-- start -->
+<pre>
+<span style="color:#00ff45">CREATE OR REPLACE STAGE</span> "MY_DB"."MY_STAGE"."stage_name"
+  <span style="color:#00ff45">URL</span> = 's3://bucket_name/folder_name'
+  <span style="color:#00ff45">STORAGE_INTEGRATION</span> = "MY_DB"."MY_SCHEMA"."AWS_111111_Integration"
+</pre>
+<!-- end -->
+											- ARN stands for Amazon Resource Name.
+										</li>
+										<li>With the snowpipe we can understand what are the all dependencies and refreneces to the Snowflake objects based on the source code itself.</li>
+									</ul>
+
+									<h5 id="time_travel">Time Travel:</h5>
+									<ul>
+										<li>Every time a DML operation is executed on a table, Snowflake saves previous versions of the table data. This allows to query earlier data versions using the AT | BEFORE clause.</li>
+										<li>The data retention period specifies the number of days for which this historical data is preserved and, therefore, Time Travel operations
+												(SELECT, CREATE … CLONE, UNDROP) can be performed on the data. The standard retention period is 1 day (24 hours). When the retention
+												period ends for an object, the historical data is moved into Snowflake Fail-safe (background process).
+										</li>
+										<li>The data retention period can be modified up to 90 days. It can be overridden using the DATA_RETENTION_TIME_IN_DAYS while creating table, schema or database.
+											<br>
+											<code>create table mytable(col1 number, col2 date) data_retention_time_in_days=90;</code><br>
+											<code>alter table mytable set data_retention_time_in_days=30;</code><br>
+											- If a retention period is specified for a database or schema, the period is inherited by default for all objects created in the database/schema.
+										</li>
+										<li>We can query a specified point in the table’s history within the retention period giving timestamp, offset from a current date or giving statement query ID.
+<!-- start -->
+<pre>
+<span style="color:#00ff45">-- timestamp</span>
+select * from my_table at(timestamp => 'Mon, 01 May 2015 16:20:00 -0700'::timestamp_tz);
+
+<span style="color:#00ff45">-- time offset from current date</span>
+select * from my_table at(offset => -60*5);
+
+<span style="color:#00ff45">-- statement id</span>
+select * from my_table before(statement => '8e5d0ca9-005e-44e6-b858-a8f5b37c5726');
+</pre>
+<!-- end -->
+											- Querying outside the data retention period for the table, the query fails and returns an error.
 										</li>
 									</ul>
 
-									<h5 id="sns">Simple Notification Service (SNS)</h5>
+									<h5 id="bulk_unloading">Bulk Unloading</h5>
 									<ul>
-										<li>Relation one publisher (publishing messages to the topics) to many consumers of the messages in a specific topic.</li>
-										<li>We can set up different kind of consumers: email, HTTP endpoint in nodJS or Python Flask app that is listening on a specific port, SQS etc.</li>
-										<li>While SQS has pulling mechanism (pulling messages from the queue), SNS has pushing mechanism (pushing messages to the subscribers).</li>
-										<li>Two main elements: Topics and Subscriptions.</li>
-										<li>Purpose: App to Person or App to App.</li>
-										<li>App to App model:
+										<li>We can use <code>COPY INTO location from tbl_name</code> command to copy the data from the Snowflake database table into one or more files in a Snowflake or external stage.</li>
+										<li>We can also unload the data into S3 Bucket directly:
 											<br>
-											1. External customer service publishes a message (details about order for instance).<br>
-											2. Serverless lambda function taking data, applies business logic optionally and pushes further to the database.<br>
-											3. or SQS for receiving SNS messages that can be consumed at a later time (no need for immediate data processing).
+											<code>copy into 's3://bucket_name/folder_name/'</code><br>
+											<code>from mytable_name</code><br>
+											<code>storage_integration = s3_int_name;</code>
+											<br>
+											- we must specify the URI for the S3 bucket and the storage integration or credentials for accessing the bucket in the COPY command:
+											<br>
+											<code>COPY INTO 's3://mybucket/folder_name/'</code><br>
+											<code>from my_table</code><br>
+											<code>credentials = (aws_key_id='xxxx' aws_secret_key='xxxxx' aws_token='xxxxxx')</code>
 										</li>
-										<li>It's necessary to have SNS in the middle in any of model as we don't want external customer service to know about each of consumer. Not having SNS in the middle causes also perfomance and scaling (adding more consumers) problems.</li>
-										<li>When setting a topic up we need to decide who is going to be able to publish messages to this topic and who can subscribe the topic:
-											<br><br>
-											<img src="images/sns_topic.png"><br>
-											- when we select everyone as publishers, then anyone who has ARN of a topic can publish to that one.
+										<li>Unloading to a File:
+											<br>
+<!-- start -->
+<pre>
+copy into @mystage/myfile.csv.gz from mytable
+file_format = (type=csv compression='gzip')
+single=true
+max_file_size=4900000000;
+</pre>
+<!-- end -->
+											<span style="font-size:12px;">source: docs.snowflake.com</span><br>
+											- loading table data to a single file named myfile.csv in a named stage.
+										</li>
+										<li>Bulk unloading with the stored procedure:
+<!-- start -->
+<pre>
+CREATE OR REPLACE PROCEDURE "db_name"."db_schema".unload_procedure()
+RETURNS string
+LANGUAGE javascript
+AS
+$$
+
+    var <span style="color:#00ff45">tbl_arr</span> = [
+                    'tbl_clients',
+                    'tbl_products',
+                    'tbl_vendors',
+                    'tbl_employees',
+                    'tbl_discounts',
+                    'tbl_premium_products',
+                 ];
+
+    var <span style="color:#00ff45">tbl_arr_length</span> = tbl_arr.length;
+
+    var <span style="color:#00ff45">today</span> = new Date();
+    var <span style="color:#00ff45">date</span> = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+    for (var i = 0; i < tbl_arr_length; i++){
+
+      var <span style="color:#00ff45">table_name</span>  = tbl_arr[i];
+      var <span style="color:#00ff45">file_name</span>  = <span style="color:#00ff45">date</span> + "_" + <span style="color:#00ff45">table_name</span>;
+
+      var <span style="color:#00ff45">s3_bucket_url</span>  = 's3://my_backup/db-backup/' + <span style="color:#00ff45">file_name</span>;
+      var <span style="color:#00ff45">full_table_name</span>  = '"db_name"."db_schema"."' + <span style="color:#00ff45">table_name</span> + '"';
+      var <span style="color:#00ff45">storage_integration_name</span>  = '"db_name.db_schema.AWS_12345_Integration"'
+
+      var <span style="color:#00ff45">sql</span>  = "";
+      <span style="color:#00ff45">sql</span>  += "COPY INTO " + <span style="color:#00ff45">s3_bucket_url</span> + " ";
+      <span style="color:#00ff45">sql</span>  += "FROM " + <span style="color:#00ff45">full_table_name</span> + " ";
+      <span style="color:#00ff45">sql</span>  += "STORAGE_INTEGRATION = " + <span style="color:#00ff45">storage_integration_name</span> + " ";
+      <span style="color:#00ff45">sql</span>  += "FILE_FORMAT = ( TYPE = CSV null_if=('Null') field_optionally_enclosed_by='\"');";
+
+      var <span style="color:#00ff45">sql_command</span>  = snowflake.createStatement({sqlText: <span style="color:#00ff45">sql</span>});
+
+      try {
+          var <span style="color:#00ff45">sql_result</span>  = <span style="color:#00ff45">sql_command</span>.execute();
+      }
+      catch (<span style="color:#00ff45">e</span>) {
+          return = 'bulk unloading failed: ' + <span style="color:#00ff45">e</span>;
+      };
+
+    };
+
+    result = 'DONE'
+    return <span style="color:#00ff45">result</span> ;
+
+$$;
+</pre>
+<!-- end -->
+											- the procedure loops through all of the tables in the database,<br>
+											- within the loop, it gives a file a name of the table along with the timestamp beign concatinated which is meant to build the S3 bucket's url,<br>
+											- the rest of the loop is responsible for buildin the sql statement and executing it within try-catch block.
 										</li>
 									</ul>
 
-									<h5 id="lambda">AWS Lambda:</h5>
+									<h5 id="update_statement">Update statement:</h5>
 									<ul>
-										<li>Fully managed compute service that runs our code when event appears (for instance uploading objects to S3 can trigger Lambda function) or on the time base.</li>
-										<li>AWS Lambda provides:
-											<br>
-											- servers,<br>
-											- capacity,<br>
-											- deployment,<br>
-											- scaling,<br>
-											- high-availability,<br>
-											- os updates,<br>
-											- security.
+										<li>When update statement sent to a cloud database, there is no change to an existing record. Actually, a new record is being inserted with an updated value(s) instead.
+											There is also the metadata that controlls which one of those records is the most updated. The old records are being kept in the storage and kept available so that we can go back to these if needed.
 										</li>
-										<li>What we provide:
-											<br>
-											- code,<br>
-											- money - as much as we use it.
-										</li>
-										<li>All functions in lambda are stateless. To keep data there is a need for an integration with S3 od DynamoDB.</li>
-										<li>When we upload the code we receive so-called Amazon Resource Name (ARN):
-											<br>
-											- ARN is an unique identifier for a particular lambda application,<br>
-											- using ARN we have a mechanism to invoke lambda function,<br>
-											- behind the invocation there is the load balancer that manages compute resources (EC2),<br>
-											- so when invocation comes in lambda, the load balancer deploys the code into one or more EC2 instances,<br>
-											- multiple EC2 available when concurrent invocaions appear.
-										</li>
-										<li>Available integrations:
-											<br>
-											- lambda function behind API Gateway to creatre REST APIs,<br>
-											- hooking up S3 to lambda funciton in data processing - when new file inserted/updated/deleted, the lambda gets triggered to respond to that change,<br>
-											- SQS with lambda for message buffering and processing,<br>
-											- SNS with lambda for mesagge processing,<br>
-											- Step functions with lambda for workflow orchestration,<br>
-											- Snowflake or DynamoDB with lamda for a change detecting in a database's table.
-										</li>
-										<li>There are many AWS-related events that can trigger a lambda function:
-											<br><br>
-											<img src="images/lambda_triggers.png" width="550">
-											<br>
-											- trigger makes the lambda code being executed,<br>
-											- the event is the your code itself, the lambda code will get a copy of the event and usually we want to inspect that copy of the event data and perform an action based on it.
-										</li>
-										<li>We can specify Runtime while configuration:
-											<br><br>
-											<img src="images/runtime.JPG" width="550">
-										</li>
-										<li>We can integrate lambda with S3 bucket getting a file from it:
+										<li>This is unlike sql sever database for example, where update statement changes the records value in place.</li>
+									</ul>
+
+									<h5 id="stored_procedure">Stored procedures:</h5>
+									<ul>
+										<li>A stored procedure returns a single value only.</li>
+										<li>Although we run SELECT inside a stored procedure, the results must be used within the stored procedure, or be narrowed to a single value and then returned.</li>
+										<li>Language used in JavaScript that provides the control structures (branching and looping) and SQL statements are executed by calling functions in a JavaScript API.</li>
+										<li>Example procedure that takes one variable from an user:
 <!-- start -->
 <pre>
-import boto3
-import csv
+CREATE OR REPLACE PROCEDURE procedure_name (
+    <span style="color:#00ff45">project_name</span> varchar
+)
+RETURNS ARRAY
+LANGUAGE javascript
+AS
+$$
 
-<span style="color:#00e5ff;">key</span> ='sub_folder_name/file_name.csv'
-<span style="color:#00e5ff;">bucket</span> = 's3_bucket_name'
+    var query = "SELECT MANAGER_NAME FROM PROJECTS WHERE PROJECT_NAME = ?";
+    var statement = snowflake.createStatement({sqlText: query, binds: [<span style="color:#00ff45">PROJECT_NAME</span>]});
+    var resultSet = statement.execute();
 
-def <span style="color:#19ff00;">lambda_handler</span>(event,  context):
-    s3_resource = boto3.resource('s3')
-    s3_object = s3_resource.Object(<span style="color:#00e5ff;">bucket</span>, <span style="color:#00e5ff;">key</span>)
+    var arr = [];
 
-    data = s3_object.get()['Body'].read().decode('utf-8').splitlines()
+    while (resultSet.next())(
+      arr.push(resultSet.GetColumnValue(1));
+    )
 
-    lines = list(csv.reader(data))
+    return arr;
 
-    print(len(lines))
-    print(lines[0])
+$$;
 
-    # for line in list(lines):
-    #     print(line)
 
+CALL procedure_name('asap_project')
 </pre>
 <!-- end -->
+											- When defining a stored procedure we need to declare the type of returned vlaue, here ARRAY.<br>
+											- If we want to return different type depending on flow control we can declare returned value as VARIANT.<br>
+											- $$ is the delimiter for the beginning and end of the stored procedure.<br>
+											- With Javascript API global object's function: snowflake.createStatement() we pass JSON object with two key-value pairs.<br>
+											- With binds key we bind '?' in the SELECT statement with passed variables.<br>
+											- We can either bind variables with query or we can concat variables in a SELECT statment like:
+												<code>"SELECT MANAGER_NAME FROM PROJECTS WHERE</code><br>
+												<code>PROJECT_NAME = '" + <span style="color:#00ff45">PROJECT_NAME</span> + "';"</code><br>
+											- The variable: resultSet holds the outcome of SELECT statement.<br>
+											- In order to access each row from the resultSet, we need to iterate it calling resultSet.next() one time for each record.<br>
+											- As far as there are records still available, resultSet.next() returns TRUE in the while loop.<br>
+											- With <code>arr.push(resultSet)</code> we put all record's columns into the array.<br>
+											- We can narrow down the result to one column only with the following: <code>arr.push(resultSet.GetColumnValue(1)).</code><br>
+											- Result of above: <code>['Artur', 'Johnny']</code>
 										</li>
-										<li>
-											lambda is automatically passed a context JSON object that's essentially metadata about your lambda function
-											if you need to access it's attributes within your code:
-											<br>
-										 <code>lambda_handler(event, context)</code><br>
-										 - event - action info about trigger that caused invocation ot the lambda instance,<br>
-										 - context - provides info about information about the invocation, function itself and execution environment.
+										<li>IMPORTANT to note, we can pass variable names into procedrue in either upper or lower case but using these variables inside a procedure we need to use them with upper cases.
+												This is because SQL by default converts columns in upper case.
 										</li>
-										<li>Function logs are stored in the AWS cloud watch.</li>
-										<li>Handler name = lamdbda_function from lambda.function.py + lambda_handler from def lambda_hanlder()</li>
-										<li>Getting connected with RDS database:
-											<br>
+										<li>We can execute many sql statements within one procedure:
 <!-- start -->
-<pre>
-import boto3
+<pre style="">
+CREATE OR REPLACE PROCEDURE "db_name"."schema_name".prcedure_name()
+RETURNS string
+LANGUAGE javascript
+AS
+$$
 
-rds = boto3.client('rds-data')
+// Creating 2 temporary tables:
+// 1st one contains all ITEM with a single category assigned (there may be duplicates)
+// 2nd one contains unique ITEM with order_status defined
 
-<span style="color:#00e5ff;">db_name</span> = 'db_name'
-<span style="color:#00e5ff;">db_cluster_arn</span> = 'db_arn'
-<span style="color:#00e5ff;">db_credentials_secret_arn</span> = '...'
+//  Creating temporary table with all categories per ITEM
 
-def <span style="color:#19ff00;">lambda_handler</span>(event, context):
-  resp = execute_sql('SELECT * FROM db_name.tbl_employees')
-  return resp['records']
+    var tbl_products = '"db_name"."schema_name"."tbl_products"';
+    var tbl_tools = '"db_name"."schema_name"."tbl_tools"';
+    var tbl_items = '"db_name"."schema_name"."tbl_items"';
+    var tbl_things = '"db_name"."schema_name"."tbl_things"';
+    var tbl_spare_parts = '"db_name"."schema_name"."tbl_spare_parts"';
 
-def <span style="color:#19ff00;">execute_sql</span>(sql_string):
-  resp = rds_client.execute_statement(
-    secretArn = <span style="color:#00e5ff;">db_credentials_secret_arn</span>,
-    database = <span style="color:#00e5ff;">db_name</span>,
-    resourceArn = <span style="color:#00e5ff;">db_cluster_arn</span>,
-    sql=sql_string
-  )
-  return resp
+    var tbl_temporary_name = '"db_name"."schema_name"."tbl_all_stuff"';
 
-</pre>
-<!-- end -->
-											- <code>boto3</code> is the library for interacting with AWS services endpoints.<br>
-											- We can set timeout in the configuration that terminates the runtime for a function.<br>
-											- We need to have a new role that have following permissions:<br>
-											+ <b>AmazonRDSDataFullAccess</b> which hanldes alos permissons for secret keys,<br>
-											+ <b>AWSLambdaBasicExecutionRole</b>.<br>
-											If lambda has created its own role we need to replace it with the newly-customized one.<br>
-											- We receive back db result in JSON format.
-										</li>
-										<li>Integratin Lmabda with AWS Athena:
-											<br>
-											- we need following persmissions for a role assigned to a lambda function:<br>
-											1. athena:StartQueryExecution,<br>
-											2. athena:GetQueryExecution,<br>
-											3. athena:GetQueryResults,<br>
-											4. glue:GetTable.<br>
-											- processflow:<br>
-											<code>Lambda function</code> > query > <code>Athena</code> > output > <code>S3 bucket</code>
-											<br>
-											- example code:
-<!-- start -->
-<pre>
-import boto3
-import json
-import time
+    var tbl_temporary_definition = "";
+    tbl_temporary_definition += "CREATE OR REPLACE TABLE " + tbl_temporary_name + " AS ";
+    tbl_temporary_definition += "SELECT *, SUM(CASE WHEN CATEGORY = 'Spare' THEN 1 ELSE 0 END)
+		 	OVER(PARTITION BY ITEM ORDER BY ITEM) AS IF_SPARE_SOMEWHERE,
+			COUNT(*) OVER(PARTITION BY ITEM ORDER BY ITEM) ITEM_COUNT FROM("
+    tbl_temporary_definition += "SELECT ITEM, CATEGORY, PART_NUMBER, DATA_SRC, DATA_SRC_FILENAME
+		 	FROM " + tbl_products + " ";
+    tbl_temporary_definition += "UNION ";
+    tbl_temporary_definition += "SELECT ITEM, CATEGORY, PART_NUMBER, DATA_SRC, DATA_SRC_FILENAME
+		 	FROM " + tbl_tools + " ";
+    tbl_temporary_definition += "UNION ";
+    tbl_temporary_definition += "SELECT ITEM, CATEGORY, PART_NUMBER, DATA_SRC, DATA_SRC_FILENAME
+		 	FROM " + tbl_items + " ";
+    tbl_temporary_definition += "UNION ";
+    tbl_temporary_definition += "SELECT ITEM, CATEGORY, PART_NUMBER, DATA_SRC, DATA_SRC_FILENAME
+		 	FROM " + tbl_things + " ";
+    tbl_temporary_definition += "UNION ";
+    tbl_temporary_definition += "SELECT ITEM, 'Spare', PART_NUMBER, DATA_SRC, DATA_SRC_FILENAME
+		 	FROM " + tbl_spare_parts;
+    tbl_temporary_definition += ") ORDER BY 1;";
 
-def <span style="color:#19ff00;">lambda_handler</span>(event, context):
-  <span style="color:#00e5ff;">client</span> = boto3.client('athena')
+    // example
+    // ------------------------------------------------------------------------------
+    // ITEM |   CATEGORY      	| ... | DATA_SRC    | ... |   IF_SPARE_SOMEWHERE   	|
+    // ------------------------------------------------------------------------------
+    // 111  |   Spare           | ... | ERP         | ... |   0                     |
+    // ------------------------------------------------------------------------------
+    // 123  |   Spare           | ... | ERP         | ... |   0                     |
+    // 123  |   different       | ... | ERP         | ... |   0                     |
+    // 123  |   different_2     | ... | ERP         | ... |   0                     |
+    // ------------------------------------------------------------------------------
+    // 999  |   something       | ... | ERP         | ... |   1                     |
+    // 999  |   something_2     | ... | ERP         | ... |   1                     |
+    // 999  |   Spare           | ... | SSYSTEM     | ... |   1                     |
 
-  query = <span style="color:#00e5ff;">client</span>.start_query_execution(
-    QueryString = 'SELECT * FROM aws_athen_example_table;',
-    QueryExecutionContext = {
-      'Database': 'db_name'
-    },
-    ResultConfiguration = {
-      'OutputLocation': 's3://bucket_name/'
+    var sql_command = snowflake.createStatement({sqlText: tbl_temporary_definition});
+
+    try {
+        var sql_result = sql_command.execute();
     }
-  )
+    catch (e) {
+        return 'creating temporary table failed: ' + e;
+    }
 
-  queryId = query['QueryExecutionId']
-  time.sleep(10)
+// deleting duplicated ITEM when coming from both SAP and SUPER_SYSTEM (deleting SAP ones)
+// prioritizing SUPER_SYSTEM entires
+// due to example - it will remove two records with ITEM of 999 where DATA_SRC is ERP
 
-  results = <span style="color:#00e5ff;">client</span>.get_query_results(QueryExecutionId = queryId)
-  for row in results['ResultSet']['Rows']:
-    print(row)
+    var delete_sql_statement = "";
+    delete_sql_statement += "DELETE ";
+    delete_sql_statement += "FROM " + tbl_temporary_name + " ";
+    delete_sql_statement += "WHERE ITEM_COUNT > 1 AND CATEGORY != 'Spare' AND IF_SPARE_SOMEWHERE = 1;";
+
+    var sql_command = snowflake.createStatement({sqlText: delete_sql_statement});
+
+    try {
+        var sql_result = sql_command.execute();
+    }
+    catch (e) {
+        return 'deleting ERP duplicates from tbl_all_stuff failed: ' + e;
+    }
+
+// dropping ITEM_COUNT_COLUMN and IF_CURRIMA_SOMEWHERE from tbl_all_stuff
+
+    var drop_column = "";
+    drop_column += "ALTER TABLE " + tbl_temporary_name + " ";
+    drop_column += "DROP COLUMN ITEM_COUNT, IF_SPARE_SOMEWHERE;";
+
+    var sql_command = snowflake.createStatement({sqlText: drop_column});
+
+    try {
+        var sql_result = sql_command.execute();
+    }
+    catch (e) {
+        return 'droping column from tbl_all_stuff failed: ' + e;
+    }
+
+    // example:
+    // --------------------------------------------------
+    // ITEM   |   CATEGORY	      | ... | DATA_SRC  | ...
+    // --------------------------------------------------
+    // 111    |   Spare           | ... | ERP       | ...
+    // --------------------------------------------------
+    // 123    |   Spare           | ... | ERP       | ...
+    // 123    |   different       | ... | ERP       | ...
+    // 123    |   different_2     | ... | ERP       | ...
+    // --------------------------------------------------
+    // 999    |   Spare           | ... | SSYSTEM   | ...
+
+//  Insert for testing -> ITEM 666111 should appear in the tbl_items_master at the end of procedure - if so then test passed - omment out when want to skip
+//    var insert_text = "INSERT INTO " + tbl_temporary_name +
+//	" (ITEM, CATEGORY, PART_NUMBER, DATA_SRC) VALUES('666111', 'Spare', '12345', 'SSYSTEM_B')";
+//    var stmt_insertIntoTblProjectsMaster_command = snowflake.createStatement({sqlText: insert_text});
+//    var res = stmt_insertIntoTblProjectsMaster_command.execute();
+
+//  Creating table with unique item and order_status
+
+    var tbl_temporary_unique_item_name = '"db_name"."schema_name"."tbl_temp_unique_item"';
+
+    // everything from super_system is open and has higher priority than SAP entieris
+    // (sap ones should be dropped when diplicate super_system ones)
+
+    var case_logic = ""
+    case_logic += "CASE ";
+    case_logic += "WHEN CATEGORY = 'Spare' THEN 'open' ";
+    case_logic += "WHEN if_spare >= 1 AND count > 1 THEN 'open' ";
+    case_logic += "WHEN if_spare = 1 AND count = 1 THEN 'to be checked' ";
+    case_logic += "WHEN if_spare = 0 AND count > 0 THEN 'open' ";
+    case_logic += "WHEN if_spare = 0 AND count = 0 THEN 'closed' ";
+    case_logic += "END ";
+
+    var tbl_temporary_definition = "";
+    tbl_temporary_definition += "CREATE OR REPLACE TABLE " + tbl_temporary_unique_item_name + " AS ";
+    tbl_temporary_definition += "SELECT DISTINCT ITEM, ";
+    tbl_temporary_definition += "SUM(CASE WHEN CATEGORY = 'Spare' THEN 1 ELSE 0 END)
+			OVER(PARTITION BY ITEM ORDER BY ITEM) AS if_spare, ";
+    tbl_temporary_definition += "COUNT(*) OVER(PARTITION BY ITEM ORDER BY ITEM) AS count, ";
+    tbl_temporary_definition += case_logic + " AS order_status ";
+    tbl_temporary_definition += "FROM " + tbl_temporary_name;
+
+    var sql_command = snowflake.createStatement({sqlText: tbl_temporary_definition});
+
+    try {
+        var sql_result = sql_command.execute();
+    }
+    catch (e) {
+        return 'creating temporary table wiht unique ITEM failed: ' + e;
+    }
+
+    // example
+    // -------------------------------------------------------
+    // ITEM  |   if_spare   |   count   |   order_status
+    // -------------------------------------------------------
+    // 111  |       1       |   1       |   to be checked
+    // -------------------------------------------------------
+    // 123  |       1       |   3       |   open
+    // -------------------------------------------------------
+    // 999  |       0       |   1       |   open
+    // -------------------------------------------------------
+
+//  Main
+    var tbl_items_master = '"db_name"."schema_name"."tbl_items_master"';
+    var tbl_erpdata = "ERP ";
+    var insert_text = "INSERT INTO " + tbl_items_master +
+			" (ITEM, PART_NUMBER, ORDER_STATUS, ABC, BUDGET, USER_ID, EDIT_TIMESTAMP) ";
+
+    var outer_query = "";
+    outer_query += "SELECT DISTINCT erpdata.ITEM, ";
+    outer_query += "'none (this record is system-generted based on " +
+			tbl_erpdata + " data import)', ";
+    outer_query += "erpdata.ORDER_STATUS, ";
+
+    // logic to define ABC:
+    // ERP_A - A100 (based on DATA_SRC)
+    // ERP_B - B300 (based on DATA_SRC)
+    // SSYSTEM_A - A100 (based on DATA_SRC_FILENAME)
+    // SSYSTEM_B - B300 (based on DATA_SRC_FILENAME)
+    // else - tbd
+
+    outer_query += "iff(erpdata.DATA_SRC like 'ERP%',
+			iff(erpdata.DATA_SRC like 'ERP_A', 'A100', 'B300'),
+			iff(erpdata.DATA_SRC_FILENAME like 'SSYSTEM%',
+			iff(erpdata.DATA_SRC_FILENAME like '%SSYSTEM_A%', 'A100', 'B300'),
+			'tbd')), ";
+    outer_query += "left(erpdata.PART_NUMBER,5), ";
+    outer_query += "'system' user_id, ";
+    outer_query += 'current_timestamp()' + " ";
+
+    var inner_query = "";
+    inner_query += "SELECT a.*, p.ORDER_STATUS ";
+    inner_query += "FROM " + tbl_temporary_name + " a ";
+    inner_query += "JOIN " + tbl_temporary_unique_psp_name + " p ";
+    inner_query += "ON a.ITEM = p.ITEM";
+
+    // inner_query example result:
+    // ---------------------------------------------------------------------------
+    // ITEM  | CATEGORY     |   PART_NUMBER  |  DATA_SRC  |  ORDER_STATUS
+    // ---------------------------------------------------------------------------
+    // 123  | Spare         |        ...        |    ...     |  open
+    // ---------------------------------------------------------------------------
+    // 123  | different     |        ...        |    ...     |  open
+    // ---------------------------------------------------------------------------
+    // 123  | different_2   |         ...       |    ...     |  open
+    // ---------------------------------------------------------------------------
+
+    var sub_from_text = "FROM (" + inner_query + ") erpdata ";
+
+    var sub_join_text = "FULL OUTER JOIN " + tbl_items_master +
+			" projects on projects.ITEM = erpdata.ITEM ";
+    var sub_where_text = "WHERE projects.ITEM is null and erpdata.ITEM is not null;";
+    var values_text = outer_query + sub_from_text + sub_join_text + sub_where_text;
+    var insertIntoTblProjectsMaster_command = insert_text + values_text;
+
+    var stmt_insertIntoTblProjectsMaster_command = snowflake.createStatement(
+			{sqlText: insertIntoTblProjectsMaster_command});
+
+    try {
+        var res = stmt_insertIntoTblProjectsMaster_command.execute();
+    }
+    catch (e) {
+        return 'inserting to master table failed: ' + e;
+    }
+
+//  Dropping tbl_temp_unique_psp
+//  comment these out if you want to keep the table for further investigation
+    var drop_definition = "DROP TABLE " + tbl_temporary_unique_psp_name;
+    var sql_command = snowflake.createStatement({sqlText: drop_definition});
+    var sql_result = sql_command.execute();
+
+
+//  Dropping temporary table
+//  comment these out if you want to keep the table for further investigation
+    var drop_definition = "DROP TABLE " + tbl_temporary_name;
+    var sql_command = snowflake.createStatement({sqlText: drop_definition});
+    var sql_result = sql_command.execute();
+
+    result = "Done"
+    return result;
+
+$$;
+
+CALL "db_name"."schema_name".prcedure_name()
 </pre>
 <!-- end -->
-
 										</li>
 									</ul>
 
-									<h5 id="apigateway">API Gateway:</h5>
+									<h5 id="variables">Variables</h5>
 									<ul>
-										<li>AWS service that allows you to build HTTP or REST APIs.</li>
-										<li>We can connect API Gateway endpoints to Lambda functions.</li>
-										<li>When configuring we need to provide:
-											<br>
-											- integration: lmabda function,<br>
-											- routes: methods (GET, POST), resource path (<code>/getResource</code>) and integration target that will handle the request (lambda function),<br>
-											- stage name that API will be deployed to,<br>
-										  - select auto-deploye every time there is a change to HTTP API.
+										<li>We can make an usage of variables:
+<!-- start -->
+<pre>
+SET name = 'Artur'
+
+SHOW VARIABLES;
+
+SELECT *
+FROM employees
+WHERE employee_name = $name
+</pre>
+<!-- end -->
+											- calling variable we need to precede it with dollar sign.
 										</li>
-										<li>When created, AWS gives us invoke URL that is going to invoke our lambda function - this is a kind of endpoint that can be changed interacting with Route 53.</li>
-										<li>Using invoke URL with a declared resource path with a browser, it will send GET method lunching lambda and getting lambda's result.</li>
-										<li>When POST method with values in the body of requests sent to the resource path - the values are being passed into a lambda function in the event parameter.
-												We can be extracting values and some additional info like following:
+										<li>When variable stores the name of db object we need to wrap it in indetifier() function:
+<!-- start -->
+<pre>
+SET my_table_name = "employees"
+
+SELECT * FROM IDENTIFIER($my_table_name);
+DROP TABLE IDENTIFIER($my_table_name);
+</pre>
+<!-- end -->
+										</li>
+									</ul>
+
+
+									<h5 id="streams">Streams:</h5>
+									<ul>
+										<li>Make it easy to grab just the new data in a table as they take a snapshot of all rows in a table at a point in time.</li>
+										<li>Stream records any DML changes to a table as well as metadata about each change:
+											<br>
+											- <code>METADATA$ACTION</code><br>
+											- <code>METADATA$ISUDATE</code><br>
+											- <code>METADATA$ROWID</code>
+										</li>
+										<li>Stream itself doesn't contain any data. It stores only an offset for the souce table and returns Change Data Capture (CDC) records using the versioning history.
+											<br>
+											<img src="images/stream.JPG"><br><span style="font-size:12px">soruce: Joyce Kay Avila</span>
+										</li>
+										<li>Here is how to create a stream based on a table:
+											<br>
+											<code>USE DATABSE my_db;</code><br>
+											<code>USE SCHEMA my_schema;</code><br>
+											<code>CREATE OR REPLACE STREAM my_stream ON TABLE my_table</code>
+										</li>
+										<li>A stream can be queried just like a table:
+											<br>
+											<code>SELECT * FROM my_stream;</code>
+											<br>
+											- if there wasn't any data upload then <b>my_stream</b> is returns nothing.<br>
+											- when we upload 3 records to <b>my_table</b> then <b>my_stream</b> returns exactly the same 3 records along with the metadata.<br>
+											- so stream will be always empty as long as there is no DML yet since the stream was created.
+										</li>
+										<li>If we recreate/replace stream called <b>my_stream</b>:
+											<br>
+											<code>CREATE OR REPLACE STREAM my_stream ON TABLE my_table</code>
+											<br>
+											and there was a data upload to <b>my_table</b>, then <b>my_stream</b> will be epmty again because of the replacement.
+										</li>
+										<li>We can use them in continuous processing as a queues that are the palces we put the work to be taken from that queue and done.
+											 Taking data from that queue is as simple as selecting a regular table:
+											 <br>
+											 - we put a stram on a table that is being updated regularly,<br>
+<pre>
+CREATE OR REPLACE TABLE <span style="color:#00ff45">RATING_EVENTS</span>(
+  RAW_DATA VARIANT
+);
+
+CREATE OR REPLACE STREAM <span style="color:#00ffea">STREAM_A</span> ON TABLE <span style="color:#00ff45">RATING_EVENTS</span>;
+CREATE OR REPLACE STREAM <span style="color:#ff00c6">STREAM_B</span> ON TABLE <span style="color:#00ff45">RATING_EVENTS</span>;
+
+INSERT INTO <span style="color:#00ff45">RATING_EVENTS</span>(RAW_DATA) SELECT PARSE_JSON(' {'event_id': 1, 'rating': 10} ');
+
+SELECT * FROM <span style="color:#00ffea">STREAM_A</span>;
+
+Row  |  RAW_DATA			|  METADATA$ACTION  |  METADATA$ISUDATE  |  METADATA$ROW_ID
+---------------------------------------------------------------------------------------------------
+1    |  {'event_id': 1, 'rating': 10}	|  INSERT           |  FALSE             |  123456
+---------------------------------------------------------------------------------------------------
+
+INSERT INTO MAIN_TABLE(EVENT_ID, EVENT_TITLE, RATING)(
+  SELECT
+    <span style="color:#00ffea">STREAM_A</span>.RAW_DATA:"event_id" AS EVENT_ID
+    'Random_title' AS EVENT_TITLE
+    <span style="color:#00ffea">STREAM_A</span>.RAW_DATA:"rating" AS RATING
+  FROM
+    <span style="color:#00ffea">STREAM_A</span>
+);
+
+SELECT * FROM <span style="color:#00ffea">STREAM_A</span>;
+
+Row  |  RAW_DATA			|  METADATA$ACTION  |  METADATA$ISUDATE  |  METADATA$ROW_ID
+---------------------------------------------------------------------------------------------------
+     |                               	|                   |                    |
+---------------------------------------------------------------------------------------------------
+
+
+SELECT * FROM <span style="color:#ff00c6">STREAM_B</span>;
+
+Row  |  RAW_DATA			|  METADATA$ACTION  |  METADATA$ISUDATE  |  METADATA$ROW_ID
+---------------------------------------------------------------------------------------------------
+1    |  {'event_id': 1, 'rating': 10}	|  INSERT           |  FALSE             |  123456
+---------------------------------------------------------------------------------------------------
+
+
+INSERT INTO <span style="color:#00ff45">RATING_EVENTS</span>(RAW_DATA) SELECT PARSE_JSON(' {'event_id': 2, 'rating': 09} ');
+INSERT INTO <span style="color:#00ff45">RATING_EVENTS</span>(RAW_DATA) SELECT PARSE_JSON(' {'event_id': 3, 'rating': 05} ');
+
+
+SELECT * FROM <span style="color:#00ffea">STREAM_A</span>;
+
+Row  |  RAW_DATA			|  METADATA$ACTION  |  METADATA$ISUDATE  |  METADATA$ROW_ID
+---------------------------------------------------------------------------------------------------
+2    |  {'event_id': 2, 'rating': 09}	|  INSERT           |  FALSE             |  123457
+---------------------------------------------------------------------------------------------------
+3    |  {'event_id': 3, 'rating': 05}	|  INSERT           |  FALSE             |  123458
+---------------------------------------------------------------------------------------------------
+
+SELECT * FROM <span style="color:#ff00c6">STREAM_B</span>;
+
+Row  |  RAW_DATA			|  METADATA$ACTION  |  METADATA$ISUDATE  |  METADATA$ROW_ID
+---------------------------------------------------------------------------------------------------
+1    |  {'event_id': 1, 'rating': 10}	|  INSERT           |  FALSE             |  123456
+---------------------------------------------------------------------------------------------------
+2    |  {'event_id': 2, 'rating': 09}	|  INSERT           |  FALSE             |  123457
+---------------------------------------------------------------------------------------------------
+3    |  {'event_id': 3, 'rating': 05}	|  INSERT           |  FALSE             |  123458
+---------------------------------------------------------------------------------------------------
+
+
+
+INSERT INTO MAIN_TABLE(EVENT_ID, EVENT_TITLE, RATING)(
+  SELECT
+    <span style="color:#00ffea">STREAM_A</span>.RAW_DATA:"event_id" AS EVENT_ID
+    'Random_title' AS EVENT_TITLE
+    <span style="color:#00ffea">STREAM_A</span>.RAW_DATA:"rating" AS RATING
+  FROM
+    <span style="color:#00ffea">STREAM_A</span>
+);
+
+SELECT * FROM <span style="color:#00ffea">STREAM_A</span>;
+
+Row  |  RAW_DATA			|  METADATA$ACTION  |  METADATA$ISUDATE  |  METADATA$ROW_ID
+---------------------------------------------------------------------------------------------------
+     |                               	|                   |                    |
+---------------------------------------------------------------------------------------------------
+
+
+
+DELETE FROM <span style="color:#00ff45">RATING_EVENTS</span> WHERE RAW_DATA:"rating" IS NOT NULL;
+
+
+SELECT * FROM <span style="color:#00ffea">STREAM_A</span>;
+
+Row  |  RAW_DATA			|  METADATA$ACTION  |  METADATA$ISUDATE  |  METADATA$ROW_ID
+---------------------------------------------------------------------------------------------------
+1    |  {'event_id': 1, 'rating': 10}	|  DELETE           |  FALSE             |  123456
+---------------------------------------------------------------------------------------------------
+2    |  {'event_id': 2, 'rating': 09}	|  DELETE           |  FALSE             |  123457
+---------------------------------------------------------------------------------------------------
+3    |  {'event_id': 3, 'rating': 05}	|  DELETE           |  FALSE             |  123458
+---------------------------------------------------------------------------------------------------
+
+
+SELECT * FROM <span style="color:#ff00c6">STREAM_B</span>;
+
+Row  |  RAW_DATA			|  METADATA$ACTION  |  METADATA$ISUDATE  |  METADATA$ROW_ID
+---------------------------------------------------------------------------------------------------
+     |                               	|                   |                    |
+---------------------------------------------------------------------------------------------------
+</pre>
+<!-- end -->
+											- only freshest data that has been loaded to RATING_EVENTS table will exist in the STREAM_A stream,<br>
+											- when reading from a stream (STREAM_A) and inserting the data somewhere else (MAIN_TABLE), it's getting cleared out,<br>
+											- that way we can be inserting to the MAIN_TABLE and we will not ever insert any duplicated data,<br>
+											- very powerful where there is a non-stop stream of the data and there is no way to idnetify any new record (no timestamp).
+										</li>
+									</ul>
+
+									<h5 id="tasks">Tasks:</h5>
+									<ul>
+										<li>Object that can schedule a SQL statement to be automtically executed as a recurring event.</li>
+										<li>Task can either execute a single SQL or call to a stored procedure.</li>
+										<li>There is no any event that triggers a task as it runs relying on the schedule:
+<!-- start -->
+<pre>
+CREATE OR REPLACE TASK <span style="color:#ff9b00">EVENT_RATINGS_TASK</span>
+  WAREHOUSE = My_Warehouse
+  SCHEDULE = '5 minute' // we can set it to every minute even
+WHEN
+  SYSTEM$STREAM_HAS_DATA('STREAM_A') // checking if stream has data
+AS
+  INSERT INTO MAIN_TABLE(EVENT_ID, EVENT_TITLE, RATING)(
+    SELECT
+      <span style="color:#00ffea">STREAM_A</span>.RAW_DATA:"event_id" AS EVENT_ID
+      Random_title' AS EVENT_TITLE
+      <span style="color:#00ffea">STREAM_A</span>.RAW_DATA:"rating" AS RATING
+    FROM
+      <span style="color:#00ffea">STREAM_A</span>
+  );
+
+ALTER TASK <span style="color:#ff9b00">EVENT_RATINGS_TASK</span> RESUME;
+</pre>
+<!-- end -->
+											- Line <code>SYSTEM$STREAM_HAS_DATA('STREAM_A')</code> checks if stream has data - if so then the task gets trigered.<br>
+											- When the task is run, it executes insert query.<br>
+											- When tasks are created, they are off - we need to resume them to activet it.
+										</li>
+										<li>Also it can be run in response to another task finishing - so tasks can be chained together:
+<!-- start -->
+<pre>
+CREATE OR REPLACE TASK <span style="color:#f9ff00">TASK_2</span>
+  WAREHOUSE = My_Warehouse
+  AFTER <span style="color:#19ff00">TASK_1</span>
+AS
+  INSERT INTO MAIN_TABLE(EVENT_ID, EVENT_TITLE, RATING) SELECT * FROM my_table;
+</pre>
+<!-- end -->
+											- this way we can create a sequence of tasks by specifing the exisitng <b>TASK_1</b> as the predecessor that triggers <b>TASK_2</b> if run successfully.
+										</li>
+									</ul>
+
+									<h5 id="parse_json">Parse JSON</h5>
+									<ul>
+										<li>Parsing JSON doesn't work in the standard way:
+
+<!-- start -->
+<pre>
+INSERT INTO table1 (id, varchar1, variant1)
+	VALUES (4, 'Fourier', parse_json('{ "key1": "value1", "key2": "value2" }'));
+</pre>
+<!-- end -->
+											- it has to be implemented with SELECT query instead:
+<!-- start -->
+<pre>
+INSERT INTO table1 (id, varchar1, variant1)
+	SELECT 4, 'Fourier', parse_json('{ "key1": "value1", "key2": "value2" }');
+</pre>
+<!-- end -->
+										</li>
+									</ul>
+
+									<h5 id="amazon">Example integration with Amazon services:</h5>
+									<ul>
+										<li>We can build the entire process flow of ETL within AWS and loading processed data into Snowflake table:
+											<br>
+											1. S3 (raw data).<br>
+											2. Lambda function (ETL).<br>
+											3. S3 (processed data).<br>
+											4. Event notification (triggers data pipe).<br>
+											4. Snowpipe (loads data into db's table).<br>
+											5. Snowflake table.
+										</li>
+										<li>At best, S3 reagion should be as the same as Snowflake account.</li>
+										<li>We can keep all the code along with dependencies (modules) in the another s3 so that we can run it as lambda function.
+												<br><br>
+												<img src="images/lambda_code_from_S3.png" width="700">
 												<br>
-												- <code>event['rawPath']</code> - to get resource path,<br>
-												- <code>event['queryStringParameter']['param_name']</code> - to get value assigned to <code>param_name</code> within an url.<br>
-												- <code>decoded = json.loads(event['body'])</code><br>
-												&nbsp&nbsp<code>name = decoded['name']</code><br>
-												&nbsp&nbspwe need to parse JSON format in order to get body's values.
+												The whole package should be encapsulated in a zip file.
 										</li>
-									</ul>
-
-									<h5 id="cloudfront">AWS CloudFront:</h5>
-									<ul>
-										<li>Service for Content Delivery Network (CDN) which acts like a proxy that receives requests and forward those requests to the backend systems.</li>
-										<li>CDN caches website or application files, HTML, CSS, JS, images or videos at data centers around the world.
-												Even when backend server goes down, CDN is able to serve the content of a static web-site back to the end user..</li>
-										<li>When setting up the CloudFront service we define amount of data centers - <b>the edge locations</b>.
-												The more edge locations, the higher perfomrance and the lower latency of getting server's content as reposnse on user's request.</li>
-										<li>The edge locations allow users to download the app content much faster from the nearest edge location
-												rather than when request would need to go all the way to the origin server.
-										</li>
-										<li>User's request may need to go to the origin server in case when the content at the closest edge location is not present at the moment.</li>
-										<li>Content is being cached at the edge location for a specific period of time - <b>Time To Live (TTL)</b>.</li>
-									</ul>
-
-									<h5 id="storagegateway">AWS Storage Gateway:</h5>
-									<ul>
-										<li>A service that lets the on-premise application to access and use the cloud storage.</li>
-										<br>
-										<img src="images/storage_gateway.JPG" width="600"><span style="font-size:12px;">source: AWS</span>
-										<br>
-										<li>In <b>Gateway Stored Volumes</b> configuration, there is on-premise storage for an application server.
-												Whenever a file added to that special local storage, it's being uploaded asynchronously to the AWS S3 or AWS EBS in a compressed manner.
-										</li>
-										<li>In <b>Gateway Cached Volumes</b> configuration, there is no on-premises storage.
-												Data is stored primarly on AWS S3, what we have locally on-premise server is a cache of recently read or writthen data.
-										</li>
-									</ul>
-
-									<h5 id="redshift">Data Warehouse:</h5>
-									<ul>
-										<li>Using in Business Intelligence in which we transofrm raw data into useful business insights. It goes with following steps:
+										<li>We need to set up the trust relationship between our AWS account and Snowflake's AWS account:
 											<br>
-											1. Gathering data from different sources: ERP, CRM, OS, flat files.<br>
-											2. Extracting data from all sources, transforming and data cleaning and loading it into a data warehouse.<br>
-											3. Using data in data warehouse for the business analysis.
-										</li>
-										<br>
-										<img src="images/data_warehouse.JPG" width="600"><span style="font-size:12px;">source:radikal-labs.com</span>
-										<li>Data ralational database vs data warehouse:
-											<br><br>
-											<table>
-												<thead>
-													<tr>
-														<th>Relational Database</th>
-														<th>Data Warehouse</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>Contains the up-to-date data.</td>
-														<td>Contains the historical data.</td>
-													</tr>
-													<tr>
-														<td>Useful in running the business.</td>
-														<td>Useful in analyzing the business.</td>
-													</tr>
-													<tr>
-														<td>Read and write operations.</td>
-														<td>Mostly read opeartions.</td>
-													</tr>
-													<tr>
-														<td>Accessing limited number of records.</td>
-														<td>Accessing even milion of rows if needed.</td>
-													</tr>
-													<tr>
-														<td>Usually one source that serves an application.</td>
-														<td>Typically a collection of many data sources.</td>
-													</tr>
-												</tbody>
-											</table>
-										</li>
-										<li>AWS offers data warehouse service with <b>Amazon Redshift</b> whose architecture looks like below:
-											<br><br>
-											<img src="images/redshift.JPG" width="600"><span style="font-size:12px;">source: simplilearn</span>
+											- with trust relationship, Snowflake can use or assume a role to access S3 data,<br>
+											- the role that we stay in the full controll of in AWS - we allow another AWS account to use that role,<br>
+											- due to Amazon's documentation:
 											<br>
-											- The main element of Amazon Redshift is a cluster of nodes - datawarehouse cluster.<br>
-											- There are <b>compute nodes</b> that process data and the <b>leader node</b> that gives instructions.<br>
-											- Leader node also manages <b>client applications</b>, like BI tools, that require data from the Redshift.<br>
-											- Leader node uses <b>JDBS (Java Database Connectivity)</b> to monitor all of the connections to client appications.<br>
-											- Client applications uses <b>ODBC (Open Database Connectivity)</b> to interact with live data of the datawarehouse cluster sending SQL queries.<br>
-											- Compute nodes are divided into slice with dedicated memory space. They run in parallel to process the data in a fast manner.<br>
-											- Workflow:
+<!-- start -->
+<pre>
+<i>You can use IAM roles to delegate access to your AWS resources.
+With IAM roles, you can establish trust relationships between your trusting account
+and other AWS trusted accounts.
+The trusting account owns the resource to be accessed and the trusted account contains
+the users who need access to the resource (...)
+the trusting account might allow the trusted account to create new resources,
+such as creating new objects in an Amazon S3 bucket (...)
+After you create the trust relationship, an IAM user or an application from the trusted account
+can use the AWS Security Token Service (AWS STS). This operation provides temporary
+security credentials that enable access to AWS resources.</i>
+</pre>
+<!-- end -->
+										</li>
+									</ul>
+
+									<h5 id="sap">Integration with SAP</h5>
+									<ul>
+										<li>Here is the whole integration from system flat files into data visualization:
 											<br>
-											1. Client app sends query to the leader node.<br>
-											2. Leader node receives the query and develop a suitable execution plan.<br>
-											3. Once the plan is set up, compute nodes and compute slices start working on this plan.<br>
-											4. Compute nodes work in parallel and transfer data among themeselves in order to solve the query.<br>
-											5. Once excution is done. the leader node aggregates the results and sends it backt to clien app.
-									 </li>
-									</ul>
-
-									<h5 id="glue">AWS Glue:</h5>
-									<ul>
-										<li>ETL service to categorize, clean, enrich, and reliably move data between various data stores.</li>
-										<li>It collects different data carriers, then identifies the data types, suggests some transformations and generates editable code (ETL script) to execute the overall transformation and datawarehouse loading process.</li>
-										<li>AWS Glue has 3 main components:
-											<br>
-											- <b>Data Catalog</b> - central metadata repository that alwyas stays in sync with the underlying data thanks to the so-called <b>crawlers</b>.<br>
-											- <b>Job Authoring</b> - ETL engine that automatically generates Python or Scala code.<br>
-											- <b>Job Execution</b> - flexible scheduler that handles dependency resolution, job monitoring, potential retries and alerting.
-										</li>
-										<li>ETL scripts uses the <b>dynamic frame</b> - similar to the Apache Spark dataframe.
-												Dynamic frame is a data abstraction to organize data into rows and columns where each record is self-describing so no schema is required initially.
-												We can freely be converting dynamic frames into Spark dataframes.
-										</li>
-										<li>Here are some applicatons:
-												<br>
-												- AWS Glue can catalog S3 data lake making it available for quering with Amazon Athena and Amazon Redshift.<br>
-												- Making event-driven ETL pipelines: running ETL jobs as soon as new data comes in Amazon S3 by invoking your AWS Glue ETL jobs from an AWS Lambda function.<br>
-												- Cataloging data for quick search of datasets and maintaining relevant metadata in once central repository.
+											<b>I. SAP:</b><br>
+											&nbsp&nbsp&nbsp1. Proxy.<br>
+											<b>II. VPC - AWS account:</b><br>
+											&nbsp&nbsp&nbsp1. AWS Family Transfer SFTP server (SFTP users or each connection).<br>
+											&nbsp&nbsp&nbsp2. IAM write role (one for all buckets).<br>
+											&nbsp&nbsp&nbsp4. KMS encryption (individual for each bucket).<br>
+											&nbsp&nbsp&nbsp5. S3 buckets.<br>
+											&nbsp&nbsp&nbsp6. SQS notification (event of new file).<br>
+											&nbsp&nbsp&nbsp7. KMS encryption (individual for each bucket).<br>
+											&nbsp&nbsp&nbsp8. IAM read role (individual for each bucket).<br>
+											<b>III. Snowflake Aws account:</b><br>
+											&nbsp&nbsp&nbsp1. IAM read role from Trust Relationship.<br>
+											&nbsp&nbsp&nbsp2. Storage Integration object.<br>
+											&nbsp&nbsp&nbsp3. Stage object.<br>
+											&nbsp&nbsp&nbsp4. Snowpipe.<br>
+											&nbsp&nbsp&nbsp5. Table object.
 										</li>
 									</ul>
-
-									<h5 id="athena">AWS Athena:</h5>
-									<ul>
-										<li>Query service for managing Amazon S3 (od DynamoDB) data with standard SQL.</li>
-										<li>There is no need for any underlying compute infrastructure, no need for loading data into Amazon Athena or transforming it for the analysis.</li>
-										<li>We can access Athena through either the <b>AWS Management Console</b>, an application programming interface (API) or a Java Database Connectivity driver, then we we define schema and here we go - we can execute SQL queires.</li>
-										<li>We can put S3 data through AWS Glue's crawler in order to get a data schema into a table where the data gets stored. Data schema can be defined manally as well.</li>
-										<li>Once table created we can move on with quering it with common SQL.</li>
-									</ul>
-
-									<h5 id="emr">AWS Elastic MapReduce (EMR):</h5>
-									<ul>
-										<li>Platform for computational processing of vast amounts of data with the help of the MapReduce framework. It simplifies the enitre setup and management of the cluster and Hadoop components.</li>
-										<li>Hence, It uses Hadoop to distribute the data and process it across an auto-scaling cluster of computing nodes (EC2 instances).</li>
-										<li>EMR continously monitors nodes in the cluster. It retrieves failed tasks and replaces poorly performing instances.</li>
-										<li>We can choose computation engine while cluster establishing:
-											<br><br>
-											<img src="images/emr.JPG" width="700">
-										</li>
-									</ul>
-
-									<h5 id="datalake">Data Lake:</h5>
-									<ul>
-										<li>Data Lake vs Data Warehouse
-											<br><br>
-											<table>
-												<thead>
-													<tr>
-														<th>Data Lake</th>
-														<th>Data Warehouse</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>Stores raw, unstructured and unprocessed data.</td>
-														<td>Stores refined, structured and processed data.</td>
-													</tr>
-													<tr>
-														<td>Stores data that may never be used hence larger storage capacity required.</td>
-														<td>Saves storage space by not maintaining data that may never be used.</td>
-													</tr>
-													<tr>
-														<td>Poor data quality.</td>
-														<td>Data quality ensured.</td>
-													</tr>
-													<tr>
-														<td>Purpose of data gathering not determined.</td>
-														<td>Data being gathered for a specific business purpose.</td>
-													</tr>
-													<tr>
-														<td>Easy accessible and quick to update because of the lack of structures	.</td>
-														<td>More complicated and costly to make changes.</td>
-													</tr>
-													<tr>
-														<td>Used by Data Scientists.</td>
-														<td>Used by Business Analysts.</td>
-													</tr>
-													<tr>
-														<td>Requires specialized tools like Machine Learning to understand and translate data into usage.</td>
-														<td>Can be used with regular Business Intelligence tools to visualize data with charts, tables.</td>
-													</tr>
-												</tbody>
-											</table>
-										</li>
-										<li>Data Warehouse based on AWS services:
-											<br><br>
-											<img src="images/data_warehouse_aws_services.png" width="600"><span style="font-size:12px">source: AWS</span>
-											<br>
-											- data ingestion - Amazon Kinesis Data Firehose.<br>
-										  - data storage - Amazon S3.<br>
-											- data processing - AWS Lambda and AWS Glue.<br>
-											- data migration - AWS Data Migration Service (AWS DMS) and AWS Glue.<br>
-											- orchestration and metadata management.<br>
-											- querying and data visualization Amazon Athena and Amazon QuickSight.
-										</li>
-										<li>Data Lakes in AWS:
-											<br>
-											- Offers more agility and flexibility than traditional data management systems.<br>
-											- Allows companies to store all of their data from various sources, regardless if they are structured and unstructured, in a centralized repository.<br>
-											- Configures the core AWS services to easily tag, search, share, and govern subsets of data across a company.<br>
-											- Stores and registers datasets of any size in the secure, durable, scalable AWS S3.<br>
-											- Allows users to upload and catalog new datasets with searchable metadata and integrate it with AWS Glue and Amazon Athena to transform and analyze.<br>
-											- Crawls the data sources, idetifies data formats, and then suggests scheams and transofmrations with no hand-coding data flows.<br>
-											- Adds user-defined tags into AWS DynamoDB to add business-relevant context to each dataset.<br>
-											- Allows users to browse available datasets or search on dataset attributes and tags to quickly find and access data relevant to their business needs.
-											</li>
-										<li>Data Lake based on AWS services:
-											<br><br>
-											<img src="images/datalakes.png" width="600"><span style="font-size:12px;">source: AWS</span>
-											<br>
-											- The data lake infrastructure can be provisioned by AWSC CloudFormation.<br>
-											- Data lake API leverages Amazon API Gateway to provide access to data lake microservices through AWS Lambda functions.<br>
-											- These microservices interact with Amazon S3, AWS Glue, AWS Athena, AWS DynamoDB, AWS ES, and AWS CloudWatch Logs to provide data storage, management, and audit functions.<br>
-										</li>
-									</ul>
-
-									<h5 id="kinesis">Amazon Kinesis Firehose</h5>
-									<ul>
-										<li>Allows to deliver streaming or event data into various destinations such as BI database, data storage (S3, redshift, ElasticShearch), dashboards.</li>
-										<li>In other words it creaes a single data ingestion point and provides a means to deliver that data to some destination services we can specify when setting-up kinesis firehose stream.</li>
-										<li>Ingested data (large number of individaul events in application) be compressed or batched into a single output file and sent to one of the destinations.</li>
-										<li>Example worflow:
-											<br><br>
-											<img src="images/kinesis.png" width="900"><br>
-											<span style="font-size:12px;">source: Be a better dev</span><br>
-											1. SNS data put to a topic in form of JSON.<br>
-											2. Lambda as the subscriber to SNS topic:<br>
-											- for every event on a specific topic there is the lambda function invocation,<br>
-											- lambda performs put operations into kinesis firehose endpoint.<br>
-											3. Kinesis organizes data and delivers due to buffer interval or buffer size.<br>
-											4. S3 where data is delivered to store.<br>
-											5. Either kinesis firehose  can invoke another lambda function that applies bussines logic to the data.
-										</li>
-										<li>Buffer size dictates how many files we end up in S3. If data is 10 MB large and buffer size is set up to 5MB then there will be two files stored in S3 at the end.</li>
-										<li>Buffer interval, if we don't achieve 5MB in size of dat then we push it to S3 after x seconds.</li>
-									</ul>
-
-									<h5 id="cloudwatch">AWS CloudWatch:</h5>
-									<ul>
-										<li>Monitoring services on AWS servers and applications.</li>
-										<li>It collects and monitors log files, sets alarms, reacts to changes in the AWS resources automatically, for example:
-												when CPU utilization in an EC2 instance is grater than 70 % then you get the email alarming notification.<br>
-										</li>
-										<li>AWS CloudWatch Logs:
-												<br>
-												- Server can keep a lot of log files both sytem and application logs.<br>
-												- It is iportant to have a log files during application's debugging. If there is something that doesn't work as expected then we would need to check the errors in the specific log file.<br>
-												- In traditional way, when debugging we need to grant access to the server for an individual who wants to check a log file.
-													On the other hand, what poses the risk is that when server termiantes, the logs are lost.<br>
-												- The better way is to create a central logs server in which we want to push the log files from individual systems. Then we can go with the central log monitoring.<br>
-												- AWS CloudWatch Logs is the <b>centralized logs management</b> to monitor, store, and access log files form Amazon EC2 instances, Route 53 and other sourcers.<br>
-												- Can catch all the trafic that runs over SFTP server.
-											</li>
-									</ul>
-
-									<h5 id="route53">AWS Route 53:</h5>
-									<ul>
-										<li>Domain Name System (DNS) web service used to route end users to Internet applications by translating names like www.example.com into the numeric IP addresses like 192.0.2.1 that computers use to connect to each other. </li>
-										<li>Amazon Route 53 connects user requests to infrastructure running in AWS (EC2, S3) or routes users to infrastructure outside of AWS.</li>
-										<li>With AWS Route 53 I can route traffic to differnet app's endpoints idependently and monitor their health.</li>
-										<li>It is not limited to a specific region. We can launch it globally.</li>
-									</ul>
-
-									<h5 id="elasticache">AWS ElastiCache:</h5>
-									<ul>
-										<li>In-memory cache in the cloud. It caches the response associated with frequent queries.</li>
-										<li>This allows better response time and decreases the load on the database server.</li>
-										<li>When user sents the same query once again, the response comes from cache engine instead of from database server.</li>
-									</ul>
-
-									<h5 id="transferfamily">AWS Transfer Family:</h5>
-									<ul>
-										<li>Setting up SFTP protocal for transferring files into S3 or Amazon EFS.</li>
-										<li>It provides endpoint for file transfers directly into and out of Amazon S3 using protocols:
-											<br>
-											- Secure File Transfer Protocol (SFTP),<br>
-											- File Transfer Protocol over SSL (FTPS),<br>
-											- File Transfer Protocol (FTP).
-										</li>
-										<li>Here is the workflow:
-											<br>
-											<img src="images/transfer_family.JPG" width="600"><span style="font-size:12px">source: Amazon</span>
-											<br>
-											- example of file transfer clients: WinSCP, Filezilla,<br>
-											- IAM roles are used to grant access to S3 bucket from file transfer clients in a secure way.<br>
-										</li>
-									</ul>
-
-									<!-- <h5>Message Broker:</h5>
-									<ul>
-										<li></li>
-									</ul>-->
-
+									
 								</div>
 							</section>
 
@@ -1053,7 +1056,7 @@ def <span style="color:#19ff00;">lambda_handler</span>(event, context):
 
 									<h5>Following installation required:</h5>
 									<ul>
-										<li>MobaXterm from https://mobaxterm.mobatek.net/download-home-edition.html</li>
+										<li><a href="https://signup.snowflake.com/">Snowflake page.</a></li>
 									</ul>
 
 								</div>
@@ -1062,7 +1065,7 @@ def <span style="color:#19ff00;">lambda_handler</span>(event, context):
 							<section id="five">
 								<div class="container">
 									<h3>Source Code</h3>
-									<p>You can view the source code: <a href="#">HERE</a></p>
+									<p>You can view the source code: <a href="https://github.com/ArturSkrzeta/OLAP-in-Snowflake/tree/main/script">HERE</a></p>
 									<p>&nbsp</p>
 								</div>
 							</section>
