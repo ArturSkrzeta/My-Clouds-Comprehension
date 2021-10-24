@@ -496,7 +496,7 @@
 										<li>DynamoDB Stream:
 											<br>
 											- It's a feature that launches events when record modifications occur on a dynamodb table.<br>
-											- We distingus 3 types of events on a table: insert, update, remove.<br>
+											- We distinguish 3 types of events on a table: insert, update, remove.<br>
 											- Events can carry the content of the rows being modified so we can have a look at before change and after chagne.<br>
 											- Events are in the same order as in which the modifications take place,<br>
 											- We can be detecting changes in a dynamoDB table using a lambda function - every time event occurs, lambda gets invoked.<br>
@@ -875,10 +875,11 @@ def <span style="color:#19ff00;">lambda_handler</span>(event, context):
 
 									<h5 id="athena">AWS Athena:</h5>
 									<ul>
-										<li>Query service for managing Amazon S3 (od DynamoDB) data with standard SQL.</li>
+										<li>Query service for managing Amazon S3 (or DynamoDB) data with standard SQL.</li>
 										<li>There is no need for any underlying compute infrastructure, no need for loading data into Amazon Athena or transforming it for the analysis.</li>
 										<li>We can access Athena through either the <b>AWS Management Console</b>, an application programming interface (API) or a Java Database Connectivity driver, then we we define schema and here we go - we can execute SQL queires.</li>
-										<li>We can put S3 data through AWS Glue's crawler in order to get a data schema into a table where the data gets stored. Data schema can be defined manally as well.</li>
+										<li>We can put S3 data through AWS Glue's crawler in order to get a data schema into a table where the data gets stored. Data schema is being kept is so-called Data Catalog then. Data schema can be defined manally as well.</li>
+										<li>There is also Quick Sight available that can help us visualize the data.</li>
 										<li>Once table created we can move on with quering it with common SQL.</li>
 									</ul>
 
