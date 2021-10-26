@@ -176,6 +176,51 @@
 										</li>
 									</ul>
 
+									<h5>Data Warehouse:</h5>
+									<ul>
+										<li>Using in Business Intelligence in which we transofrm raw data into useful business insights. It goes with following steps:
+											<br>
+											1. Gathering data from different sources: ERP, CRM, OS, flat files.<br>
+											2. Extracting data from all sources, transforming and data cleaning and loading it into a data warehouse.<br>
+											3. Using data in data warehouse for the business analysis.
+										</li>
+										<br>
+										<img src="images/data_warehouse.JPG" width="600"><span style="font-size:12px;">source:radikal-labs.com</span>
+										<li>Data ralational database vs data warehouse:
+											<br><br>
+											<table>
+												<thead>
+													<tr>
+														<th>Relational Database</th>
+														<th>Data Warehouse</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Contains the up-to-date data.</td>
+														<td>Contains the historical data.</td>
+													</tr>
+													<tr>
+														<td>Useful in running the business.</td>
+														<td>Useful in analyzing the business.</td>
+													</tr>
+													<tr>
+														<td>Read and write operations.</td>
+														<td>Mostly read opeartions.</td>
+													</tr>
+													<tr>
+														<td>Accessing limited number of records.</td>
+														<td>Accessing even milion of rows if needed.</td>
+													</tr>
+													<tr>
+														<td>Usually one source that serves an application.</td>
+														<td>Typically a collection of many data sources.</td>
+													</tr>
+												</tbody>
+											</table>
+										</li>
+									</ul>
+
 									<h5 id="iaac">Infrastructure as a Code (IaaC):</h5>
 									<ul>
 										<li>There are two ways of building the infrastructure: manually or with script's automation.</li>
@@ -788,49 +833,8 @@ def <span style="color:#19ff00;">lambda_handler</span>(event, context):
 										</li>
 									</ul>
 
-									<h5 id="redshift">Data Warehouse:</h5>
+									<h5 id="redshift">Amazon Redshift</h5>
 									<ul>
-										<li>Using in Business Intelligence in which we transofrm raw data into useful business insights. It goes with following steps:
-											<br>
-											1. Gathering data from different sources: ERP, CRM, OS, flat files.<br>
-											2. Extracting data from all sources, transforming and data cleaning and loading it into a data warehouse.<br>
-											3. Using data in data warehouse for the business analysis.
-										</li>
-										<br>
-										<img src="images/data_warehouse.JPG" width="600"><span style="font-size:12px;">source:radikal-labs.com</span>
-										<li>Data ralational database vs data warehouse:
-											<br><br>
-											<table>
-												<thead>
-													<tr>
-														<th>Relational Database</th>
-														<th>Data Warehouse</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>Contains the up-to-date data.</td>
-														<td>Contains the historical data.</td>
-													</tr>
-													<tr>
-														<td>Useful in running the business.</td>
-														<td>Useful in analyzing the business.</td>
-													</tr>
-													<tr>
-														<td>Read and write operations.</td>
-														<td>Mostly read opeartions.</td>
-													</tr>
-													<tr>
-														<td>Accessing limited number of records.</td>
-														<td>Accessing even milion of rows if needed.</td>
-													</tr>
-													<tr>
-														<td>Usually one source that serves an application.</td>
-														<td>Typically a collection of many data sources.</td>
-													</tr>
-												</tbody>
-											</table>
-										</li>
 										<li>AWS offers data warehouse service with <b>Amazon Redshift</b> whose architecture looks like below:
 											<br><br>
 											<img src="images/redshift.JPG" width="600"><span style="font-size:12px;">source: simplilearn</span>
