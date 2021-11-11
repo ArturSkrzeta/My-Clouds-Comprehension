@@ -119,9 +119,9 @@ EKS - elastic kubernetes service:
 + we can connect a EKS cluster using cubectl command and start deploying containers inside that cluster
 + communication betweencontrol plane (master nodes) and compute fleet is possible thanks to K8S Worker Processes
 + we can use EKS with:
-# with ec2 instances - aws zarzadza control plane a user zarzadza serwerami - ec2 istnieje i trzeba za nie placic nawet jak sie nie korzysta
-# with managed nodegroups - grouping worker nodes - managed serwers by aws
-# integrated with serverless Farget we have compute fleet and control plane fully-managed by AWS
+! with ec2 instances - aws zarzadza control plane a user zarzadza serwerami - ec2 istnieje i trzeba za nie placic nawet jak sie nie korzysta
+! with managed nodegroups - grouping worker nodes - managed serwers by aws
+! integrated with serverless Farget we have compute fleet and control plane fully-managed by AWS
 + there is also etcs within control plane which is a database or a cluster
 + multiple AZs, rozne komplesy data center - duza dostepnosc i niezawodnosc
 + do komunikacji z k8s przez api kubernetesowe - Kubectl
