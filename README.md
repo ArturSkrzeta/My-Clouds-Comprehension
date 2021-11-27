@@ -1,5 +1,4 @@
 AWS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-https://www.youtube.com/watch?v=in3r2elrojg&ab_channel=Chmurowisko
 
 serverless
 - usluga do ktoej wrzucamy kod biznesowy a ona zajmuje sie provisioningihiem serwera, odpaleniem kodu i placimy wlacznie za czas wykonania kodu
