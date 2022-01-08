@@ -420,13 +420,13 @@ Managed Apache Airflow:
 - apache airflow comes with many built-in sensors to check s3 and operators to interact with AWS services executing SQL queries against CSV files
 - managed workflows integrates with Amazon CloudWatch for logging and monitoring
 - setting up enviroment:
-# selecting VPS in which enviroment will be installed
-# each environment requires to select pricate subnets in two different AZs from the VPC
-# choosing how we want to access Airflow UI = 1. private network option- private endpoint accessible only from inside your VPC, 2. publicly accessible endpoint - both are authorized and authenticated with AWS IAM
-# setting up max number of workers to scale up
-# enviorment ensures encryption
-# ensures also monitoring  in cloudwatch metrics
-# workers assume IAM execution role to access other AWS services from your tasks
+: selecting VPS in which enviroment will be installed
+: each environment requires to select pricate subnets in two different AZs from the VPC
+: choosing how we want to access Airflow UI = 1. private network option- private endpoint accessible only from inside your VPC, 2. publicly accessible endpoint - both are authorized and authenticated with AWS IAM
+: setting up max number of workers to scale up
+: enviorment ensures encryption
+: ensures also monitoring  in cloudwatch metrics
+: workers assume IAM execution role to access other AWS services from your tasks
 
 AWS Secrets Manager:
 + sekret jest domyslnie enkyptowany przy uzyciu AWS KMS - AWS Secrects Manaer creates a default service encryption key
