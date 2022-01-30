@@ -451,3 +451,14 @@ computing ewolution:
 2. virtual machines, hardware independence, faster provisioning, better scaling, reduced maintenance.
 3. containerization, platform independence, consistent runtime environment, easier and faster deployment, isolation and sandboxing, fast deployment
 4. serverless, continues scaling, fault tolerance built-in, pay for value, zero maintenance
+
+
+Używając AWS z pewnością korzystasz z AWS IAM, serwisu do zarządzania dostępem do usług i zasobów. Warto robić to dobrze. Poniżej 7 dobrych praktyk:
+1. Nigdy nie korzystaj z konta root do codziennej pracy. Zamiast tego używaj kont z najmniejszą liczbą uprawnień wymaganą do pracy.
+2. Regularnie monitoruj swoje IAM policies i usuwaj uprawnienia do serwisów z których już nie korzystasz. Regularnie zmieniaj hasło i rotuj klucze dostępowe.
+3. Używaj mocnych haseł i włącz wieloskładnikową autentykację.
+4. Na maszynach EC2 w celu nadania uprawnień do innych serwisów AWS używaj IAM roles.
+5. Nigdy nie dziel się kluczami dostępowymi (access key), ani nie zapisuj ich w repozytorium.
+6. Podczas tworzenia IAM roles, w celu zwiększenia bezpieczeństwa używaj dodatkowych warunków np. zakres adresów IP.
+7. Monitoruj aktywność na swoim koncie za pomocą AWS CloudTrail i przeglądaj logi CloudWatch oraz Amazon S3. Dane historyczne o swoich IAM rolach, grupach i polisach znajdziesz w AWS Config. #aws
+
